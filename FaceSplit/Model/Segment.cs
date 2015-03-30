@@ -19,8 +19,11 @@ namespace FaceSplit.Model
         {
             this.segmentName = name;
             this.splitTime = splitTime;
+            this.backupSplitTime = splitTime;
             this.segmentTime = segmentTime;
+            this.backupSegmentTime = segmentTime;
             this.bestSegmentTime = bestSegmentTime;
+            this.backupBestSegmentTime = bestSegmentTime;
         }
 
         public String SegmentName
@@ -46,5 +49,44 @@ namespace FaceSplit.Model
             get { return this.bestSegmentTime; }
             set { this.bestSegmentTime = value; }
         }
+
+        public void DoSplit(Double splitTime)
+        {
+            this.splitTime = splitTime;
+        }
+
+        /// <summary>
+        /// If this segment has no split time, we can't calculate run delta, this is what we are looking at here.
+        /// </summary>
+        /// <returns></returns>
+        public Boolean HasRunDelta()
+        {
+            return backupSplitTime != 0.0 && splitTime != 0.0;
+        }
+
+        /// <summary>
+        /// Calculate the run delta from the segment.
+        /// </summary>
+        /// <returns></returns>
+        public double CalculateRunDelta()
+        {
+            return this.splitTime - this.backupSplitTime;
+        }
+
+        public void SaveTimes()
+        {
+            this.backupSplitTime = this.splitTime;
+        }
+
+        public void ResetTimes()
+        {
+            this.splitTime = backupSplitTime;
+        }
+
+        public void Skip()
+        {
+            this.splitTime = 0.0;
+        }
+
     }
 }

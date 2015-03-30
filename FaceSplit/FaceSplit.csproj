@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DisplayMode.cs" />
+    <Compile Include="Model\Information.cs" />
+    <Compile Include="Model\RunStatus.cs" />
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Split.cs" />
     <Compile Include="Utils\FaceSplitUtils.cs" />

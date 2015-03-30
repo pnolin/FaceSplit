@@ -32,6 +32,7 @@
             this.ticksTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMnuPrincipal = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuEditRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCloseSplit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMnuPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -45,9 +46,10 @@
             // 
             this.contextMnuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuEditRun,
+            this.mnuCloseSplit,
             this.mnuExit});
             this.contextMnuPrincipal.Name = "contextMnuPrincipal";
-            this.contextMnuPrincipal.Size = new System.Drawing.Size(154, 48);
+            this.contextMnuPrincipal.Size = new System.Drawing.Size(154, 92);
             // 
             // mnuEditRun
             // 
@@ -55,6 +57,13 @@
             this.mnuEditRun.Size = new System.Drawing.Size(153, 22);
             this.mnuEditRun.Text = "New / Edit Run";
             this.mnuEditRun.Click += new System.EventHandler(this.mnuEditRun_Click);
+            // 
+            // mnuCloseSplit
+            // 
+            this.mnuCloseSplit.Name = "mnuCloseSplit";
+            this.mnuCloseSplit.Size = new System.Drawing.Size(153, 22);
+            this.mnuCloseSplit.Text = "Close split";
+            this.mnuCloseSplit.Click += new System.EventHandler(this.mnuCloseSplit_Click);
             // 
             // mnuExit
             // 
@@ -86,6 +95,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMnuPrincipal;
         private System.Windows.Forms.ToolStripMenuItem mnuEditRun;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
+        private System.Windows.Forms.ToolStripMenuItem mnuCloseSplit;
     }
 }
 

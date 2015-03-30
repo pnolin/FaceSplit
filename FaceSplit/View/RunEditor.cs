@@ -130,10 +130,10 @@ namespace FaceSplit
         {
             foreach (DataGridViewRow rows in this.segmentsGridView.Rows)
             {
-                String segmentName = (String.IsNullOrEmpty(rows.Cells[0].Value.ToString())) ? "-" : rows.Cells[0].Value.ToString();
-                double splitTime = (String.IsNullOrEmpty(rows.Cells[1].Value.ToString())) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[1].Value.ToString());
-                double segmentTime = (String.IsNullOrEmpty(rows.Cells[2].Value.ToString())) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[2].Value.ToString());
-                double bestSegmentTime = (String.IsNullOrEmpty(rows.Cells[3].Value.ToString())) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[3].Value.ToString());
+                String segmentName = (rows.Cells[0].Value == null) ? "-" : rows.Cells[0].Value.ToString();
+                double splitTime = (rows.Cells[1].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[1].Value.ToString());
+                double segmentTime = (rows.Cells[2].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[2].Value.ToString());
+                double bestSegmentTime = (rows.Cells[3].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[3].Value.ToString());
                 this.split.Segments.Add(new Segment(segmentName, splitTime, segmentTime, bestSegmentTime));
             }
         }
