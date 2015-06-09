@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Xml;
 using System.Runtime.InteropServices;
 using FaceSplit.Model;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace FaceSplit
 {
@@ -17,7 +20,7 @@ namespace FaceSplit
         /// <summary>
         /// Default height and width.
         /// </summary>
-        public const int DEFAULT_WIDTH = 200;
+        public const int DEFAULT_WIDTH = 250;
         public const int DEFAULT_HEIGHT = 38;
 
         public const int ZERO = 0;
@@ -25,21 +28,33 @@ namespace FaceSplit
         public const int SEGMENT_HEIGHT = 15;
 
         public int splitY_start;
+        /// <summary>
+        /// When you unsplit, the segment timer has to be set to the actual time since you did that split.
+        /// </summary>
+        public double timeElapsedSinceSplit;
 
         Split split;
         DisplayMode displayMode;
         List<Information> informations;
+
+        SaveFileDialog saveFileDialog;
+        OpenFileDialog openFileDialog;
 
         /// <summary>
         /// The watch on the screen.
         /// </summary>
         Stopwatch watch;
         /// <summary>
+        /// The watch for segments.
+        /// </summary>
+        Stopwatch segmentWatch;
+        /// <summary>
         /// Use when the run is done but you want to unsplit.
         /// We keep the timer going but 
         /// </summary>
         TimeSpan runTimeOnCompletionPause;
         Color watchColor;
+        Color runDeltaColor;
 
         /// <summary>
         /// Rectangle for each segments.
@@ -70,16 +85,19 @@ namespace FaceSplit
         public FaceSplit()
         {
             InitializeComponent();
+            this.ConfigureFilesDialogs();
             segmentsRectangles = new List<Rectangle>();
             watchRectangle = new Rectangle(ZERO, ZERO, DEFAULT_WIDTH, DEFAULT_HEIGHT);
             this.displayMode = DisplayMode.TIMER_ONLY;
             this.watchColor = Color.White;
+            this.runDeltaColor = Color.White;
             informations = new List<Information>();
             this.splitY_start = 0;
             base.Paint += new PaintEventHandler(this.DrawFaceSplit);
             base.Size = new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
             base.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             watch = new Stopwatch();
+            segmentWatch = new Stopwatch();
             this.ticksTimer.Enabled = true;
         }
 
@@ -91,12 +109,18 @@ namespace FaceSplit
         public void TimerTicks(object sender, EventArgs e)
         {
             this.Invalidate();
+            if (this.displayMode == DisplayMode.SEGMENTS)
+            {
+                UpdateInformations();
+            }
         }
 
 
         private void mnuEditRun_Click(object sender, EventArgs e)
         {
-            RunEditor runEditor = new RunEditor(null);
+            String splitFile = (this.split == null) ? null : this.split.File;
+            int runsCompleted = (this.split == null) ? 0 : this.split.RunsCompleted;
+            RunEditor runEditor = new RunEditor(this.split);
             runEditor.ShowDialog();
             if (runEditor.DialogResult == DialogResult.OK)
             {
@@ -105,10 +129,41 @@ namespace FaceSplit
                 int attemptsCount = runEditor.Split.AttemptsCount;
                 List<Segment> segments = runEditor.Split.Segments;
                 this.split = new Split(runTitle, runGoal, attemptsCount, segments);
+                this.split.File = splitFile;
+                this.split.RunsCompleted = runsCompleted;
                 this.informations.Clear();
                 FillInformations();
                 CreateSegmentsRectangles();
                 this.displayMode = DisplayMode.SEGMENTS;
+            }
+        }
+
+        private void mnuSaveRun_Click(object sender, EventArgs e)
+        {
+            if (this.split != null)
+            {
+                if (this.split.File == null)
+                {
+                    this.SaveFileAs();
+                }
+                else
+                {
+                    this.SaveFile();
+                }
+                
+            }
+        }
+
+        private void mnuSaveRunAs_Click(object sender, EventArgs e)
+        {
+            this.SaveFileAs();
+        }
+
+        private void mnuLoadRun_Click(object sender, EventArgs e)
+        {
+            if (this.openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.LoadFile(openFileDialog.FileName);
             }
         }
 
@@ -129,9 +184,94 @@ namespace FaceSplit
         {
             DrawWatch(e.Graphics);
             if (this.displayMode == DisplayMode.SEGMENTS)
-            {
-                DrawSegments(e.Graphics);
+            {                
                 DrawInformations(e.Graphics);
+                DrawSegments(e.Graphics);
+            }
+        }
+
+        private void ConfigureFilesDialogs()
+        {
+            this.saveFileDialog = new SaveFileDialog();
+            this.saveFileDialog.DefaultExt = ".fss";
+            this.saveFileDialog.Filter = "FaceSplit split file (*.fss)|*.fss";
+            this.saveFileDialog.AddExtension = true;
+
+            this.openFileDialog = new OpenFileDialog();
+            this.openFileDialog.DefaultExt = ".fss";
+            this.openFileDialog.Filter = "FaceSplit split file (*.fss)|*.fss";
+            this.openFileDialog.AddExtension = true;
+        }
+
+        private void SaveFileAs()
+        {           
+            if (this.split != null)
+            {
+                if (this.saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.split.File = saveFileDialog.FileName;
+                    this.SaveFile();
+                }
+            }
+        }
+
+        private void SaveFile()
+        {
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(this.split.File, false))
+            {
+                file.WriteLine(this.split.RunTitle);
+                file.WriteLine(this.split.RunGoal);
+                file.WriteLine(this.split.AttemptsCount);
+                file.WriteLine(this.split.RunsCompleted);
+                foreach (Segment segment in this.split.Segments)
+                {
+                    file.WriteLine(segment.SegmentName + "-" + segment.SplitTime + "-" + segment.SegmentTime + "-" + segment.BestSegmentTime);
+                }
+                file.Close();
+            }
+        }
+
+        private void LoadFile(String fileName)
+        {
+            String[] lines = File.ReadAllLines(fileName);
+            String runTitle = "";
+            String runGoal = "";
+            int runCount = 0;
+            int runsCompleted = 0;
+            String segmentName = "";
+            String segmentSplitTime = "";
+            String segmentTime = "";
+            String segmentBestTime = "";
+            List<Segment> segments = new List<Segment>();
+            try
+            {
+                runTitle = lines.ElementAt(0);
+                runGoal = lines.ElementAt(1);
+                runCount = Int32.Parse(lines.ElementAt(2));
+                runsCompleted = Int32.Parse(lines.ElementAt(3));
+                for (int i = 4; i < lines.Length; ++i)
+                {
+                    segmentName = lines.ElementAt(i).Split('-').ElementAt(0);
+                    segmentSplitTime = lines.ElementAt(i).Split('-').ElementAt(1);
+                    segmentTime = lines.ElementAt(i).Split('-').ElementAt(2);
+                    segmentBestTime = lines.ElementAt(i).Split('-').ElementAt(3);
+                    segments.Add(new Segment(segmentName, FaceSplitUtils.TimeParse(segmentSplitTime), FaceSplitUtils.TimeParse(segmentTime), FaceSplitUtils.TimeParse(segmentBestTime)));
+                }
+                this.split = new Split(runTitle, runGoal, runCount, segments);
+                this.split.RunsCompleted = runsCompleted;
+                this.split.File = fileName;
+                this.informations.Clear();
+                FillInformations();
+                CreateSegmentsRectangles();
+                this.displayMode = DisplayMode.SEGMENTS;
+            }
+            catch (FormatException fe)
+            {
+                MessageBox.Show("This file was not recognize as a FaceSplit split file.");
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                MessageBox.Show("This file was not recognize as a FaceSplit split file.");
             }
         }
 
@@ -148,14 +288,18 @@ namespace FaceSplit
                 segmentsRectangles.Add(new Rectangle(ZERO, (index * SEGMENT_HEIGHT) + splitY_start, DEFAULT_WIDTH, SEGMENT_HEIGHT));
                 index++;
             }
-            watchRectangle.Y = segmentsRectangles.Count() * SEGMENT_HEIGHT + (this.informations.Count * SEGMENT_HEIGHT);
+            watchRectangle.Y = segmentsRectangles.Count() * SEGMENT_HEIGHT + splitY_start;
             this.Height = (this.segmentsRectangles.Count() * SEGMENT_HEIGHT) + (this.informations.Count * SEGMENT_HEIGHT) + DEFAULT_HEIGHT;
         }
 
         private void FillInformations()
         {
-            this.informations.Add(new Information(this.split.RunTitle, 0, true, true));
-            this.informations.Add(new Information(this.split.RunGoal, 1, true, true));
+            this.informations.Insert((int)InformationIndexs.TITLE, new Information(InformationName.TITLE, this.split.RunTitle, this.split.RunsCompleted + "/" + this.split.AttemptsCount, (int)InformationIndexs.TITLE, true, true));
+            this.informations.Insert((int)InformationIndexs.GOAL, new Information(InformationName.GOAL, "Goal: " + this.split.RunGoal, null,(int)InformationIndexs.GOAL, true, true));
+            this.informations.Insert((int)InformationIndexs.PREVIOUS_SEGMENT, new Information(InformationName.PREVIOUS_SEGMENT, "Previous segment: ", "-", (int)InformationIndexs.PREVIOUS_SEGMENT, true, false));
+            this.informations.Insert((int)InformationIndexs.POSSIBLE_TIMESAVE, new Information(InformationName.POSSIBLE_TIME_SAVE, "Possible time save: ", "-", (int)InformationIndexs.POSSIBLE_TIMESAVE, true, false));
+            this.informations.Insert((int)InformationIndexs.PREDICTED_TIME, new Information(InformationName.PREDICTED_TIME, "Predicted time: ", "-", (int)InformationIndexs.PREDICTED_TIME, true, false));
+            this.informations.Insert((int)InformationIndexs.SUM_OF_BEST, new Information(InformationName.SUM_OF_BEST, "Sum of best: ", "-", (int)InformationIndexs.SUM_OF_BEST, true, false));
             this.splitY_start = AboveInformationCount() * SEGMENT_HEIGHT;
         }
 
@@ -205,19 +349,19 @@ namespace FaceSplit
             Rectangle segmentNameRectangle;
             Rectangle segmentSplitTimeRectangle;
             Color rectangleColor = Color.Black;
-            Color runDeltaColor = Color.White;
 
             for (int i = 0; i < segmentsRectangles.Count; ++i)
             {
                 rectangleColor = (i == this.split.LiveIndex) ? Color.Blue : Color.Black;
                 segmentName = this.split.Segments.ElementAt(i).SegmentName;
                 segmentSplitTime = (this.split.Segments.ElementAt(i).SplitTime == 0) ? "-" : FaceSplitUtils.TimeFormat(this.split.Segments.ElementAt(i).SplitTime);
+                segmentSplitTime = FaceSplitUtils.CutDecimals(segmentSplitTime, 2);
                 runDeltaString = GetRunDeltaString(i);
-                if (i == this.split.LiveIndex && runDeltaString.IndexOf("+") == -1)
-                {
-                    runDeltaString = "";
-                }
-                runDeltaColor = (runDeltaString.IndexOf("+") == -1) ? Color.LightGreen : Color.DarkRed;
+                //if (i == this.split.LiveIndex && (runDeltaString.IndexOf("+") == -1 && runDeltaString.IndexOf("-") == -1))
+                //{
+                //    runDeltaString = "";
+                //}
+                runDeltaString = FaceSplitUtils.CutDecimals(runDeltaString, 2);
                 segmentNameRectangle = segmentsRectangles.ElementAt(i);
                 segmentNameRectangle.Width /= 2;
                 segmentSplitTimeRectangle = segmentsRectangles.ElementAt(i);
@@ -231,7 +375,7 @@ namespace FaceSplit
                 if(!String.IsNullOrEmpty(runDeltaString.Trim()))
                 {
                     TextRenderer.DrawText(graphics, runDeltaString, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
-                    segmentSplitTimeRectangle, runDeltaColor, runDeltaFlags);
+                    segmentSplitTimeRectangle, this.split.GetSegmentColor(i), runDeltaFlags);
                 }
             }
         }
@@ -246,6 +390,7 @@ namespace FaceSplit
         {
             Boolean lostTime;
             double runDelta;
+            Double timeElapsed = (Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100) + this.timeElapsedSinceSplit;
             String runDeltaString = "";
             if (index < this.split.LiveIndex)
             {
@@ -263,10 +408,9 @@ namespace FaceSplit
                     {
                         runDeltaString = runDeltaString.Insert(0, "-");
                     }
-
                 }
             }
-            else if (index == this.split.LiveIndex)
+            else if (index == this.split.LiveIndex && this.split.SegmentHasRunDelta(index))
             {
                 runDelta = this.split.GetLiveRunDelta(Math.Truncate(this.watch.Elapsed.TotalSeconds * 100) / 100);
                 lostTime = (runDelta > 0);
@@ -274,6 +418,14 @@ namespace FaceSplit
                 if (lostTime)
                 {
                     runDeltaString = runDeltaString.Insert(0, "+");
+                }
+                else if ((index > 0 && runDelta > this.split.GetRunDelta(index - 1)) || this.split.CurrentSegmentHasLiveDelta(timeElapsed))
+                {
+                    runDeltaString = runDeltaString.Insert(0, "-");
+                }
+                else
+                {
+                    runDeltaString = "";
                 }
             }
             return runDeltaString;
@@ -285,12 +437,37 @@ namespace FaceSplit
         /// <param name="graphics"></param>
         private void DrawInformations(Graphics graphics)
         {
+            int aboveDrawn = 0;
+            int belowDrawn = 0;
             for (int i = 0; i < this.informations.Count; i++)
             {
-                Rectangle informationRectangle = new Rectangle(0, i * SEGMENT_HEIGHT, DEFAULT_WIDTH, SEGMENT_HEIGHT);
-                graphics.FillRectangle(new SolidBrush(Color.Black), informationRectangle);
-                TextRenderer.DrawText(graphics, this.informations.ElementAt(i).InformationText, new Font(FontFamily.GenericSansSerif, 8.0F),
-                    informationRectangle, this.informations.ElementAt(i).InformationColor, this.informations.ElementAt(i).InformationFlags);
+                if (this.informations.ElementAt(i).Above)
+                {
+                    Rectangle informationRectangle = new Rectangle(0, aboveDrawn * SEGMENT_HEIGHT, DEFAULT_WIDTH, SEGMENT_HEIGHT);
+                    graphics.FillRectangle(new SolidBrush(Color.Black), informationRectangle);
+                    TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
+                        informationRectangle, this.informations.ElementAt(i).InformationColor, this.informations.ElementAt(i).PrimaryTextFlags);
+                    if (informations.ElementAt(i).SecondaryText != null)
+                    {
+                        TextRenderer.DrawText(graphics, this.informations.ElementAt(i).SecondaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
+                            informationRectangle, this.informations.ElementAt(i).SecondaryTextColor, this.informations.ElementAt(i).SecondaryTextFlags);
+                    }
+                    aboveDrawn++;
+                }
+                else
+                {
+                    Rectangle informationRectangle = new Rectangle(0, (watchRectangle.Y + watchRectangle.Height) + (belowDrawn * SEGMENT_HEIGHT), DEFAULT_WIDTH, SEGMENT_HEIGHT);
+                    graphics.FillRectangle(new SolidBrush(Color.Black), informationRectangle);
+                    TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
+                        informationRectangle, this.informations.ElementAt(i).InformationColor, this.informations.ElementAt(i).PrimaryTextFlags);
+                    if (informations.ElementAt(i).SecondaryText != null)
+                    {
+                        TextRenderer.DrawText(graphics, this.informations.ElementAt(i).SecondaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
+                            informationRectangle, this.informations.ElementAt(i).SecondaryTextColor, this.informations.ElementAt(i).SecondaryTextFlags);
+                    }
+                    belowDrawn++;
+                }
+                
             }
         }
 
@@ -334,7 +511,9 @@ namespace FaceSplit
                     if (this.displayMode == DisplayMode.SEGMENTS)
                     {
                         this.split.ResetRun();
+                        this.ResetSegmentTimer();
                     }
+                    this.timeElapsedSinceSplit = 0;
                     break;
                 case Keys.Subtract:
                     if (this.displayMode == DisplayMode.SEGMENTS)
@@ -343,6 +522,12 @@ namespace FaceSplit
                         {
                             this.split.ResumeRun();
                             this.StartTimer();
+                            this.ResetSegmentTimer();
+                        }
+                        if (this.split.LiveIndex > 0)
+                        {
+                            Segment lastSegment = this.split.Segments.ElementAt(this.split.LiveIndex - 1);
+                            this.timeElapsedSinceSplit += this.split.Segments.ElementAt(this.split.LiveIndex - 1).SegmentTime;
                         }
                         this.split.UnSplit();
                     }
@@ -350,10 +535,22 @@ namespace FaceSplit
                 case Keys.Divide:
                     if (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.ON_GOING && !this.split.LastSplit())
                     {
-                        this.split.SkipSegment();
+                        this.split.SkipSegment((Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100));
+                        this.segmentWatch.Restart();
                     }
                     break;
                 case Keys.Decimal:
+                    if (this.split.RunStatus == RunStatus.ON_GOING)
+                    {
+                        if (this.segmentWatch.IsRunning)
+                        {
+                            this.segmentWatch.Stop();
+                        }
+                        else
+                        {
+                            this.segmentWatch.Start();
+                        }
+                    }
                     if (this.watch.IsRunning)
                     {
                         StopTimer();
@@ -373,29 +570,143 @@ namespace FaceSplit
         {
             if (this.split.RunStatus == RunStatus.STOPPED)
             {
-                StartTimer();
+                this.StartTimer();
+                this.StartSegmentTimer();
                 this.split.StartRun();
             }
             else if(this.split.RunStatus == RunStatus.ON_GOING && this.watch.IsRunning)
             {
+                double splitTime = Math.Truncate(this.watch.Elapsed.TotalSeconds * 100) / 100;
+                double segmentTime = (Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit;
                 if (!this.split.LastSplit())
                 {
-                    this.split.DoSplit(Math.Truncate(this.watch.Elapsed.TotalSeconds * 100) / 100);
+                    this.split.DoSplit(splitTime, segmentTime);
                 }
                 else
                 {
-                    this.split.DoSplit(Math.Truncate(this.watch.Elapsed.TotalSeconds * 100) / 100);
+                    this.split.DoSplit(splitTime, segmentTime);
                     this.split.CompleteRun();
                     this.runTimeOnCompletionPause = this.watch.Elapsed;
                     this.watchColor = Color.Yellow;
                 }
-                
+                this.segmentWatch.Restart();
             }
             else if (this.split.RunStatus == RunStatus.DONE)
             {
                 this.split.SaveRun();
-                ResetTimer();
+                this.ResetTimer();
+                this.ResetSegmentTimer();
             }
+            this.timeElapsedSinceSplit = 0;
+        }
+
+        public void UpdateInformations()
+        {
+            this.informations[(int)InformationIndexs.TITLE].SecondaryText = this.split.RunsCompleted + "/" + this.split.AttemptsCount;
+            this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryText = GetPreviousSegmentDeltaString();
+            this.informations[(int)InformationIndexs.POSSIBLE_TIMESAVE].SecondaryText = GetPossibleTimeSave();
+            this.informations[(int)InformationIndexs.PREDICTED_TIME].SecondaryText = GetPredictedTime();
+            this.informations[(int)InformationIndexs.SUM_OF_BEST].SecondaryText = GetSOB();
+        }
+
+        private String GetPreviousSegmentDeltaString()
+        {
+            String segmentDeltaString;
+            double segmentDelta;
+            Boolean lostTime;
+            Boolean bestSegment = false;
+            double timeElapsed = (Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100) + this.timeElapsedSinceSplit;
+            if (this.split.LiveIndex > 0)
+            {
+                bestSegment = this.split.PreviousSegmentIsBestSegment();
+            }
+            if (this.split.CurrentSegmentHasLiveDelta(timeElapsed))
+            {
+                this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].PrimaryText = "Live segment: ";
+                segmentDelta = this.split.GetLiveSegmentDelta(timeElapsed);
+                segmentDeltaString = FaceSplitUtils.TimeFormat(Math.Abs(segmentDelta));
+                lostTime = (segmentDelta > 0);
+                if (lostTime)
+                {
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkRed;
+                    segmentDeltaString = segmentDeltaString.Insert(0, "+");
+                }
+                else
+                {
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkGreen;
+                    segmentDeltaString = segmentDeltaString.Insert(0, "-");
+                }
+            }
+            else if (this.split.PreviousSegmentHasSegmentDelta())
+            {
+                this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].PrimaryText = "Previous segment: ";
+                segmentDelta = this.split.GetPreviousSegmentDelta();
+                segmentDeltaString = FaceSplitUtils.TimeFormat(Math.Abs(segmentDelta));
+                lostTime = (segmentDelta > 0);
+                if (bestSegment)
+                {
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.Gold;
+                    segmentDeltaString = segmentDeltaString.Insert(0, "-");
+                }
+                else
+                {
+                    if (lostTime)
+                    {
+                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkRed;
+                        segmentDeltaString = segmentDeltaString.Insert(0, "+");
+                    }
+                    else
+                    {
+                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkGreen;
+                        segmentDeltaString = segmentDeltaString.Insert(0, "-");
+                    }
+                }
+                this.split.SetPreviousSegmentColor(bestSegment, lostTime);
+            }
+            else
+            {
+                this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].PrimaryText = "Previous segment: ";
+                this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.White;
+                segmentDeltaString = "-";
+            }
+            segmentDeltaString = FaceSplitUtils.CutDecimals(segmentDeltaString, 2);
+            return segmentDeltaString;
+        }
+
+        public String GetPossibleTimeSave()
+        {
+            if (this.split.SegmentHasPossibleTimeSave())
+            {
+                Double possibleTimeSave = this.split.GetPossibleTimeSave();
+                String possibleTimeSaveString = FaceSplitUtils.TimeFormat(possibleTimeSave);
+                possibleTimeSaveString = FaceSplitUtils.CutDecimals(possibleTimeSaveString, 2);
+                return possibleTimeSaveString;
+            }
+            return "-";
+        }
+
+        public String GetPredictedTime()
+        {
+            Double predictedTime = this.split.GetPredictedTime();
+            String predictedTimeString = "-";
+            if (predictedTime != 0.0)
+            {
+                predictedTimeString = FaceSplitUtils.TimeFormat(predictedTime);
+            }
+            predictedTimeString = FaceSplitUtils.CutDecimals(predictedTimeString, 2);
+            return predictedTimeString;
+        }
+
+        public String GetSOB()
+        {
+            Double sob = this.split.GetSOB();
+            String sobString = "-";
+            if (sob != 0.0)
+            {
+                sobString = FaceSplitUtils.TimeFormat(sob);
+            }
+            sobString = FaceSplitUtils.CutDecimals(sobString, 2);
+            return sobString;
         }
 
         /// <summary>
@@ -423,6 +734,21 @@ namespace FaceSplit
         {
             this.watch.Reset();
             this.watchColor = Color.White;
+        }
+
+        private void StartSegmentTimer()
+        {
+            this.segmentWatch.Start();
+        }
+
+        private void StopSegmentTimer()
+        {
+            this.segmentWatch.Stop();
+        }
+
+        private void ResetSegmentTimer()
+        {
+            this.segmentWatch.Reset();
         }
     }
 }

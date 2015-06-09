@@ -29,9 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FaceSplit));
             this.ticksTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMnuPrincipal = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuEditRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSaveRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSaveRunAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLoadRun = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCloseSplit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMnuPrincipal.SuspendLayout();
@@ -46,10 +50,13 @@
             // 
             this.contextMnuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuEditRun,
+            this.mnuSaveRun,
+            this.mnuSaveRunAs,
+            this.mnuLoadRun,
             this.mnuCloseSplit,
             this.mnuExit});
             this.contextMnuPrincipal.Name = "contextMnuPrincipal";
-            this.contextMnuPrincipal.Size = new System.Drawing.Size(154, 92);
+            this.contextMnuPrincipal.Size = new System.Drawing.Size(154, 136);
             // 
             // mnuEditRun
             // 
@@ -57,6 +64,27 @@
             this.mnuEditRun.Size = new System.Drawing.Size(153, 22);
             this.mnuEditRun.Text = "New / Edit Run";
             this.mnuEditRun.Click += new System.EventHandler(this.mnuEditRun_Click);
+            // 
+            // mnuSaveRun
+            // 
+            this.mnuSaveRun.Name = "mnuSaveRun";
+            this.mnuSaveRun.Size = new System.Drawing.Size(153, 22);
+            this.mnuSaveRun.Text = "Save run";
+            this.mnuSaveRun.Click += new System.EventHandler(this.mnuSaveRun_Click);
+            // 
+            // mnuSaveRunAs
+            // 
+            this.mnuSaveRunAs.Name = "mnuSaveRunAs";
+            this.mnuSaveRunAs.Size = new System.Drawing.Size(153, 22);
+            this.mnuSaveRunAs.Text = "Save run as";
+            this.mnuSaveRunAs.Click += new System.EventHandler(this.mnuSaveRunAs_Click);
+            // 
+            // mnuLoadRun
+            // 
+            this.mnuLoadRun.Name = "mnuLoadRun";
+            this.mnuLoadRun.Size = new System.Drawing.Size(153, 22);
+            this.mnuLoadRun.Text = "Load run";
+            this.mnuLoadRun.Click += new System.EventHandler(this.mnuLoadRun_Click);
             // 
             // mnuCloseSplit
             // 
@@ -79,9 +107,10 @@
             this.ClientSize = new System.Drawing.Size(100, 100);
             this.ContextMenuStrip = this.contextMnuPrincipal;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "FaceSplit";
-            this.Text = "Form1";
+            this.Text = "FaceSplit";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyPressed);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FaceSplit_MouseDown);
             this.contextMnuPrincipal.ResumeLayout(false);
@@ -96,6 +125,9 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEditRun;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.ToolStripMenuItem mnuCloseSplit;
+        private System.Windows.Forms.ToolStripMenuItem mnuSaveRun;
+        private System.Windows.Forms.ToolStripMenuItem mnuLoadRun;
+        private System.Windows.Forms.ToolStripMenuItem mnuSaveRunAs;
     }
 }
 

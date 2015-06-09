@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace FaceSplit.Model
 {
-    public class Split
+    public class Split 
     {
         private RunStatus runStatus;
         private List<Segment> segments;
@@ -14,8 +15,7 @@ namespace FaceSplit.Model
         private int attemptsCount;
         private int runsCompleted;
         private int liveIndex;
-        private double personalBest;
-        private double sumOfBests;
+        private String file;
 
         public Split()
         {
@@ -50,6 +50,12 @@ namespace FaceSplit.Model
             set { this.runGoal = value; }
         }
 
+        public int RunsCompleted
+        {
+            get { return this.runsCompleted; }
+            set { this.runsCompleted = value; }
+        }
+
         public int AttemptsCount
         {
             get { return this.attemptsCount; }
@@ -72,6 +78,12 @@ namespace FaceSplit.Model
             set { this.segments = value; }
         }
 
+        public String File
+        {
+            get { return this.file; }
+            set { this.file = value; }
+        }
+
         /// <summary>
         /// Star the run by incresing indexes and run attempts.
         /// </summary>
@@ -86,9 +98,9 @@ namespace FaceSplit.Model
         /// The the time split of the actual segment.
         /// </summary>
         /// <param name="splitTime"></param>
-        public void DoSplit(Double splitTime)
+        public void DoSplit(Double splitTime, Double segmentTime)
         {
-            this.segments.ElementAt(liveIndex).DoSplit(splitTime);
+            this.segments.ElementAt(liveIndex).DoSplit(splitTime, segmentTime);
             this.liveIndex++;
         }
 
@@ -101,7 +113,11 @@ namespace FaceSplit.Model
             if (this.liveIndex > 0)
             {
                 this.liveIndex--;
-                this.segments.ElementAt(liveIndex).ResetTimes();
+                this.segments.ElementAt(liveIndex).ResetTimes(true);
+                if (this.liveIndex < this.segments.Count - 1)
+                {
+                    this.segments.ElementAt(liveIndex + 1).PreviousWasSkipped = false;
+                }
             }
         }
 
@@ -130,9 +146,182 @@ namespace FaceSplit.Model
             return this.segments.ElementAt(index).CalculateRunDelta();
         }
 
+        public Boolean PreviousSegmentHasSegmentDelta()
+        {
+            if (this.liveIndex > 0)
+            {
+                return this.segments.ElementAt(this.liveIndex - 1).HasSegmentDelta();
+            }
+            return false;
+        }
+
+        public double GetPreviousSegmentDelta()
+        {
+            if (this.liveIndex > 0)
+            {
+                return this.segments.ElementAt(this.liveIndex - 1).CalculateSegmentDelta();
+            }
+            return 0.0;
+        }
+
+        public Boolean PreviousSegmentIsBestSegment()
+        {
+            return this.segments.ElementAt(this.liveIndex - 1).IsBestSegment();
+        }
+
+        public void SetPreviousSegmentColor(Boolean bestSegment, bool lostTime)
+        {
+            if (this.liveIndex > 0)
+            {
+                if (bestSegment)
+                {
+                    this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.Gold;
+                }
+                else
+                {
+                    if (this.liveIndex == 1)
+                    {
+                        if (!lostTime)
+                        {
+                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkGreen;
+                        }
+                        else
+                        {
+                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkRed;
+                        }
+                    }
+                    else
+                    {
+                        if (!lostTime)
+                        {
+                            if (GetRunDelta(this.liveIndex - 1) > 0.0)
+                            {
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.Red;
+                            }
+                            else
+                            {
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkGreen;
+                            }
+                        }
+                        else
+                        {
+                            if (GetRunDelta(this.liveIndex - 1) > 0.0)
+                            {
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkRed;
+                            }
+                            else
+                            {
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.LightGreen;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public Color GetSegmentColor(int index)
+        {
+            return this.segments.ElementAt(index).RunDeltaColor;
+        }
+
         public double GetLiveRunDelta(double runTimeElapsed)
         {
             return runTimeElapsed - this.segments.ElementAt(liveIndex).SplitTime;
+        }
+
+        public Boolean CurrentSegmentHasLiveDelta(double segmentTimeElapsed)
+        {
+            if (this.liveIndex >= 0 && this.liveIndex < this.segments.Count)
+            {
+                return this.segments.ElementAt(this.liveIndex).HasLiveSegmentDelta(segmentTimeElapsed);
+            }
+            return false;
+        }
+
+        public Double GetLiveSegmentDelta(double segmentTimeElapsed)
+        {
+            return this.segments.ElementAt(this.liveIndex).CalculateLiveSegmentDelta(segmentTimeElapsed);
+        }
+
+        public Boolean SegmentHasPossibleTimeSave()
+        {
+            if (this.liveIndex != -1 && this.liveIndex < this.segments.Count)
+            {
+                return this.segments.ElementAt(this.liveIndex).HasPossibleTimeSave();
+            }
+            return false;
+        }
+
+        public Double GetPossibleTimeSave()
+        {
+            return this.segments.ElementAt(this.liveIndex).BackupSegmentTime - this.segments.ElementAt(this.liveIndex).BackupBestSegmentTime;
+        }
+
+        public Double GetPredictedTime()
+        {
+            Double pred = this.GetSOB();
+            if (this.liveIndex <= 0)
+            {
+                return pred;
+            }
+            else if(pred != 0.0)
+            {
+                pred = 0.0;
+                for (int i = 0; i < this.liveIndex; ++i)
+                {
+                    if (!this.segments.ElementAt(i).WasSkipped && !this.segments.ElementAt(i).PreviousWasSkipped)
+                    {
+                        pred += this.segments.ElementAt(i).SegmentTime;
+                    }
+                    else
+                    {
+                        pred = 0.0;
+                        break;
+                    }
+                }
+                if (pred != 0.0)
+                {
+                    for (int i = this.liveIndex; i < this.segments.Count; ++i)
+                    {
+                        pred += this.segments.ElementAt(i).BestSegmentTime;
+                    }
+                }
+                return pred;
+            }
+            return 0.0;
+        }
+
+        public Double GetSOB()
+        {
+            Boolean incalculableSob = false;
+            Double sob = 0.0;
+            Double bestSegmentTime = 0.0;
+            int i = 0;
+            for (i = 0; i < this.liveIndex; ++i )
+            {
+                bestSegmentTime = this.segments.ElementAt(i).BestSegmentTime;
+                if (bestSegmentTime == 0.0)
+                {
+                    incalculableSob = true;
+                    sob = 0.0;
+                    break;
+                }
+                sob += bestSegmentTime;
+            }
+            if (!incalculableSob)
+            {
+                for (i = (this.liveIndex == -1) ? 0 : this.liveIndex; i < this.segments.Count; ++i)
+                {
+                    bestSegmentTime = this.segments.ElementAt(i).BackupBestSegmentTime;
+                    if (bestSegmentTime == 0.0)
+                    {
+                        sob = 0.0;
+                        break;
+                    }
+                    sob += bestSegmentTime;
+                }
+            }
+            return sob;
         }
 
         /// <summary>
@@ -151,9 +340,13 @@ namespace FaceSplit.Model
         public void SaveRun()
         {
             this.runsCompleted++;
-            foreach (Segment segment in this.segments)
+            if(IsNewPb())
             {
-                segment.SaveTimes();
+                foreach (Segment segment in this.segments)
+                {
+                    segment.SaveTimes(false);
+                    segment.PreviousWasSkipped = false;
+                }
             }
             ResetRun();
         }
@@ -166,15 +359,26 @@ namespace FaceSplit.Model
             this.runStatus = RunStatus.STOPPED;
             foreach (Segment segment in this.segments)
             {
-                segment.ResetTimes();
+                segment.ResetTimes(false);
+                segment.SaveTimes(true);
+                segment.PreviousWasSkipped = false;
             }
             this.liveIndex = -1;
         }
 
-        public void SkipSegment()
+        public void SkipSegment(double segmentTime)
         {
-            this.segments.ElementAt(liveIndex).Skip();
+            this.segments.ElementAt(liveIndex).Skip(segmentTime);
+            if (this.liveIndex < this.segments.Count - 1)
+            {
+                this.segments.ElementAt(liveIndex + 1).PreviousWasSkipped = true;
+            }
             this.liveIndex++;
+        }
+
+        private Boolean IsNewPb()
+        {
+            return this.segments.Last().SplitTime < this.segments.Last().BackupSplitTime || (this.segments.Last().BackupSplitTime == 0.0);
         }
 
         public Boolean FirstSplit()

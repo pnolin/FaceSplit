@@ -16,12 +16,13 @@ namespace FaceSplit
 
         private Split split;
         private int rowHeight;
-        private int numberOfRows;
 
         public RunEditor(Split split)
         {
             InitializeComponent();
             this.txtAttemptsCount.Text = "0";
+            rowHeight = this.segmentsGridView.RowTemplate.Height;
+            AddRow();
             if (split != null)
             {
                 this.split = split;
@@ -30,9 +31,6 @@ namespace FaceSplit
                 this.txtAttemptsCount.Text = this.split.AttemptsCount.ToString();
                 FillSegmentRows();
             }
-            rowHeight = this.segmentsGridView.RowTemplate.Height;
-            AddRow();
-            numberOfRows = this.segmentsGridView.Rows.Count;
         }
 
         public Split Split
@@ -50,9 +48,46 @@ namespace FaceSplit
             AddRow();
         }
 
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            this.contextMenuImport.Show(ptLowerLeft);
+        }
+
         private void btnFill_Click(object sender, EventArgs e)
         {
             FillSegmentsTime();
+        }
+
+        private void mnuImportFromLivesplit_Click(object sender, EventArgs e)
+        {
+            String fileName = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".lss";
+            openFileDialog.Filter = "LiveSplit split file (*.lss)|*.lss";
+            openFileDialog.AddExtension = true;
+            
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileName = openFileDialog.FileName;
+                LiveSplitXMLReader liveSplitXmlReader = new LiveSplitXMLReader();
+                this.split = liveSplitXmlReader.ReadSplit(fileName);
+                this.ResetDataGridView();
+                if (this.split != null)
+                {
+                    this.txtRunTitle.Text = this.split.RunTitle;
+                    this.txtAttemptsCount.Text = this.split.AttemptsCount.ToString();
+                    FillSegmentRows();
+                    FillSegmentTimeAfterImportFromLiveSplit();
+                }
+                else
+                {
+                    MessageBox.Show("The import from livesplit has failed.");
+                }
+            }
         }
 
         private void txtAttemptsCount_KeyPress(object sender, KeyPressEventArgs e)
@@ -71,13 +106,30 @@ namespace FaceSplit
         {
             DataGridViewRow newRow = new DataGridViewRow();
             newRow.Height = rowHeight;
-            this.segmentsGridView.Rows.Insert(numberOfRows, newRow);
-            this.segmentsGridView.Height += rowHeight;
-            numberOfRows++;
-            if (numberOfRows > 1)
+            this.segmentsGridView.Rows.Insert(this.segmentsGridView.Rows.Count, newRow);
+            if (this.segmentsGridView.Rows.Count <= 15)
+            {
+                this.segmentsGridView.Height += rowHeight;
+            }
+            if (this.segmentsGridView.Rows.Count > 1 && this.segmentsGridView.Rows.Count <= 15)
             {
                 this.Height += rowHeight;
                 MoveButtonsUnderGridView();
+            }
+        }
+
+        private void RemoveRow(int index = -1)
+        {
+            index = (index == -1) ? this.segmentsGridView.Rows.Count : index;
+            this.segmentsGridView.Rows.RemoveAt(index - 1);
+            if (this.segmentsGridView.Rows.Count < 15)
+            {
+                this.segmentsGridView.Height -= rowHeight;            
+            }
+            if (this.segmentsGridView.Rows.Count > 0 && this.segmentsGridView.Rows.Count < 15)
+            {
+                this.Height -= rowHeight;
+                MoveButtonOnRemoveRow();
             }
         }
 
@@ -94,6 +146,17 @@ namespace FaceSplit
             btnCancel.Top += rowHeight;
             lblAttemptsCount.Top += rowHeight;
             txtAttemptsCount.Top += rowHeight;
+        }
+
+        private void MoveButtonOnRemoveRow()
+        {
+            btnInsert.Top -= rowHeight;
+            btnImport.Top -= rowHeight;
+            btnFill.Top -= rowHeight;
+            btnSave.Top -= rowHeight;
+            btnCancel.Top -= rowHeight;
+            lblAttemptsCount.Top -= rowHeight;
+            txtAttemptsCount.Top -= rowHeight;
         }
 
         private void segmentsGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -145,14 +208,14 @@ namespace FaceSplit
         {
             for (int i = 0; i < this.split.Segments.Count; ++i)
             {
-                if (i > 0)
+                if (i >= this.segmentsGridView.Rows.Count)
                 {
                     AddRow();
                 }
                 this.segmentsGridView.Rows[i].Cells[0].Value = this.split.Segments.ElementAt(i).SegmentName;
-                this.segmentsGridView.Rows[i].Cells[1].Value = this.split.Segments.ElementAt(i).SplitTime;
-                this.segmentsGridView.Rows[i].Cells[2].Value = this.split.Segments.ElementAt(i).SegmentTime;
-                this.segmentsGridView.Rows[i].Cells[3].Value = this.split.Segments.ElementAt(i).BestSegmentTime;
+                this.segmentsGridView.Rows[i].Cells[1].Value = FaceSplitUtils.TimeFormat(this.split.Segments.ElementAt(i).SplitTime);
+                this.segmentsGridView.Rows[i].Cells[2].Value = FaceSplitUtils.TimeFormat(this.split.Segments.ElementAt(i).SegmentTime);
+                this.segmentsGridView.Rows[i].Cells[3].Value = FaceSplitUtils.TimeFormat(this.split.Segments.ElementAt(i).BestSegmentTime);
             }
         }
 
@@ -167,6 +230,16 @@ namespace FaceSplit
             FillSplitsTime(splitsTime);
             CalculateSegmentsTime(splitsTime, segmentsTime);
             FillSegmentColumns(segmentsTime); 
+        }
+
+        private void FillSegmentTimeAfterImportFromLiveSplit()
+        {
+            List<double> splitsTime = new List<double>();
+            List<double> segmentsTime = new List<double>();
+
+            FillSplitsTime(splitsTime);
+            CalculateSegmentsTime(splitsTime, segmentsTime);
+            FillOnlySegmentTimeColumn(segmentsTime);
         }
 
         /// <summary>
@@ -246,6 +319,33 @@ namespace FaceSplit
                     cellBestSegmentTime.Value = "";
                 }
                 index++;
+            }
+        }
+
+        private void FillOnlySegmentTimeColumn(List<double> segmentsTime)
+        {
+            int index = 0;
+            foreach (DataGridViewRow rows in this.segmentsGridView.Rows)
+            {
+                DataGridViewCell cellSegmentTime = rows.Cells[2];
+                if (segmentsTime.ElementAt(index) != INVALID_VALUE)
+                {
+                    cellSegmentTime.Value = FaceSplitUtils.TimeFormat(segmentsTime.ElementAt(index));
+                }
+                else
+                {
+                    cellSegmentTime.Value = "";
+                }
+                index++;
+            }
+        }
+
+        private void ResetDataGridView()
+        {
+            int numberOfRows = this.segmentsGridView.Rows.Count;
+            for (int i = 0; i < numberOfRows; ++i)
+            {
+                RemoveRow();
             }
         }
     }
