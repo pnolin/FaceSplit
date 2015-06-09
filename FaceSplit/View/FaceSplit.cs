@@ -418,14 +418,30 @@ namespace FaceSplit
                 if (lostTime)
                 {
                     runDeltaString = runDeltaString.Insert(0, "+");
+                    if ((index == 0) || (index > 0 && runDelta > this.split.GetRunDelta(index - 1)))
+                    {
+                        this.split.SetCurrentSegmentColor(Color.DarkRed);
+                    }
+                    else
+                    {
+                        this.split.SetCurrentSegmentColor(Color.Red);
+                    }
+                    this.watchColor = Color.DarkRed;
                 }
-                else if ((index > 0 && runDelta > this.split.GetRunDelta(index - 1)) || this.split.CurrentSegmentHasLiveDelta(timeElapsed))
+                else if ((index > 0 && runDelta > this.split.GetRunDelta(index - 1)))
                 {
                     runDeltaString = runDeltaString.Insert(0, "-");
+                    this.split.SetCurrentSegmentColor(Color.LightGreen);
+                }
+                else if (this.split.CurrentSegmentHasLiveDelta(timeElapsed))
+                {
+                    runDeltaString = runDeltaString.Insert(0, "-");
+                    this.split.SetCurrentSegmentColor(Color.DarkGreen);
                 }
                 else
                 {
                     runDeltaString = "";
+                    this.watchColor = Color.LimeGreen;
                 }
             }
             return runDeltaString;

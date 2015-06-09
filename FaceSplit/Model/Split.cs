@@ -146,6 +146,11 @@ namespace FaceSplit.Model
             return this.segments.ElementAt(index).CalculateRunDelta();
         }
 
+        public void SetCurrentSegmentColor(Color color)
+        {
+            this.segments.ElementAt(this.liveIndex).RunDeltaColor = color;
+        }
+
         public Boolean PreviousSegmentHasSegmentDelta()
         {
             if (this.liveIndex > 0)
