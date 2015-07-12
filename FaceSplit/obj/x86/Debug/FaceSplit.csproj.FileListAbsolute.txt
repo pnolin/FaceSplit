@@ -5,5 +5,7 @@ C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Deb
 C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.csproj.GenerateResource.Cache
 C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.exe
 C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.pdb
-C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.csprojResolveAssemblyReference.cache
 C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.RunEditor.resources
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Debug\FaceSplit.exe.config
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Debug\Shortcut.dll
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.csprojResolveAssemblyReference.cache

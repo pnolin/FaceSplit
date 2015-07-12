@@ -1,0 +1,14 @@
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Release\FaceSplit.exe.config
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Release\FaceSplit.exe.manifest
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Release\FaceSplit.application
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Release\FaceSplit.exe
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Release\FaceSplit.pdb
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Release\Shortcut.dll
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.FaceSplit.resources
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.Properties.Resources.resources
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.RunEditor.resources
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.csproj.GenerateResource.Cache
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.exe.manifest
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.application
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.exe
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Release\FaceSplit.pdb

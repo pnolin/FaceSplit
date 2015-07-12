@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using FaceSplit.Model;
 using System.Xml.Serialization;
 using System.IO;
+using Shortcut;
 
 namespace FaceSplit
 {
@@ -66,6 +67,10 @@ namespace FaceSplit
         /// </summary>
         Rectangle watchRectangle;
 
+        private Hotkey hotkeyTrigger = new Hotkey(Modifiers.None, Keys.Add);
+        private HotkeyBinder hotkeyBinder;
+        private Boolean globalHotkeysActive;
+
         /// <summary>
         /// Code starting from here is for moving the window without having a border.
         /// </summary>
@@ -86,6 +91,9 @@ namespace FaceSplit
         {
             InitializeComponent();
             this.ConfigureFilesDialogs();
+            this.hotkeyBinder = new HotkeyBinder();
+            this.BindHotkeys();
+            this.globalHotkeysActive = true;
             segmentsRectangles = new List<Rectangle>();
             watchRectangle = new Rectangle(ZERO, ZERO, DEFAULT_WIDTH, DEFAULT_HEIGHT);
             this.displayMode = DisplayMode.TIMER_ONLY;
@@ -99,6 +107,43 @@ namespace FaceSplit
             watch = new Stopwatch();
             segmentWatch = new Stopwatch();
             this.ticksTimer.Enabled = true;
+        }
+
+        private void BindHotkeys()
+        {
+            hotkeyBinder.Bind(Modifiers.None, Keys.Space).To(KeyboardSplit);
+            hotkeyBinder.Bind(Modifiers.None, Keys.Multiply).To(KeyboardReset);
+            hotkeyBinder.Bind(Modifiers.None, Keys.Subtract).To(KeyboardUnsplit);
+            hotkeyBinder.Bind(Modifiers.None, Keys.Divide).To(KeyboardSkip);
+            hotkeyBinder.Bind(Modifiers.None, Keys.Decimal).To(KeyboardPause);
+            if (!hotkeyBinder.IsHotkeyAlreadyBound(hotkeyTrigger))
+            {
+                hotkeyBinder.Bind(hotkeyTrigger).To(ToggleGlobalHotkeys);
+            }
+        }
+
+        private void UnbindHotkeys()
+        {
+            hotkeyBinder.Unbind(Modifiers.None, Keys.Space);
+            hotkeyBinder.Unbind(Modifiers.None, Keys.Multiply);
+            hotkeyBinder.Unbind(Modifiers.None, Keys.Subtract);
+            hotkeyBinder.Unbind(Modifiers.None, Keys.Divide);
+            hotkeyBinder.Unbind(Modifiers.None, Keys.Decimal);
+        }
+
+        private void ToggleGlobalHotkeys()
+        {
+            globalHotkeysActive = !globalHotkeysActive;
+            if (globalHotkeysActive)
+            {
+                BindHotkeys();
+                this.Icon = Properties.Resources.hotkeysOn;
+            }
+            else
+            {
+                UnbindHotkeys();
+                this.Icon = Properties.Resources.hotkeysOff;
+            }
         }
 
         /// <summary>
@@ -503,80 +548,108 @@ namespace FaceSplit
 
         private void KeyPressed(object sender, KeyEventArgs e)
         {
-            switch (e.KeyData)
+            if (!globalHotkeysActive)
             {
-                case Keys.Space:
-                    if (this.displayMode == DisplayMode.TIMER_ONLY)
-                    {
-                        if (this.watch.IsRunning)
-                        {
-                            StopTimer();
-                        }
-                        else
-                        {
-                            StartTimer();
-                        }
-                    }
-                    else
-                    {
-                        DoSplit();
-                    }
-                    break;
-                case Keys.Multiply:
-                    ResetTimer();
-                    if (this.displayMode == DisplayMode.SEGMENTS)
-                    {
-                        this.split.ResetRun();
-                        this.ResetSegmentTimer();
-                    }
-                    this.timeElapsedSinceSplit = 0;
-                    break;
-                case Keys.Subtract:
-                    if (this.displayMode == DisplayMode.SEGMENTS)
-                    {
-                        if (this.split.RunStatus == RunStatus.DONE)
-                        {
-                            this.split.ResumeRun();
-                            this.StartTimer();
-                            this.ResetSegmentTimer();
-                        }
-                        if (this.split.LiveIndex > 0)
-                        {
-                            Segment lastSegment = this.split.Segments.ElementAt(this.split.LiveIndex - 1);
-                            this.timeElapsedSinceSplit += this.split.Segments.ElementAt(this.split.LiveIndex - 1).SegmentTime;
-                        }
-                        this.split.UnSplit();
-                    }
-                    break;
-                case Keys.Divide:
-                    if (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.ON_GOING && !this.split.LastSplit())
-                    {
-                        this.split.SkipSegment((Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100));
-                        this.segmentWatch.Restart();
-                    }
-                    break;
-                case Keys.Decimal:
-                    if (this.split.RunStatus == RunStatus.ON_GOING)
-                    {
-                        if (this.segmentWatch.IsRunning)
-                        {
-                            this.segmentWatch.Stop();
-                        }
-                        else
-                        {
-                            this.segmentWatch.Start();
-                        }
-                    }
-                    if (this.watch.IsRunning)
-                    {
-                        StopTimer();
-                    }
-                    else
-                    {
-                        StartTimer();
-                    } 
-                    break;
+                switch (e.KeyData)
+                {
+                    case Keys.Space:
+                        KeyboardSplit();
+                        break;
+                    case Keys.Multiply:
+                        KeyboardReset();
+                        break;
+                    case Keys.Subtract:
+                        KeyboardUnsplit();
+                        break;
+                    case Keys.Divide:
+                        KeyboardSkip();
+                        break;
+                    case Keys.Decimal:
+                        KeyboardPause();
+                        break;
+                }
             }
+        }
+
+        private void KeyboardSplit()
+        {
+            if (this.displayMode == DisplayMode.TIMER_ONLY)
+            {
+                if (this.watch.IsRunning)
+                {
+                    StopTimer();
+                }
+                else
+                {
+                    StartTimer();
+                }
+            }
+            else
+            {
+                DoSplit();
+            }
+        }
+
+        private void KeyboardReset()
+        {
+            ResetTimer();
+            if (this.displayMode == DisplayMode.SEGMENTS)
+            {
+                this.split.ResetRun();
+                this.ResetSegmentTimer();
+            }
+            this.timeElapsedSinceSplit = 0;
+        }
+
+        private void KeyboardUnsplit()
+        {
+            if (this.displayMode == DisplayMode.SEGMENTS)
+            {
+                if (this.split.RunStatus == RunStatus.DONE)
+                {
+                    this.split.ResumeRun();
+                    this.StartTimer();
+                    this.ResetSegmentTimer();
+                }
+                if (this.split.LiveIndex > 0)
+                {
+                    Segment lastSegment = this.split.Segments.ElementAt(this.split.LiveIndex - 1);
+                    this.timeElapsedSinceSplit += this.split.Segments.ElementAt(this.split.LiveIndex - 1).SegmentTime;
+                }
+                this.split.UnSplit();
+            }
+        }
+
+        private void KeyboardSkip()
+        {
+            if (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.ON_GOING && !this.split.LastSplit())
+            {
+                this.split.SkipSegment((Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100));
+                this.segmentWatch.Restart();
+            }
+        }
+
+        private void KeyboardPause()
+        {
+            if (this.split.RunStatus == RunStatus.ON_GOING)
+            {
+                if (this.segmentWatch.IsRunning)
+                {
+                    this.segmentWatch.Stop();
+                }
+                else
+                {
+                    this.segmentWatch.Start();
+                }
+            }
+            if (this.watch.IsRunning)
+            {
+                StopTimer();
+            }
+            else
+            {
+                StartTimer();
+            } 
         }
 
         /// <summary>
