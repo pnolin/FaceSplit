@@ -9,3 +9,4 @@ C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Deb
 C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Debug\FaceSplit.exe.config
 C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\bin\Debug\Shortcut.dll
 C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.csprojResolveAssemblyReference.cache
+C:\Users\test\Documents\Patrick\Programmation\C#\FaceSplit\FaceSplit\obj\x86\Debug\FaceSplit.LayoutSettings.resources

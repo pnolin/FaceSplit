@@ -22,5 +22,29 @@ namespace FaceSplit.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Segoe UI, 15.75pt, style=Bold")]
+        public global::System.Drawing.Font TimerFont {
+            get {
+                return ((global::System.Drawing.Font)(this["TimerFont"]));
+            }
+            set {
+                this["TimerFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color TimerNotRunningColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TimerNotRunningColor"]));
+            }
+            set {
+                this["TimerNotRunningColor"] = value;
+            }
+        }
     }
 }

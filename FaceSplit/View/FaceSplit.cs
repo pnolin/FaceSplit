@@ -13,6 +13,7 @@ using FaceSplit.Model;
 using System.Xml.Serialization;
 using System.IO;
 using Shortcut;
+using FaceSplit.Properties;
 
 namespace FaceSplit
 {
@@ -101,7 +102,7 @@ namespace FaceSplit
             segmentsRectangles = new List<Rectangle>();
             watchRectangle = new Rectangle(ZERO, ZERO, DEFAULT_WIDTH, DEFAULT_HEIGHT);
             this.displayMode = DisplayMode.TIMER_ONLY;
-            this.watchColor = Color.White;
+            this.watchColor = Settings.Default.TimerNotRunningColor;
             this.segmentWatchColor = Color.White;
             informations = new List<Information>();
             this.splitY_start = 0;
@@ -214,6 +215,13 @@ namespace FaceSplit
             {
                 this.LoadFile(openFileDialog.FileName);
             }
+        }
+
+        private void mnuEditLayout_Click(object sender, EventArgs e)
+        {
+            LayoutSettings layoutSettings = new LayoutSettings();
+            layoutSettings.ShowDialog();
+            Settings.Default.Save();
         }
 
         private void mnuCloseSplit_Click(object sender, EventArgs e)
@@ -383,7 +391,7 @@ namespace FaceSplit
             timeString = (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.DONE) ? runTimeOnCompletionPause.ToString("hh\\:mm\\:ss\\.ff") : this.watch.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
             graphics.FillRectangle(new SolidBrush(Color.Black), this.watchRectangle);
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
-            TextRenderer.DrawText(graphics, timeString, new Font(FontFamily.GenericSansSerif, 14.0F, FontStyle.Bold), watchRectangle, watchColor, flags);
+            TextRenderer.DrawText(graphics, timeString, Settings.Default.TimerFont, watchRectangle, watchColor, flags);
         }
 
         /// <summary>
@@ -540,7 +548,6 @@ namespace FaceSplit
                     }
                     belowDrawn++;
                 }
-                
             }
         }
 
@@ -876,7 +883,7 @@ namespace FaceSplit
         private void ResetTimer()
         {
             this.watch.Reset();
-            this.watchColor = Color.White;
+            this.watchColor = Settings.Default.TimerNotRunningColor;
             this.segmentWatchColor = Color.White;
         }
 
