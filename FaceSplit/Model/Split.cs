@@ -78,6 +78,11 @@ namespace FaceSplit.Model
             set { this.segments = value; }
         }
 
+        public Segment CurrentSegment
+        {
+            get { return this.segments.ElementAt(this.liveIndex); }
+        }
+
         public String File
         {
             get { return this.file; }
@@ -381,6 +386,16 @@ namespace FaceSplit.Model
             this.liveIndex++;
         }
 
+        public Boolean PreviousSegmentWasSkipped()
+        {
+            if (this.liveIndex == this.segments.Count)
+            {
+                return this.segments.Last().PreviousWasSkipped;
+            }
+
+            return this.CurrentSegment.PreviousWasSkipped;
+        }
+
         private Boolean IsNewPb()
         {
             return this.segments.Last().SplitTime < this.segments.Last().BackupSplitTime || (this.segments.Last().BackupSplitTime == 0.0);
@@ -395,7 +410,7 @@ namespace FaceSplit.Model
         /// If the current split is the last split.
         /// </summary>
         /// <returns></returns>
-        public Boolean LastSplit()
+        public Boolean CurrentSplitIsLastSplit()
         {
             return liveIndex == this.segments.Count - 1;
         }

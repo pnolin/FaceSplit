@@ -34,6 +34,7 @@ namespace FaceSplit
         /// </summary>
         public double timeElapsedSinceSplit;
 
+
         Split split;
         DisplayMode displayMode;
         List<Information> informations;
@@ -51,11 +52,14 @@ namespace FaceSplit
         Stopwatch segmentWatch;
         /// <summary>
         /// Use when the run is done but you want to unsplit.
-        /// We keep the timer going but 
+        /// We keep the timer going but we show the time when you split on the last split.
+        /// Same for segment timer.
         /// </summary>
         TimeSpan runTimeOnCompletionPause;
+        Double segmentTimeOnCompletionPause;
+
         Color watchColor;
-        Color runDeltaColor;
+        Color segmentWatchColor;
 
         /// <summary>
         /// Rectangle for each segments.
@@ -98,7 +102,7 @@ namespace FaceSplit
             watchRectangle = new Rectangle(ZERO, ZERO, DEFAULT_WIDTH, DEFAULT_HEIGHT);
             this.displayMode = DisplayMode.TIMER_ONLY;
             this.watchColor = Color.White;
-            this.runDeltaColor = Color.White;
+            this.segmentWatchColor = Color.White;
             informations = new List<Information>();
             this.splitY_start = 0;
             base.Paint += new PaintEventHandler(this.DrawFaceSplit);
@@ -232,6 +236,14 @@ namespace FaceSplit
             {                
                 DrawInformations(e.Graphics);
                 DrawSegments(e.Graphics);
+                if (this.split.RunStatus == RunStatus.STOPPED || this.split.PreviousSegmentWasSkipped())
+                {
+                    FillEmptySegmentTimer(e.Graphics);
+                }
+                else if (this.split.RunStatus != RunStatus.STOPPED)
+                {
+                    DrawSegmentTimer(e.Graphics);
+                }
             }
         }
 
@@ -334,7 +346,7 @@ namespace FaceSplit
                 index++;
             }
             watchRectangle.Y = segmentsRectangles.Count() * SEGMENT_HEIGHT + splitY_start;
-            this.Height = (this.segmentsRectangles.Count() * SEGMENT_HEIGHT) + (this.informations.Count * SEGMENT_HEIGHT) + DEFAULT_HEIGHT;
+            this.Height = (this.segmentsRectangles.Count() * SEGMENT_HEIGHT) + (this.informations.Count * SEGMENT_HEIGHT) + (DEFAULT_HEIGHT * 2);
         }
 
         private void FillInformations()
@@ -517,7 +529,7 @@ namespace FaceSplit
                 }
                 else
                 {
-                    Rectangle informationRectangle = new Rectangle(0, (watchRectangle.Y + watchRectangle.Height) + (belowDrawn * SEGMENT_HEIGHT), DEFAULT_WIDTH, SEGMENT_HEIGHT);
+                    Rectangle informationRectangle = new Rectangle(0, (watchRectangle.Y + (watchRectangle.Height * 2)) + (belowDrawn * SEGMENT_HEIGHT), DEFAULT_WIDTH, SEGMENT_HEIGHT);
                     graphics.FillRectangle(new SolidBrush(Color.Black), informationRectangle);
                     TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
                         informationRectangle, this.informations.ElementAt(i).InformationColor, this.informations.ElementAt(i).PrimaryTextFlags);
@@ -530,6 +542,41 @@ namespace FaceSplit
                 }
                 
             }
+        }
+
+        private void FillEmptySegmentTimer(Graphics graphics)
+        {
+            Rectangle emptySegmentTimerRectangle = new Rectangle(0, watchRectangle.Y + watchRectangle.Height, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+            graphics.FillRectangle(new SolidBrush(Color.Black), emptySegmentTimerRectangle);
+        }
+
+        private void DrawSegmentTimer(Graphics graphics)
+        {
+            TextFormatFlags segmentTimeFlags = TextFormatFlags.Left | TextFormatFlags.Bottom | TextFormatFlags.WordEllipsis;
+            TextFormatFlags segmentBestTimeFlags = TextFormatFlags.Left | TextFormatFlags.Top | TextFormatFlags.WordEllipsis;
+
+            Rectangle segmentTimeRectangle = new Rectangle(0, watchRectangle.Y + watchRectangle.Height, DEFAULT_WIDTH / 2, DEFAULT_HEIGHT / 2);
+            Rectangle segmentBestimeRectangle = new Rectangle(0, segmentTimeRectangle.Y + segmentTimeRectangle.Height, DEFAULT_WIDTH / 2, DEFAULT_HEIGHT / 2);
+            Rectangle segmentTimerRectangle = new Rectangle(DEFAULT_WIDTH / 2, watchRectangle.Y + watchRectangle.Height, DEFAULT_WIDTH / 2, DEFAULT_HEIGHT);
+
+            graphics.FillRectangle(new SolidBrush(Color.Black), segmentTimeRectangle);
+            graphics.FillRectangle(new SolidBrush(Color.Black), segmentBestimeRectangle);
+            graphics.FillRectangle(new SolidBrush(Color.Black), segmentTimerRectangle);
+
+            String segmentTime = (this.split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(this.split.CurrentSegment.BackupSegmentTime) : FaceSplitUtils.TimeFormat(this.split.Segments.Last().BackupSegmentTime);
+            String segmentBestTime = (this.split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(this.split.CurrentSegment.BackupBestSegmentTime) : FaceSplitUtils.TimeFormat(this.split.Segments.Last().BackupBestSegmentTime);
+            String segmentTimerString;
+            segmentTimerString = (this.split.RunStatus == RunStatus.DONE) ? segmentTimeOnCompletionPause.ToString()
+                : FaceSplitUtils.TimeFormat((Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit);
+
+            TextRenderer.DrawText(graphics, "PB: " + segmentTime, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
+                segmentTimeRectangle, Color.White, segmentTimeFlags);
+
+            TextRenderer.DrawText(graphics, "BEST: " + segmentBestTime, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
+                segmentBestimeRectangle, Color.White, segmentBestTimeFlags);
+
+            TextRenderer.DrawText(graphics, segmentTimerString, new Font(FontFamily.GenericSansSerif, 14.0F, FontStyle.Bold),
+                segmentTimerRectangle, segmentWatchColor);
         }
 
         /// <summary>
@@ -605,11 +652,11 @@ namespace FaceSplit
         {
             if (this.displayMode == DisplayMode.SEGMENTS)
             {
+                this.segmentWatchColor = Color.LimeGreen;
                 if (this.split.RunStatus == RunStatus.DONE)
                 {
                     this.split.ResumeRun();
                     this.StartTimer();
-                    this.ResetSegmentTimer();
                 }
                 if (this.split.LiveIndex > 0)
                 {
@@ -622,8 +669,9 @@ namespace FaceSplit
 
         private void KeyboardSkip()
         {
-            if (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.ON_GOING && !this.split.LastSplit())
+            if (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.ON_GOING && !this.split.CurrentSplitIsLastSplit())
             {
+                this.segmentWatchColor = Color.LimeGreen;
                 this.split.SkipSegment((Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100));
                 this.segmentWatch.Restart();
             }
@@ -657,6 +705,7 @@ namespace FaceSplit
         /// </summary>
         private void DoSplit()
         {
+            this.segmentWatchColor = Color.LimeGreen;
             if (this.split.RunStatus == RunStatus.STOPPED)
             {
                 this.StartTimer();
@@ -667,7 +716,7 @@ namespace FaceSplit
             {
                 double splitTime = Math.Truncate(this.watch.Elapsed.TotalSeconds * 100) / 100;
                 double segmentTime = (Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit;
-                if (!this.split.LastSplit())
+                if (!this.split.CurrentSplitIsLastSplit())
                 {
                     this.split.DoSplit(splitTime, segmentTime);
                 }
@@ -676,7 +725,9 @@ namespace FaceSplit
                     this.split.DoSplit(splitTime, segmentTime);
                     this.split.CompleteRun();
                     this.runTimeOnCompletionPause = this.watch.Elapsed;
+                    this.segmentTimeOnCompletionPause = segmentTime;
                     this.watchColor = Color.Yellow;
+                    this.segmentWatchColor = Color.Yellow;
                 }
                 this.segmentWatch.Restart();
             }
@@ -719,6 +770,7 @@ namespace FaceSplit
                 {
                     this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkRed;
                     segmentDeltaString = segmentDeltaString.Insert(0, "+");
+                    this.segmentWatchColor = Color.Red;
                 }
                 else
                 {
@@ -805,6 +857,7 @@ namespace FaceSplit
         {
             this.watch.Start();
             this.watchColor = Color.LimeGreen;
+            this.segmentWatchColor = Color.LimeGreen;
         }
 
         /// <summary>
@@ -814,6 +867,7 @@ namespace FaceSplit
         {
             this.watch.Stop();
             this.watchColor = Color.Yellow;
+            this.segmentWatchColor = Color.Yellow;
         }
 
         /// <summary>
@@ -823,6 +877,7 @@ namespace FaceSplit
         {
             this.watch.Reset();
             this.watchColor = Color.White;
+            this.segmentWatchColor = Color.White;
         }
 
         private void StartSegmentTimer()
