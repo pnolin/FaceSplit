@@ -46,5 +46,29 @@ namespace FaceSplit.Properties {
                 this["TimerNotRunningColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color TimerBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TimerBackgroundColor"]));
+            }
+            set {
+                this["TimerBackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LimeGreen")]
+        public global::System.Drawing.Color TimerRunningColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TimerRunningColor"]));
+            }
+            set {
+                this["TimerRunningColor"] = value;
+            }
+        }
     }
 }

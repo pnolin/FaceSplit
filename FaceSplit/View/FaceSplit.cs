@@ -389,7 +389,7 @@ namespace FaceSplit
         {
             String timeString;
             timeString = (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.DONE) ? runTimeOnCompletionPause.ToString("hh\\:mm\\:ss\\.ff") : this.watch.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
-            graphics.FillRectangle(new SolidBrush(Color.Black), this.watchRectangle);
+            graphics.FillRectangle(new SolidBrush(Settings.Default.TimerBackgroundColor), this.watchRectangle);
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
             TextRenderer.DrawText(graphics, timeString, Settings.Default.TimerFont, watchRectangle, watchColor, flags);
         }
@@ -506,7 +506,7 @@ namespace FaceSplit
                 else
                 {
                     runDeltaString = "";
-                    this.watchColor = Color.LimeGreen;
+                    this.watchColor = Settings.Default.TimerRunningColor;
                 }
             }
             return runDeltaString;
@@ -863,7 +863,7 @@ namespace FaceSplit
         private void StartTimer()
         {
             this.watch.Start();
-            this.watchColor = Color.LimeGreen;
+            this.watchColor = Settings.Default.TimerRunningColor;
             this.segmentWatchColor = Color.LimeGreen;
         }
 
