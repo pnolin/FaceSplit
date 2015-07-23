@@ -25,7 +25,7 @@ namespace FaceSplit.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Segoe UI, 15.75pt, style=Bold")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 14.25pt, style=Bold")]
         public global::System.Drawing.Font TimerFont {
             get {
                 return ((global::System.Drawing.Font)(this["TimerFont"]));
@@ -68,6 +68,42 @@ namespace FaceSplit.Properties {
             }
             set {
                 this["TimerRunningColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkRed")]
+        public global::System.Drawing.Color TimerBehindColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TimerBehindColor"]));
+            }
+            set {
+                this["TimerBehindColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        public global::System.Drawing.Color TimerPausedColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TimerPausedColor"]));
+            }
+            set {
+                this["TimerPausedColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color SplitsBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitsBackgroundColor"]));
+            }
+            set {
+                this["SplitsBackgroundColor"] = value;
             }
         }
     }

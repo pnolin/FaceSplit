@@ -24,6 +24,9 @@ namespace FaceSplit
             this.pnlTimerBackgroundColor.BackColor = Settings.Default.TimerBackgroundColor;
             this.pnlTimerNotRunningColor.BackColor = Settings.Default.TimerNotRunningColor;
             this.pnlTimerRunningColor.BackColor = Settings.Default.TimerRunningColor;
+            this.pnlTimerBehindColor.BackColor = Settings.Default.TimerBehindColor;
+            this.pnlTimerPausedColor.BackColor = Settings.Default.TimerPausedColor;
+            this.pnlSplitsBackgroundColor.BackColor = Settings.Default.SplitsBackgroundColor;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -62,6 +65,31 @@ namespace FaceSplit
             }
         }
 
+        private void pnlTimerBehindColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.TimerBehindColor = colorDialog.Color;
+                this.pnlTimerBehindColor.BackColor = Settings.Default.TimerBehindColor;
+            }
+        }
 
+        private void pnlTimerPausedColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.TimerPausedColor = colorDialog.Color;
+                this.pnlTimerPausedColor.BackColor = Settings.Default.TimerPausedColor;
+            }
+        }
+
+        private void pnlSplitsBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SplitsBackgroundColor = colorDialog.Color;
+                this.pnlSplitsBackgroundColor.BackColor = Settings.Default.SplitsBackgroundColor;
+            }
+        }
     }
 }

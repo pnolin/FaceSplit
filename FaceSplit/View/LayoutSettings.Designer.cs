@@ -31,6 +31,12 @@
             this.tabLayoutSettings = new System.Windows.Forms.TabControl();
             this.tabLayoutTimer = new System.Windows.Forms.TabPage();
             this.gboTimerColors = new System.Windows.Forms.GroupBox();
+            this.pnlTimerPausedColor = new System.Windows.Forms.Panel();
+            this.lblTimerPausedColor = new System.Windows.Forms.Label();
+            this.pnlTimerBehindColor = new System.Windows.Forms.Panel();
+            this.lblTimerBehindColor = new System.Windows.Forms.Label();
+            this.pnlTimerRunningColor = new System.Windows.Forms.Panel();
+            this.lblTimerRunningColor = new System.Windows.Forms.Label();
             this.pnlTimerBackgroundColor = new System.Windows.Forms.Panel();
             this.lblTimerBackgroundColor = new System.Windows.Forms.Label();
             this.pnlTimerNotRunningColor = new System.Windows.Forms.Panel();
@@ -38,18 +44,19 @@
             this.btnChooseTimerFont = new System.Windows.Forms.Button();
             this.lblTimerFontName = new System.Windows.Forms.Label();
             this.lblTimerFont = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pnlTimerRunningColor = new System.Windows.Forms.Panel();
-            this.lblTimerRunningColor = new System.Windows.Forms.Label();
+            this.tabLayoutSplits = new System.Windows.Forms.TabPage();
+            this.pnlSplitsBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblSplitsBackgroundColor = new System.Windows.Forms.Label();
             this.tabLayoutSettings.SuspendLayout();
             this.tabLayoutTimer.SuspendLayout();
             this.gboTimerColors.SuspendLayout();
+            this.tabLayoutSplits.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
             // 
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTimer);
-            this.tabLayoutSettings.Controls.Add(this.tabPage2);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutSplits);
             this.tabLayoutSettings.Location = new System.Drawing.Point(1, 1);
             this.tabLayoutSettings.Name = "tabLayoutSettings";
             this.tabLayoutSettings.SelectedIndex = 0;
@@ -72,6 +79,10 @@
             // 
             // gboTimerColors
             // 
+            this.gboTimerColors.Controls.Add(this.pnlTimerPausedColor);
+            this.gboTimerColors.Controls.Add(this.lblTimerPausedColor);
+            this.gboTimerColors.Controls.Add(this.pnlTimerBehindColor);
+            this.gboTimerColors.Controls.Add(this.lblTimerBehindColor);
             this.gboTimerColors.Controls.Add(this.pnlTimerRunningColor);
             this.gboTimerColors.Controls.Add(this.lblTimerRunningColor);
             this.gboTimerColors.Controls.Add(this.pnlTimerBackgroundColor);
@@ -84,6 +95,60 @@
             this.gboTimerColors.TabIndex = 3;
             this.gboTimerColors.TabStop = false;
             this.gboTimerColors.Text = "Colors";
+            // 
+            // pnlTimerPausedColor
+            // 
+            this.pnlTimerPausedColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTimerPausedColor.Location = new System.Drawing.Point(78, 120);
+            this.pnlTimerPausedColor.Name = "pnlTimerPausedColor";
+            this.pnlTimerPausedColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlTimerPausedColor.TabIndex = 10;
+            this.pnlTimerPausedColor.Click += new System.EventHandler(this.pnlTimerPausedColor_Click);
+            // 
+            // lblTimerPausedColor
+            // 
+            this.lblTimerPausedColor.AutoSize = true;
+            this.lblTimerPausedColor.Location = new System.Drawing.Point(7, 121);
+            this.lblTimerPausedColor.Name = "lblTimerPausedColor";
+            this.lblTimerPausedColor.Size = new System.Drawing.Size(46, 13);
+            this.lblTimerPausedColor.TabIndex = 9;
+            this.lblTimerPausedColor.Text = "Paused:";
+            // 
+            // pnlTimerBehindColor
+            // 
+            this.pnlTimerBehindColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTimerBehindColor.Location = new System.Drawing.Point(78, 96);
+            this.pnlTimerBehindColor.Name = "pnlTimerBehindColor";
+            this.pnlTimerBehindColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlTimerBehindColor.TabIndex = 8;
+            this.pnlTimerBehindColor.Click += new System.EventHandler(this.pnlTimerBehindColor_Click);
+            // 
+            // lblTimerBehindColor
+            // 
+            this.lblTimerBehindColor.AutoSize = true;
+            this.lblTimerBehindColor.Location = new System.Drawing.Point(7, 97);
+            this.lblTimerBehindColor.Name = "lblTimerBehindColor";
+            this.lblTimerBehindColor.Size = new System.Drawing.Size(43, 13);
+            this.lblTimerBehindColor.TabIndex = 7;
+            this.lblTimerBehindColor.Text = "Behind:";
+            // 
+            // pnlTimerRunningColor
+            // 
+            this.pnlTimerRunningColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTimerRunningColor.Location = new System.Drawing.Point(78, 72);
+            this.pnlTimerRunningColor.Name = "pnlTimerRunningColor";
+            this.pnlTimerRunningColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlTimerRunningColor.TabIndex = 6;
+            this.pnlTimerRunningColor.Click += new System.EventHandler(this.pnlTimerRunningColor_Click);
+            // 
+            // lblTimerRunningColor
+            // 
+            this.lblTimerRunningColor.AutoSize = true;
+            this.lblTimerRunningColor.Location = new System.Drawing.Point(7, 73);
+            this.lblTimerRunningColor.Name = "lblTimerRunningColor";
+            this.lblTimerRunningColor.Size = new System.Drawing.Size(50, 13);
+            this.lblTimerRunningColor.TabIndex = 5;
+            this.lblTimerRunningColor.Text = "Running:";
             // 
             // pnlTimerBackgroundColor
             // 
@@ -149,33 +214,35 @@
             this.lblTimerFont.TabIndex = 0;
             this.lblTimerFont.Text = "Font:";
             // 
-            // tabPage2
+            // tabLayoutSplits
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(276, 235);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabLayoutSplits.Controls.Add(this.pnlSplitsBackgroundColor);
+            this.tabLayoutSplits.Controls.Add(this.lblSplitsBackgroundColor);
+            this.tabLayoutSplits.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutSplits.Name = "tabLayoutSplits";
+            this.tabLayoutSplits.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutSplits.Size = new System.Drawing.Size(276, 235);
+            this.tabLayoutSplits.TabIndex = 1;
+            this.tabLayoutSplits.Text = "Splits";
+            this.tabLayoutSplits.UseVisualStyleBackColor = true;
             // 
-            // pnlTimerRunningColor
+            // pnlSplitsBackgroundColor
             // 
-            this.pnlTimerRunningColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlTimerRunningColor.Location = new System.Drawing.Point(78, 72);
-            this.pnlTimerRunningColor.Name = "pnlTimerRunningColor";
-            this.pnlTimerRunningColor.Size = new System.Drawing.Size(20, 20);
-            this.pnlTimerRunningColor.TabIndex = 6;
-            this.pnlTimerRunningColor.Click += new System.EventHandler(this.pnlTimerRunningColor_Click);
+            this.pnlSplitsBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSplitsBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlSplitsBackgroundColor.Name = "pnlSplitsBackgroundColor";
+            this.pnlSplitsBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSplitsBackgroundColor.TabIndex = 6;
+            this.pnlSplitsBackgroundColor.Click += new System.EventHandler(this.pnlSplitsBackgroundColor_Click);
             // 
-            // lblTimerRunningColor
+            // lblSplitsBackgroundColor
             // 
-            this.lblTimerRunningColor.AutoSize = true;
-            this.lblTimerRunningColor.Location = new System.Drawing.Point(7, 73);
-            this.lblTimerRunningColor.Name = "lblTimerRunningColor";
-            this.lblTimerRunningColor.Size = new System.Drawing.Size(50, 13);
-            this.lblTimerRunningColor.TabIndex = 5;
-            this.lblTimerRunningColor.Text = "Running:";
+            this.lblSplitsBackgroundColor.AutoSize = true;
+            this.lblSplitsBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblSplitsBackgroundColor.Name = "lblSplitsBackgroundColor";
+            this.lblSplitsBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblSplitsBackgroundColor.TabIndex = 5;
+            this.lblSplitsBackgroundColor.Text = "Background:";
             // 
             // LayoutSettings
             // 
@@ -190,6 +257,8 @@
             this.tabLayoutTimer.PerformLayout();
             this.gboTimerColors.ResumeLayout(false);
             this.gboTimerColors.PerformLayout();
+            this.tabLayoutSplits.ResumeLayout(false);
+            this.tabLayoutSplits.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -198,7 +267,7 @@
 
         private System.Windows.Forms.TabControl tabLayoutSettings;
         private System.Windows.Forms.TabPage tabLayoutTimer;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabLayoutSplits;
         private System.Windows.Forms.Label lblTimerFont;
         private System.Windows.Forms.Button btnChooseTimerFont;
         private System.Windows.Forms.Label lblTimerFontName;
@@ -209,5 +278,11 @@
         private System.Windows.Forms.Label lblTimerBackgroundColor;
         private System.Windows.Forms.Panel pnlTimerRunningColor;
         private System.Windows.Forms.Label lblTimerRunningColor;
+        private System.Windows.Forms.Panel pnlTimerBehindColor;
+        private System.Windows.Forms.Label lblTimerBehindColor;
+        private System.Windows.Forms.Panel pnlTimerPausedColor;
+        private System.Windows.Forms.Label lblTimerPausedColor;
+        private System.Windows.Forms.Panel pnlSplitsBackgroundColor;
+        private System.Windows.Forms.Label lblSplitsBackgroundColor;
     }
 }

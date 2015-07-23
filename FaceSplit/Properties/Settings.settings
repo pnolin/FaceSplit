@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="TimerFont" Type="System.Drawing.Font" Scope="User">
-      <Value Profile="(Default)">Segoe UI, 15.75pt, style=Bold</Value>
+      <Value Profile="(Default)">Microsoft Sans Serif, 14.25pt, style=Bold</Value>
     </Setting>
     <Setting Name="TimerNotRunningColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
@@ -13,6 +13,15 @@
     </Setting>
     <Setting Name="TimerRunningColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LimeGreen</Value>
+    </Setting>
+    <Setting Name="TimerBehindColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkRed</Value>
+    </Setting>
+    <Setting Name="TimerPausedColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="SplitsBackgroundColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
     </Setting>
   </Settings>
 </SettingsFile>

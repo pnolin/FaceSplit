@@ -413,11 +413,11 @@ namespace FaceSplit
 
             Rectangle segmentNameRectangle;
             Rectangle segmentSplitTimeRectangle;
-            Color rectangleColor = Color.Black;
+            Color rectangleColor = Settings.Default.SplitsBackgroundColor;
 
             for (int i = 0; i < segmentsRectangles.Count; ++i)
             {
-                rectangleColor = (i == this.split.LiveIndex) ? Color.Blue : Color.Black;
+                rectangleColor = (i == this.split.LiveIndex) ? Color.Blue : Settings.Default.SplitsBackgroundColor;
                 segmentName = this.split.Segments.ElementAt(i).SegmentName;
                 segmentSplitTime = (this.split.Segments.ElementAt(i).SplitTime == 0) ? "-" : FaceSplitUtils.TimeFormat(this.split.Segments.ElementAt(i).SplitTime);
                 segmentSplitTime = FaceSplitUtils.CutDecimals(segmentSplitTime, 2);
@@ -491,7 +491,7 @@ namespace FaceSplit
                     {
                         this.split.SetCurrentSegmentColor(Color.Red);
                     }
-                    this.watchColor = Color.DarkRed;
+                    this.watchColor = Settings.Default.TimerBehindColor;
                 }
                 else if ((index > 0 && runDelta > this.split.GetRunDelta(index - 1)))
                 {
@@ -686,7 +686,7 @@ namespace FaceSplit
 
         private void KeyboardPause()
         {
-            if (this.split.RunStatus == RunStatus.ON_GOING)
+            if (this.split != null && this.split.RunStatus == RunStatus.ON_GOING)
             {
                 if (this.segmentWatch.IsRunning)
                 {
@@ -733,7 +733,7 @@ namespace FaceSplit
                     this.split.CompleteRun();
                     this.runTimeOnCompletionPause = this.watch.Elapsed;
                     this.segmentTimeOnCompletionPause = segmentTime;
-                    this.watchColor = Color.Yellow;
+                    this.watchColor = Settings.Default.TimerPausedColor;
                     this.segmentWatchColor = Color.Yellow;
                 }
                 this.segmentWatch.Restart();
@@ -873,7 +873,7 @@ namespace FaceSplit
         private void StopTimer()
         {
             this.watch.Stop();
-            this.watchColor = Color.Yellow;
+            this.watchColor = Settings.Default.TimerPausedColor;
             this.segmentWatchColor = Color.Yellow;
         }
 
