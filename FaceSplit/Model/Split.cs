@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using FaceSplit.Properties;
 
 namespace FaceSplit.Model
 {
@@ -193,7 +194,7 @@ namespace FaceSplit.Model
                     {
                         if (!lostTime)
                         {
-                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkGreen;
+                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
                         }
                         else
                         {
@@ -210,7 +211,7 @@ namespace FaceSplit.Model
                             }
                             else
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkGreen;
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
                             }
                         }
                         else
@@ -221,7 +222,7 @@ namespace FaceSplit.Model
                             }
                             else
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.LightGreen;
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadLosingColor;
                             }
                         }
                     }

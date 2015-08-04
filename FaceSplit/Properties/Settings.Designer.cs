@@ -106,5 +106,101 @@ namespace FaceSplit.Properties {
                 this["SplitsBackgroundColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
+        public global::System.Drawing.Color CurrentSegmentColor {
+            get {
+                return ((global::System.Drawing.Color)(this["CurrentSegmentColor"]));
+            }
+            set {
+                this["CurrentSegmentColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font SplitTimesFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SplitTimesFont"]));
+            }
+            set {
+                this["SplitTimesFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SplitTimesColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitTimesColor"]));
+            }
+            set {
+                this["SplitTimesColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font SplitNamesFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SplitNamesFont"]));
+            }
+            set {
+                this["SplitNamesFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SplitNamesColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitNamesColor"]));
+            }
+            set {
+                this["SplitNamesColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font SplitDeltasFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SplitDeltasFont"]));
+            }
+            set {
+                this["SplitDeltasFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkGreen")]
+        public global::System.Drawing.Color SplitDeltasAheadSavingColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitDeltasAheadSavingColor"]));
+            }
+            set {
+                this["SplitDeltasAheadSavingColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightGreen")]
+        public global::System.Drawing.Color SplitDeltasAheadLosingColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitDeltasAheadLosingColor"]));
+            }
+            set {
+                this["SplitDeltasAheadLosingColor"] = value;
+            }
+        }
     }
 }

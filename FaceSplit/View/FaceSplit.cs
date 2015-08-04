@@ -417,7 +417,7 @@ namespace FaceSplit
 
             for (int i = 0; i < segmentsRectangles.Count; ++i)
             {
-                rectangleColor = (i == this.split.LiveIndex) ? Color.Blue : Settings.Default.SplitsBackgroundColor;
+                rectangleColor = (i == this.split.LiveIndex) ? Settings.Default.CurrentSegmentColor : Settings.Default.SplitsBackgroundColor;
                 segmentName = this.split.Segments.ElementAt(i).SegmentName;
                 segmentSplitTime = (this.split.Segments.ElementAt(i).SplitTime == 0) ? "-" : FaceSplitUtils.TimeFormat(this.split.Segments.ElementAt(i).SplitTime);
                 segmentSplitTime = FaceSplitUtils.CutDecimals(segmentSplitTime, 2);
@@ -433,13 +433,13 @@ namespace FaceSplit
                 segmentSplitTimeRectangle.Width /= 2;
                 segmentSplitTimeRectangle.X = segmentNameRectangle.Width;
                 graphics.FillRectangle(new SolidBrush(rectangleColor), segmentsRectangles.ElementAt(i));
-                TextRenderer.DrawText(graphics, segmentName, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
-                    segmentNameRectangle, Color.White, nameFlags);
-                TextRenderer.DrawText(graphics, segmentSplitTime, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
-                    segmentSplitTimeRectangle, Color.White, splitTimeFlags);
+                TextRenderer.DrawText(graphics, segmentName, Settings.Default.SplitNamesFont,
+                    segmentNameRectangle, Settings.Default.SplitNamesColor, nameFlags);
+                TextRenderer.DrawText(graphics, segmentSplitTime, Settings.Default.SplitTimesFont,
+                    segmentSplitTimeRectangle, Settings.Default.SplitTimesColor, splitTimeFlags);
                 if(!String.IsNullOrEmpty(runDeltaString.Trim()))
                 {
-                    TextRenderer.DrawText(graphics, runDeltaString, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
+                    TextRenderer.DrawText(graphics, runDeltaString, Settings.Default.SplitDeltasFont,
                     segmentSplitTimeRectangle, this.split.GetSegmentColor(i), runDeltaFlags);
                 }
             }
@@ -496,12 +496,12 @@ namespace FaceSplit
                 else if ((index > 0 && runDelta > this.split.GetRunDelta(index - 1)))
                 {
                     runDeltaString = runDeltaString.Insert(0, "-");
-                    this.split.SetCurrentSegmentColor(Color.LightGreen);
+                    this.split.SetCurrentSegmentColor(Settings.Default.SplitDeltasAheadLosingColor);
                 }
                 else if (this.split.CurrentSegmentHasLiveDelta(timeElapsed))
                 {
                     runDeltaString = runDeltaString.Insert(0, "-");
-                    this.split.SetCurrentSegmentColor(Color.DarkGreen);
+                    this.split.SetCurrentSegmentColor(Settings.Default.SplitDeltasAheadSavingColor);
                 }
                 else
                 {
