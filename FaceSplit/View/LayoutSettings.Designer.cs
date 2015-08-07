@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayoutSettings));
             this.tabLayoutSettings = new System.Windows.Forms.TabControl();
             this.tabLayoutTimer = new System.Windows.Forms.TabPage();
             this.gboTimerColors = new System.Windows.Forms.GroupBox();
@@ -46,6 +47,8 @@
             this.lblTimerFont = new System.Windows.Forms.Label();
             this.tabLayoutSplit = new System.Windows.Forms.TabPage();
             this.gboSplitDeltas = new System.Windows.Forms.GroupBox();
+            this.pnlSplitDeltaBestSegmentColor = new System.Windows.Forms.Panel();
+            this.lblSplitDeltaBestSegmentColor = new System.Windows.Forms.Label();
             this.pnlSplitDeltaBehindLosingColor = new System.Windows.Forms.Panel();
             this.lblSplitDeltaBehindLosingColor = new System.Windows.Forms.Label();
             this.pnlSplitDeltaBehindSavingColor = new System.Windows.Forms.Panel();
@@ -73,8 +76,21 @@
             this.lblCurrentSegmentColor = new System.Windows.Forms.Label();
             this.pnlSplitsBackgroundColor = new System.Windows.Forms.Panel();
             this.lblSplitsBackgroundColor = new System.Windows.Forms.Label();
+            this.tabLayoutTitle = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblSplitDeltaBestSegmentColor = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gboTitle = new System.Windows.Forms.GroupBox();
+            this.pnlTitleColor = new System.Windows.Forms.Panel();
+            this.btnChooseTitleFont = new System.Windows.Forms.Button();
+            this.lblTitleColor = new System.Windows.Forms.Label();
+            this.lblTitleFontName = new System.Windows.Forms.Label();
+            this.lblTitleFont = new System.Windows.Forms.Label();
+            this.gboAttempts = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblAttemptsFontName = new System.Windows.Forms.Label();
+            this.lblAttemptsFont = new System.Windows.Forms.Label();
             this.tabLayoutSettings.SuspendLayout();
             this.tabLayoutTimer.SuspendLayout();
             this.gboTimerColors.SuspendLayout();
@@ -82,16 +98,20 @@
             this.gboSplitDeltas.SuspendLayout();
             this.gboSplitNames.SuspendLayout();
             this.gboSplitTimes.SuspendLayout();
+            this.tabLayoutTitle.SuspendLayout();
+            this.gboTitle.SuspendLayout();
+            this.gboAttempts.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
             // 
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTimer);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutSplit);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutTitle);
             this.tabLayoutSettings.Location = new System.Drawing.Point(1, 1);
             this.tabLayoutSettings.Name = "tabLayoutSettings";
             this.tabLayoutSettings.SelectedIndex = 0;
-            this.tabLayoutSettings.Size = new System.Drawing.Size(330, 430);
+            this.tabLayoutSettings.Size = new System.Drawing.Size(330, 417);
             this.tabLayoutSettings.TabIndex = 0;
             // 
             // tabLayoutTimer
@@ -103,7 +123,7 @@
             this.tabLayoutTimer.Location = new System.Drawing.Point(4, 22);
             this.tabLayoutTimer.Name = "tabLayoutTimer";
             this.tabLayoutTimer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLayoutTimer.Size = new System.Drawing.Size(322, 462);
+            this.tabLayoutTimer.Size = new System.Drawing.Size(322, 391);
             this.tabLayoutTimer.TabIndex = 0;
             this.tabLayoutTimer.Text = "Timer";
             this.tabLayoutTimer.UseVisualStyleBackColor = true;
@@ -257,14 +277,14 @@
             this.tabLayoutSplit.Location = new System.Drawing.Point(4, 22);
             this.tabLayoutSplit.Name = "tabLayoutSplit";
             this.tabLayoutSplit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLayoutSplit.Size = new System.Drawing.Size(322, 404);
+            this.tabLayoutSplit.Size = new System.Drawing.Size(322, 391);
             this.tabLayoutSplit.TabIndex = 1;
             this.tabLayoutSplit.Text = "Split";
             this.tabLayoutSplit.UseVisualStyleBackColor = true;
             // 
             // gboSplitDeltas
             // 
-            this.gboSplitDeltas.Controls.Add(this.panel1);
+            this.gboSplitDeltas.Controls.Add(this.pnlSplitDeltaBestSegmentColor);
             this.gboSplitDeltas.Controls.Add(this.lblSplitDeltaBestSegmentColor);
             this.gboSplitDeltas.Controls.Add(this.pnlSplitDeltaBehindLosingColor);
             this.gboSplitDeltas.Controls.Add(this.lblSplitDeltaBehindLosingColor);
@@ -277,25 +297,44 @@
             this.gboSplitDeltas.Controls.Add(this.lblSplitDeltaAheadSavingColor);
             this.gboSplitDeltas.Controls.Add(this.lblSplitDeltasFontName);
             this.gboSplitDeltas.Controls.Add(this.lblSplitDeltasFont);
-            this.gboSplitDeltas.Location = new System.Drawing.Point(7, 227);
+            this.gboSplitDeltas.Location = new System.Drawing.Point(7, 214);
             this.gboSplitDeltas.Name = "gboSplitDeltas";
             this.gboSplitDeltas.Size = new System.Drawing.Size(306, 175);
             this.gboSplitDeltas.TabIndex = 13;
             this.gboSplitDeltas.TabStop = false;
             this.gboSplitDeltas.Text = "Deltas";
             // 
+            // pnlSplitDeltaBestSegmentColor
+            // 
+            this.pnlSplitDeltaBestSegmentColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSplitDeltaBestSegmentColor.Location = new System.Drawing.Point(115, 148);
+            this.pnlSplitDeltaBestSegmentColor.Name = "pnlSplitDeltaBestSegmentColor";
+            this.pnlSplitDeltaBestSegmentColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSplitDeltaBestSegmentColor.TabIndex = 20;
+            this.pnlSplitDeltaBestSegmentColor.Click += new System.EventHandler(this.pnlSplitDeltaBestSegmentColor_Click);
+            // 
+            // lblSplitDeltaBestSegmentColor
+            // 
+            this.lblSplitDeltaBestSegmentColor.AutoSize = true;
+            this.lblSplitDeltaBestSegmentColor.Location = new System.Drawing.Point(6, 150);
+            this.lblSplitDeltaBestSegmentColor.Name = "lblSplitDeltaBestSegmentColor";
+            this.lblSplitDeltaBestSegmentColor.Size = new System.Drawing.Size(74, 13);
+            this.lblSplitDeltaBestSegmentColor.TabIndex = 19;
+            this.lblSplitDeltaBestSegmentColor.Text = "Best segment:";
+            // 
             // pnlSplitDeltaBehindLosingColor
             // 
             this.pnlSplitDeltaBehindLosingColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlSplitDeltaBehindLosingColor.Location = new System.Drawing.Point(115, 125);
+            this.pnlSplitDeltaBehindLosingColor.Location = new System.Drawing.Point(115, 123);
             this.pnlSplitDeltaBehindLosingColor.Name = "pnlSplitDeltaBehindLosingColor";
             this.pnlSplitDeltaBehindLosingColor.Size = new System.Drawing.Size(20, 20);
             this.pnlSplitDeltaBehindLosingColor.TabIndex = 18;
+            this.pnlSplitDeltaBehindLosingColor.Click += new System.EventHandler(this.pnlSplitDeltaBehindLosingColor_Click);
             // 
             // lblSplitDeltaBehindLosingColor
             // 
             this.lblSplitDeltaBehindLosingColor.AutoSize = true;
-            this.lblSplitDeltaBehindLosingColor.Location = new System.Drawing.Point(6, 127);
+            this.lblSplitDeltaBehindLosingColor.Location = new System.Drawing.Point(6, 125);
             this.lblSplitDeltaBehindLosingColor.Name = "lblSplitDeltaBehindLosingColor";
             this.lblSplitDeltaBehindLosingColor.Size = new System.Drawing.Size(94, 13);
             this.lblSplitDeltaBehindLosingColor.TabIndex = 17;
@@ -304,15 +343,16 @@
             // pnlSplitDeltaBehindSavingColor
             // 
             this.pnlSplitDeltaBehindSavingColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlSplitDeltaBehindSavingColor.Location = new System.Drawing.Point(115, 100);
+            this.pnlSplitDeltaBehindSavingColor.Location = new System.Drawing.Point(115, 98);
             this.pnlSplitDeltaBehindSavingColor.Name = "pnlSplitDeltaBehindSavingColor";
             this.pnlSplitDeltaBehindSavingColor.Size = new System.Drawing.Size(20, 20);
             this.pnlSplitDeltaBehindSavingColor.TabIndex = 16;
+            this.pnlSplitDeltaBehindSavingColor.Click += new System.EventHandler(this.pnlSplitDeltaBehindSavingColor_Click);
             // 
             // lblSplitDeltaBehindSavingColor
             // 
             this.lblSplitDeltaBehindSavingColor.AutoSize = true;
-            this.lblSplitDeltaBehindSavingColor.Location = new System.Drawing.Point(6, 102);
+            this.lblSplitDeltaBehindSavingColor.Location = new System.Drawing.Point(6, 100);
             this.lblSplitDeltaBehindSavingColor.Name = "lblSplitDeltaBehindSavingColor";
             this.lblSplitDeltaBehindSavingColor.Size = new System.Drawing.Size(105, 13);
             this.lblSplitDeltaBehindSavingColor.TabIndex = 15;
@@ -389,7 +429,7 @@
             this.gboSplitNames.Controls.Add(this.lblSplitNamesColor);
             this.gboSplitNames.Controls.Add(this.lblSplitNamesFontName);
             this.gboSplitNames.Controls.Add(this.lblSplitNamesFont);
-            this.gboSplitNames.Location = new System.Drawing.Point(10, 69);
+            this.gboSplitNames.Location = new System.Drawing.Point(10, 56);
             this.gboSplitNames.Name = "gboSplitNames";
             this.gboSplitNames.Size = new System.Drawing.Size(306, 73);
             this.gboSplitNames.TabIndex = 13;
@@ -449,7 +489,7 @@
             this.gboSplitTimes.Controls.Add(this.lblSplitTimesColor);
             this.gboSplitTimes.Controls.Add(this.lblSplitTimesFontName);
             this.gboSplitTimes.Controls.Add(this.lblSplitTimesFont);
-            this.gboSplitTimes.Location = new System.Drawing.Point(10, 148);
+            this.gboSplitTimes.Location = new System.Drawing.Point(10, 135);
             this.gboSplitTimes.Name = "gboSplitTimes";
             this.gboSplitTimes.Size = new System.Drawing.Size(306, 73);
             this.gboSplitTimes.TabIndex = 9;
@@ -538,29 +578,161 @@
             this.lblSplitsBackgroundColor.TabIndex = 5;
             this.lblSplitsBackgroundColor.Text = "Background:";
             // 
+            // tabLayoutTitle
+            // 
+            this.tabLayoutTitle.Controls.Add(this.gboAttempts);
+            this.tabLayoutTitle.Controls.Add(this.gboTitle);
+            this.tabLayoutTitle.Controls.Add(this.panel1);
+            this.tabLayoutTitle.Controls.Add(this.label1);
+            this.tabLayoutTitle.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutTitle.Name = "tabLayoutTitle";
+            this.tabLayoutTitle.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutTitle.Size = new System.Drawing.Size(322, 391);
+            this.tabLayoutTitle.TabIndex = 2;
+            this.tabLayoutTitle.Text = "Title";
+            this.tabLayoutTitle.UseVisualStyleBackColor = true;
+            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(115, 150);
+            this.panel1.Location = new System.Drawing.Point(78, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(20, 20);
-            this.panel1.TabIndex = 20;
+            this.panel1.TabIndex = 8;
             // 
-            // lblSplitDeltaBestSegmentColor
+            // label1
             // 
-            this.lblSplitDeltaBestSegmentColor.AutoSize = true;
-            this.lblSplitDeltaBestSegmentColor.Location = new System.Drawing.Point(6, 152);
-            this.lblSplitDeltaBestSegmentColor.Name = "lblSplitDeltaBestSegmentColor";
-            this.lblSplitDeltaBestSegmentColor.Size = new System.Drawing.Size(74, 13);
-            this.lblSplitDeltaBestSegmentColor.TabIndex = 19;
-            this.lblSplitDeltaBestSegmentColor.Text = "Best segment:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Background:";
+            // 
+            // gboTitle
+            // 
+            this.gboTitle.Controls.Add(this.pnlTitleColor);
+            this.gboTitle.Controls.Add(this.btnChooseTitleFont);
+            this.gboTitle.Controls.Add(this.lblTitleColor);
+            this.gboTitle.Controls.Add(this.lblTitleFontName);
+            this.gboTitle.Controls.Add(this.lblTitleFont);
+            this.gboTitle.Location = new System.Drawing.Point(10, 32);
+            this.gboTitle.Name = "gboTitle";
+            this.gboTitle.Size = new System.Drawing.Size(306, 73);
+            this.gboTitle.TabIndex = 14;
+            this.gboTitle.TabStop = false;
+            this.gboTitle.Text = "Title";
+            // 
+            // pnlTitleColor
+            // 
+            this.pnlTitleColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTitleColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlTitleColor.Name = "pnlTitleColor";
+            this.pnlTitleColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlTitleColor.TabIndex = 11;
+            // 
+            // btnChooseTitleFont
+            // 
+            this.btnChooseTitleFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseTitleFont.Name = "btnChooseTitleFont";
+            this.btnChooseTitleFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseTitleFont.TabIndex = 12;
+            this.btnChooseTitleFont.Text = "Choose...";
+            this.btnChooseTitleFont.UseVisualStyleBackColor = true;
+            // 
+            // lblTitleColor
+            // 
+            this.lblTitleColor.AutoSize = true;
+            this.lblTitleColor.Location = new System.Drawing.Point(6, 50);
+            this.lblTitleColor.Name = "lblTitleColor";
+            this.lblTitleColor.Size = new System.Drawing.Size(34, 13);
+            this.lblTitleColor.TabIndex = 10;
+            this.lblTitleColor.Text = "Color:";
+            // 
+            // lblTitleFontName
+            // 
+            this.lblTitleFontName.AutoSize = true;
+            this.lblTitleFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblTitleFontName.Name = "lblTitleFontName";
+            this.lblTitleFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblTitleFontName.TabIndex = 11;
+            this.lblTitleFontName.Text = "fontName";
+            // 
+            // lblTitleFont
+            // 
+            this.lblTitleFont.AutoSize = true;
+            this.lblTitleFont.Location = new System.Drawing.Point(6, 25);
+            this.lblTitleFont.Name = "lblTitleFont";
+            this.lblTitleFont.Size = new System.Drawing.Size(31, 13);
+            this.lblTitleFont.TabIndex = 10;
+            this.lblTitleFont.Text = "Font:";
+            // 
+            // gboAttempts
+            // 
+            this.gboAttempts.Controls.Add(this.panel2);
+            this.gboAttempts.Controls.Add(this.button1);
+            this.gboAttempts.Controls.Add(this.label2);
+            this.gboAttempts.Controls.Add(this.lblAttemptsFontName);
+            this.gboAttempts.Controls.Add(this.lblAttemptsFont);
+            this.gboAttempts.Location = new System.Drawing.Point(10, 111);
+            this.gboAttempts.Name = "gboAttempts";
+            this.gboAttempts.Size = new System.Drawing.Size(306, 73);
+            this.gboAttempts.TabIndex = 15;
+            this.gboAttempts.TabStop = false;
+            this.gboAttempts.Text = "Attempts Count";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Location = new System.Drawing.Point(43, 48);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(20, 20);
+            this.panel2.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(225, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Choose...";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Color:";
+            // 
+            // lblAttemptsFontName
+            // 
+            this.lblAttemptsFontName.AutoSize = true;
+            this.lblAttemptsFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblAttemptsFontName.Name = "lblAttemptsFontName";
+            this.lblAttemptsFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblAttemptsFontName.TabIndex = 11;
+            this.lblAttemptsFontName.Text = "fontName";
+            // 
+            // lblAttemptsFont
+            // 
+            this.lblAttemptsFont.AutoSize = true;
+            this.lblAttemptsFont.Location = new System.Drawing.Point(6, 25);
+            this.lblAttemptsFont.Name = "lblAttemptsFont";
+            this.lblAttemptsFont.Size = new System.Drawing.Size(31, 13);
+            this.lblAttemptsFont.TabIndex = 10;
+            this.lblAttemptsFont.Text = "Font:";
             // 
             // LayoutSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 430);
+            this.ClientSize = new System.Drawing.Size(331, 417);
             this.Controls.Add(this.tabLayoutSettings);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LayoutSettings";
             this.Text = "Layout Settings";
             this.tabLayoutSettings.ResumeLayout(false);
@@ -576,6 +748,12 @@
             this.gboSplitNames.PerformLayout();
             this.gboSplitTimes.ResumeLayout(false);
             this.gboSplitTimes.PerformLayout();
+            this.tabLayoutTitle.ResumeLayout(false);
+            this.tabLayoutTitle.PerformLayout();
+            this.gboTitle.ResumeLayout(false);
+            this.gboTitle.PerformLayout();
+            this.gboAttempts.ResumeLayout(false);
+            this.gboAttempts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -627,7 +805,22 @@
         private System.Windows.Forms.Label lblSplitDeltaBehindSavingColor;
         private System.Windows.Forms.Panel pnlSplitDeltaAheadLosingColor;
         private System.Windows.Forms.Label lblSplitDeltaAheadLosingColor;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlSplitDeltaBestSegmentColor;
         private System.Windows.Forms.Label lblSplitDeltaBestSegmentColor;
+        private System.Windows.Forms.TabPage tabLayoutTitle;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gboTitle;
+        private System.Windows.Forms.Panel pnlTitleColor;
+        private System.Windows.Forms.Button btnChooseTitleFont;
+        private System.Windows.Forms.Label lblTitleColor;
+        private System.Windows.Forms.Label lblTitleFontName;
+        private System.Windows.Forms.Label lblTitleFont;
+        private System.Windows.Forms.GroupBox gboAttempts;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblAttemptsFontName;
+        private System.Windows.Forms.Label lblAttemptsFont;
     }
 }

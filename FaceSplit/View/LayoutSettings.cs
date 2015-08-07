@@ -37,6 +37,9 @@ namespace FaceSplit
             this.lblSplitDeltasFontName.Text = Settings.Default.SplitDeltasFont.FontFamily.Name;
             this.pnlSplitDeltaAheadSavingColor.BackColor = Settings.Default.SplitDeltasAheadSavingColor;
             this.pnlSplitDeltaAheadLosingColor.BackColor = Settings.Default.SplitDeltasAheadLosingColor;
+            this.pnlSplitDeltaBehindSavingColor.BackColor = Settings.Default.SplitDeltasBehindSavingColor;
+            this.pnlSplitDeltaBehindLosingColor.BackColor = Settings.Default.SplitDeltasBehindLosingColor;
+            this.pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
 
         }
 
@@ -172,6 +175,33 @@ namespace FaceSplit
             {
                 Settings.Default.SplitDeltasAheadLosingColor = colorDialog.Color;
                 this.pnlSplitDeltaAheadLosingColor.BackColor = Settings.Default.SplitDeltasAheadLosingColor;
+            }
+        }
+
+        private void pnlSplitDeltaBehindSavingColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SplitDeltasBehindSavingColor = colorDialog.Color;
+                this.pnlSplitDeltaBehindSavingColor.BackColor = Settings.Default.SplitDeltasBehindSavingColor;
+            }
+        }
+
+        private void pnlSplitDeltaBehindLosingColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SplitDeltasBehindLosingColor = colorDialog.Color;
+                this.pnlSplitDeltaBehindLosingColor.BackColor = Settings.Default.SplitDeltasBehindLosingColor;
+            }
+        }
+
+        private void pnlSplitDeltaBestSegmentColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SplitDeltasBestSegmentColor = colorDialog.Color;
+                this.pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
             }
         }
     }

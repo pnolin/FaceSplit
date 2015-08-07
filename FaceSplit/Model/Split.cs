@@ -186,7 +186,7 @@ namespace FaceSplit.Model
             {
                 if (bestSegment)
                 {
-                    this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.Gold;
+                    this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBestSegmentColor;
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace FaceSplit.Model
                         }
                         else
                         {
-                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkRed;
+                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
                         }
                     }
                     else
@@ -207,7 +207,7 @@ namespace FaceSplit.Model
                         {
                             if (GetRunDelta(this.liveIndex - 1) > 0.0)
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.Red;
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindSavingColor;
                             }
                             else
                             {
@@ -218,7 +218,7 @@ namespace FaceSplit.Model
                         {
                             if (GetRunDelta(this.liveIndex - 1) > 0.0)
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Color.DarkRed;
+                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
                             }
                             else
                             {

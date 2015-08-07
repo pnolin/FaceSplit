@@ -485,11 +485,11 @@ namespace FaceSplit
                     runDeltaString = runDeltaString.Insert(0, "+");
                     if ((index == 0) || (index > 0 && runDelta > this.split.GetRunDelta(index - 1)))
                     {
-                        this.split.SetCurrentSegmentColor(Color.DarkRed);
+                        this.split.SetCurrentSegmentColor(Settings.Default.SplitDeltasBehindLosingColor);
                     }
                     else
                     {
-                        this.split.SetCurrentSegmentColor(Color.Red);
+                        this.split.SetCurrentSegmentColor(Settings.Default.SplitDeltasBehindSavingColor);
                     }
                     this.watchColor = Settings.Default.TimerBehindColor;
                 }

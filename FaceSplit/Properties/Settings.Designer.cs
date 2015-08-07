@@ -202,5 +202,53 @@ namespace FaceSplit.Properties {
                 this["SplitDeltasAheadLosingColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color SplitDeltasBehindSavingColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitDeltasBehindSavingColor"]));
+            }
+            set {
+                this["SplitDeltasBehindSavingColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkRed")]
+        public global::System.Drawing.Color SplitDeltasBehindLosingColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitDeltasBehindLosingColor"]));
+            }
+            set {
+                this["SplitDeltasBehindLosingColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gold")]
+        public global::System.Drawing.Color SplitDeltasBestSegmentColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SplitDeltasBestSegmentColor"]));
+            }
+            set {
+                this["SplitDeltasBestSegmentColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color TitleBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TitleBackgroundColor"]));
+            }
+            set {
+                this["TitleBackgroundColor"] = value;
+            }
+        }
     }
 }

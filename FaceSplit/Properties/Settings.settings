@@ -47,5 +47,17 @@
     <Setting Name="SplitDeltasAheadLosingColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LightGreen</Value>
     </Setting>
+    <Setting Name="SplitDeltasBehindSavingColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="SplitDeltasBehindLosingColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkRed</Value>
+    </Setting>
+    <Setting Name="SplitDeltasBestSegmentColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gold</Value>
+    </Setting>
+    <Setting Name="TitleBackgroundColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

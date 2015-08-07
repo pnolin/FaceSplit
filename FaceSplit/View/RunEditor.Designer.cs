@@ -234,6 +234,7 @@
             this.Controls.Add(this.txtRunGoal);
             this.Controls.Add(this.txtRunTitle);
             this.Controls.Add(this.lblRunTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RunEditor";
             this.Text = "RunEditor";
