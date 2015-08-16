@@ -77,20 +77,31 @@
             this.pnlSplitsBackgroundColor = new System.Windows.Forms.Panel();
             this.lblSplitsBackgroundColor = new System.Windows.Forms.Label();
             this.tabLayoutTitle = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.gboAttempts = new System.Windows.Forms.GroupBox();
+            this.pnlAttemptsColor = new System.Windows.Forms.Panel();
+            this.btnChooseAttemptsFont = new System.Windows.Forms.Button();
+            this.lblAttemptsColor = new System.Windows.Forms.Label();
+            this.lblAttemptsFontName = new System.Windows.Forms.Label();
+            this.lblAttemptsFont = new System.Windows.Forms.Label();
             this.gboTitle = new System.Windows.Forms.GroupBox();
             this.pnlTitleColor = new System.Windows.Forms.Panel();
             this.btnChooseTitleFont = new System.Windows.Forms.Button();
             this.lblTitleColor = new System.Windows.Forms.Label();
             this.lblTitleFontName = new System.Windows.Forms.Label();
             this.lblTitleFont = new System.Windows.Forms.Label();
-            this.gboAttempts = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblAttemptsFontName = new System.Windows.Forms.Label();
-            this.lblAttemptsFont = new System.Windows.Forms.Label();
+            this.pnlTitleBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblTitleBackgroundColor = new System.Windows.Forms.Label();
+            this.tabLayoutGoal = new System.Windows.Forms.TabPage();
+            this.gboGoal = new System.Windows.Forms.GroupBox();
+            this.pnlGoalColor = new System.Windows.Forms.Panel();
+            this.btnChooseGoalFont = new System.Windows.Forms.Button();
+            this.lblGoalColor = new System.Windows.Forms.Label();
+            this.lblGoalFontName = new System.Windows.Forms.Label();
+            this.lblGoalFont = new System.Windows.Forms.Label();
+            this.pnlGoalBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblGoalBackgroundColor = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.tabLayoutSettings.SuspendLayout();
             this.tabLayoutTimer.SuspendLayout();
             this.gboTimerColors.SuspendLayout();
@@ -99,8 +110,10 @@
             this.gboSplitNames.SuspendLayout();
             this.gboSplitTimes.SuspendLayout();
             this.tabLayoutTitle.SuspendLayout();
-            this.gboTitle.SuspendLayout();
             this.gboAttempts.SuspendLayout();
+            this.gboTitle.SuspendLayout();
+            this.tabLayoutGoal.SuspendLayout();
+            this.gboGoal.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
@@ -108,10 +121,11 @@
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTimer);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutSplit);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTitle);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutGoal);
             this.tabLayoutSettings.Location = new System.Drawing.Point(1, 1);
             this.tabLayoutSettings.Name = "tabLayoutSettings";
             this.tabLayoutSettings.SelectedIndex = 0;
-            this.tabLayoutSettings.Size = new System.Drawing.Size(330, 417);
+            this.tabLayoutSettings.Size = new System.Drawing.Size(330, 441);
             this.tabLayoutSettings.TabIndex = 0;
             // 
             // tabLayoutTimer
@@ -123,7 +137,7 @@
             this.tabLayoutTimer.Location = new System.Drawing.Point(4, 22);
             this.tabLayoutTimer.Name = "tabLayoutTimer";
             this.tabLayoutTimer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLayoutTimer.Size = new System.Drawing.Size(322, 391);
+            this.tabLayoutTimer.Size = new System.Drawing.Size(322, 415);
             this.tabLayoutTimer.TabIndex = 0;
             this.tabLayoutTimer.Text = "Timer";
             this.tabLayoutTimer.UseVisualStyleBackColor = true;
@@ -142,7 +156,7 @@
             this.gboTimerColors.Controls.Add(this.lblTimerNotRunningColor);
             this.gboTimerColors.Location = new System.Drawing.Point(11, 31);
             this.gboTimerColors.Name = "gboTimerColors";
-            this.gboTimerColors.Size = new System.Drawing.Size(303, 428);
+            this.gboTimerColors.Size = new System.Drawing.Size(303, 322);
             this.gboTimerColors.TabIndex = 3;
             this.gboTimerColors.TabStop = false;
             this.gboTimerColors.Text = "Colors";
@@ -277,7 +291,7 @@
             this.tabLayoutSplit.Location = new System.Drawing.Point(4, 22);
             this.tabLayoutSplit.Name = "tabLayoutSplit";
             this.tabLayoutSplit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLayoutSplit.Size = new System.Drawing.Size(322, 391);
+            this.tabLayoutSplit.Size = new System.Drawing.Size(322, 415);
             this.tabLayoutSplit.TabIndex = 1;
             this.tabLayoutSplit.Text = "Split";
             this.tabLayoutSplit.UseVisualStyleBackColor = true;
@@ -299,7 +313,7 @@
             this.gboSplitDeltas.Controls.Add(this.lblSplitDeltasFont);
             this.gboSplitDeltas.Location = new System.Drawing.Point(7, 214);
             this.gboSplitDeltas.Name = "gboSplitDeltas";
-            this.gboSplitDeltas.Size = new System.Drawing.Size(306, 175);
+            this.gboSplitDeltas.Size = new System.Drawing.Size(306, 195);
             this.gboSplitDeltas.TabIndex = 13;
             this.gboSplitDeltas.TabStop = false;
             this.gboSplitDeltas.Text = "Deltas";
@@ -582,32 +596,75 @@
             // 
             this.tabLayoutTitle.Controls.Add(this.gboAttempts);
             this.tabLayoutTitle.Controls.Add(this.gboTitle);
-            this.tabLayoutTitle.Controls.Add(this.panel1);
-            this.tabLayoutTitle.Controls.Add(this.label1);
+            this.tabLayoutTitle.Controls.Add(this.pnlTitleBackgroundColor);
+            this.tabLayoutTitle.Controls.Add(this.lblTitleBackgroundColor);
             this.tabLayoutTitle.Location = new System.Drawing.Point(4, 22);
             this.tabLayoutTitle.Name = "tabLayoutTitle";
             this.tabLayoutTitle.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLayoutTitle.Size = new System.Drawing.Size(322, 391);
+            this.tabLayoutTitle.Size = new System.Drawing.Size(322, 415);
             this.tabLayoutTitle.TabIndex = 2;
             this.tabLayoutTitle.Text = "Title";
             this.tabLayoutTitle.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // gboAttempts
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(78, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(20, 20);
-            this.panel1.TabIndex = 8;
+            this.gboAttempts.Controls.Add(this.pnlAttemptsColor);
+            this.gboAttempts.Controls.Add(this.btnChooseAttemptsFont);
+            this.gboAttempts.Controls.Add(this.lblAttemptsColor);
+            this.gboAttempts.Controls.Add(this.lblAttemptsFontName);
+            this.gboAttempts.Controls.Add(this.lblAttemptsFont);
+            this.gboAttempts.Location = new System.Drawing.Point(10, 111);
+            this.gboAttempts.Name = "gboAttempts";
+            this.gboAttempts.Size = new System.Drawing.Size(306, 73);
+            this.gboAttempts.TabIndex = 15;
+            this.gboAttempts.TabStop = false;
+            this.gboAttempts.Text = "Attempts Count";
             // 
-            // label1
+            // pnlAttemptsColor
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Background:";
+            this.pnlAttemptsColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlAttemptsColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlAttemptsColor.Name = "pnlAttemptsColor";
+            this.pnlAttemptsColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlAttemptsColor.TabIndex = 11;
+            this.pnlAttemptsColor.Click += new System.EventHandler(this.pnlAttemptsColor_Click);
+            // 
+            // btnChooseAttemptsFont
+            // 
+            this.btnChooseAttemptsFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseAttemptsFont.Name = "btnChooseAttemptsFont";
+            this.btnChooseAttemptsFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseAttemptsFont.TabIndex = 12;
+            this.btnChooseAttemptsFont.Text = "Choose...";
+            this.btnChooseAttemptsFont.UseVisualStyleBackColor = true;
+            this.btnChooseAttemptsFont.Click += new System.EventHandler(this.btnChooseAttemptsFont_Click);
+            // 
+            // lblAttemptsColor
+            // 
+            this.lblAttemptsColor.AutoSize = true;
+            this.lblAttemptsColor.Location = new System.Drawing.Point(6, 50);
+            this.lblAttemptsColor.Name = "lblAttemptsColor";
+            this.lblAttemptsColor.Size = new System.Drawing.Size(34, 13);
+            this.lblAttemptsColor.TabIndex = 10;
+            this.lblAttemptsColor.Text = "Color:";
+            // 
+            // lblAttemptsFontName
+            // 
+            this.lblAttemptsFontName.AutoSize = true;
+            this.lblAttemptsFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblAttemptsFontName.Name = "lblAttemptsFontName";
+            this.lblAttemptsFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblAttemptsFontName.TabIndex = 11;
+            this.lblAttemptsFontName.Text = "fontName";
+            // 
+            // lblAttemptsFont
+            // 
+            this.lblAttemptsFont.AutoSize = true;
+            this.lblAttemptsFont.Location = new System.Drawing.Point(6, 25);
+            this.lblAttemptsFont.Name = "lblAttemptsFont";
+            this.lblAttemptsFont.Size = new System.Drawing.Size(31, 13);
+            this.lblAttemptsFont.TabIndex = 10;
+            this.lblAttemptsFont.Text = "Font:";
             // 
             // gboTitle
             // 
@@ -630,6 +687,7 @@
             this.pnlTitleColor.Name = "pnlTitleColor";
             this.pnlTitleColor.Size = new System.Drawing.Size(20, 20);
             this.pnlTitleColor.TabIndex = 11;
+            this.pnlTitleColor.Click += new System.EventHandler(this.pnlTitleColor_Click);
             // 
             // btnChooseTitleFont
             // 
@@ -639,6 +697,7 @@
             this.btnChooseTitleFont.TabIndex = 12;
             this.btnChooseTitleFont.Text = "Choose...";
             this.btnChooseTitleFont.UseVisualStyleBackColor = true;
+            this.btnChooseTitleFont.Click += new System.EventHandler(this.btnChooseTitleFont_Click);
             // 
             // lblTitleColor
             // 
@@ -667,69 +726,142 @@
             this.lblTitleFont.TabIndex = 10;
             this.lblTitleFont.Text = "Font:";
             // 
-            // gboAttempts
+            // pnlTitleBackgroundColor
             // 
-            this.gboAttempts.Controls.Add(this.panel2);
-            this.gboAttempts.Controls.Add(this.button1);
-            this.gboAttempts.Controls.Add(this.label2);
-            this.gboAttempts.Controls.Add(this.lblAttemptsFontName);
-            this.gboAttempts.Controls.Add(this.lblAttemptsFont);
-            this.gboAttempts.Location = new System.Drawing.Point(10, 111);
-            this.gboAttempts.Name = "gboAttempts";
-            this.gboAttempts.Size = new System.Drawing.Size(306, 73);
-            this.gboAttempts.TabIndex = 15;
-            this.gboAttempts.TabStop = false;
-            this.gboAttempts.Text = "Attempts Count";
+            this.pnlTitleBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTitleBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlTitleBackgroundColor.Name = "pnlTitleBackgroundColor";
+            this.pnlTitleBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlTitleBackgroundColor.TabIndex = 8;
+            this.pnlTitleBackgroundColor.Click += new System.EventHandler(this.pnlTitleBackgroundColor_Click);
             // 
-            // panel2
+            // lblTitleBackgroundColor
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(43, 48);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(20, 20);
-            this.panel2.TabIndex = 11;
+            this.lblTitleBackgroundColor.AutoSize = true;
+            this.lblTitleBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblTitleBackgroundColor.Name = "lblTitleBackgroundColor";
+            this.lblTitleBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblTitleBackgroundColor.TabIndex = 7;
+            this.lblTitleBackgroundColor.Text = "Background:";
             // 
-            // button1
+            // tabLayoutGoal
             // 
-            this.button1.Location = new System.Drawing.Point(225, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Choose...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.tabLayoutGoal.Controls.Add(this.gboGoal);
+            this.tabLayoutGoal.Controls.Add(this.pnlGoalBackgroundColor);
+            this.tabLayoutGoal.Controls.Add(this.lblGoalBackgroundColor);
+            this.tabLayoutGoal.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutGoal.Name = "tabLayoutGoal";
+            this.tabLayoutGoal.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutGoal.Size = new System.Drawing.Size(322, 415);
+            this.tabLayoutGoal.TabIndex = 3;
+            this.tabLayoutGoal.Text = "Goal";
+            this.tabLayoutGoal.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // gboGoal
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Color:";
+            this.gboGoal.Controls.Add(this.pnlGoalColor);
+            this.gboGoal.Controls.Add(this.btnChooseGoalFont);
+            this.gboGoal.Controls.Add(this.lblGoalColor);
+            this.gboGoal.Controls.Add(this.lblGoalFontName);
+            this.gboGoal.Controls.Add(this.lblGoalFont);
+            this.gboGoal.Location = new System.Drawing.Point(10, 32);
+            this.gboGoal.Name = "gboGoal";
+            this.gboGoal.Size = new System.Drawing.Size(306, 73);
+            this.gboGoal.TabIndex = 17;
+            this.gboGoal.TabStop = false;
+            this.gboGoal.Text = "Title";
             // 
-            // lblAttemptsFontName
+            // pnlGoalColor
             // 
-            this.lblAttemptsFontName.AutoSize = true;
-            this.lblAttemptsFontName.Location = new System.Drawing.Point(43, 26);
-            this.lblAttemptsFontName.Name = "lblAttemptsFontName";
-            this.lblAttemptsFontName.Size = new System.Drawing.Size(53, 13);
-            this.lblAttemptsFontName.TabIndex = 11;
-            this.lblAttemptsFontName.Text = "fontName";
+            this.pnlGoalColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlGoalColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlGoalColor.Name = "pnlGoalColor";
+            this.pnlGoalColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlGoalColor.TabIndex = 11;
+            this.pnlGoalColor.Click += new System.EventHandler(this.pnlGoalColor_Click);
             // 
-            // lblAttemptsFont
+            // btnChooseGoalFont
             // 
-            this.lblAttemptsFont.AutoSize = true;
-            this.lblAttemptsFont.Location = new System.Drawing.Point(6, 25);
-            this.lblAttemptsFont.Name = "lblAttemptsFont";
-            this.lblAttemptsFont.Size = new System.Drawing.Size(31, 13);
-            this.lblAttemptsFont.TabIndex = 10;
-            this.lblAttemptsFont.Text = "Font:";
+            this.btnChooseGoalFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseGoalFont.Name = "btnChooseGoalFont";
+            this.btnChooseGoalFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseGoalFont.TabIndex = 12;
+            this.btnChooseGoalFont.Text = "Choose...";
+            this.btnChooseGoalFont.UseVisualStyleBackColor = true;
+            this.btnChooseGoalFont.Click += new System.EventHandler(this.btnChooseGoalFont_Click);
+            // 
+            // lblGoalColor
+            // 
+            this.lblGoalColor.AutoSize = true;
+            this.lblGoalColor.Location = new System.Drawing.Point(6, 50);
+            this.lblGoalColor.Name = "lblGoalColor";
+            this.lblGoalColor.Size = new System.Drawing.Size(34, 13);
+            this.lblGoalColor.TabIndex = 10;
+            this.lblGoalColor.Text = "Color:";
+            // 
+            // lblGoalFontName
+            // 
+            this.lblGoalFontName.AutoSize = true;
+            this.lblGoalFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblGoalFontName.Name = "lblGoalFontName";
+            this.lblGoalFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblGoalFontName.TabIndex = 11;
+            this.lblGoalFontName.Text = "fontName";
+            // 
+            // lblGoalFont
+            // 
+            this.lblGoalFont.AutoSize = true;
+            this.lblGoalFont.Location = new System.Drawing.Point(6, 25);
+            this.lblGoalFont.Name = "lblGoalFont";
+            this.lblGoalFont.Size = new System.Drawing.Size(31, 13);
+            this.lblGoalFont.TabIndex = 10;
+            this.lblGoalFont.Text = "Font:";
+            // 
+            // pnlGoalBackgroundColor
+            // 
+            this.pnlGoalBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlGoalBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlGoalBackgroundColor.Name = "pnlGoalBackgroundColor";
+            this.pnlGoalBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlGoalBackgroundColor.TabIndex = 16;
+            this.pnlGoalBackgroundColor.Click += new System.EventHandler(this.pnlGoalBackgroundColor_Click);
+            // 
+            // lblGoalBackgroundColor
+            // 
+            this.lblGoalBackgroundColor.AutoSize = true;
+            this.lblGoalBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblGoalBackgroundColor.Name = "lblGoalBackgroundColor";
+            this.lblGoalBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblGoalBackgroundColor.TabIndex = 15;
+            this.lblGoalBackgroundColor.Text = "Background:";
+            // 
+            // btnOk
+            // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOk.Location = new System.Drawing.Point(168, 446);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 1;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.btnCancel.Location = new System.Drawing.Point(249, 446);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // LayoutSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 417);
+            this.ClientSize = new System.Drawing.Size(331, 474);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.tabLayoutSettings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -750,10 +882,14 @@
             this.gboSplitTimes.PerformLayout();
             this.tabLayoutTitle.ResumeLayout(false);
             this.tabLayoutTitle.PerformLayout();
-            this.gboTitle.ResumeLayout(false);
-            this.gboTitle.PerformLayout();
             this.gboAttempts.ResumeLayout(false);
             this.gboAttempts.PerformLayout();
+            this.gboTitle.ResumeLayout(false);
+            this.gboTitle.PerformLayout();
+            this.tabLayoutGoal.ResumeLayout(false);
+            this.tabLayoutGoal.PerformLayout();
+            this.gboGoal.ResumeLayout(false);
+            this.gboGoal.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -808,8 +944,8 @@
         private System.Windows.Forms.Panel pnlSplitDeltaBestSegmentColor;
         private System.Windows.Forms.Label lblSplitDeltaBestSegmentColor;
         private System.Windows.Forms.TabPage tabLayoutTitle;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlTitleBackgroundColor;
+        private System.Windows.Forms.Label lblTitleBackgroundColor;
         private System.Windows.Forms.GroupBox gboTitle;
         private System.Windows.Forms.Panel pnlTitleColor;
         private System.Windows.Forms.Button btnChooseTitleFont;
@@ -817,10 +953,21 @@
         private System.Windows.Forms.Label lblTitleFontName;
         private System.Windows.Forms.Label lblTitleFont;
         private System.Windows.Forms.GroupBox gboAttempts;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel pnlAttemptsColor;
+        private System.Windows.Forms.Button btnChooseAttemptsFont;
+        private System.Windows.Forms.Label lblAttemptsColor;
         private System.Windows.Forms.Label lblAttemptsFontName;
         private System.Windows.Forms.Label lblAttemptsFont;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.TabPage tabLayoutGoal;
+        private System.Windows.Forms.GroupBox gboGoal;
+        private System.Windows.Forms.Panel pnlGoalColor;
+        private System.Windows.Forms.Button btnChooseGoalFont;
+        private System.Windows.Forms.Label lblGoalColor;
+        private System.Windows.Forms.Label lblGoalFontName;
+        private System.Windows.Forms.Label lblGoalFont;
+        private System.Windows.Forms.Panel pnlGoalBackgroundColor;
+        private System.Windows.Forms.Label lblGoalBackgroundColor;
     }
 }

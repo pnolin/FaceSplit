@@ -250,5 +250,89 @@ namespace FaceSplit.Properties {
                 this["TitleBackgroundColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font TitleFont {
+            get {
+                return ((global::System.Drawing.Font)(this["TitleFont"]));
+            }
+            set {
+                this["TitleFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color TitleColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TitleColor"]));
+            }
+            set {
+                this["TitleColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font AttemptsFont {
+            get {
+                return ((global::System.Drawing.Font)(this["AttemptsFont"]));
+            }
+            set {
+                this["AttemptsFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color AttemptsColor {
+            get {
+                return ((global::System.Drawing.Color)(this["AttemptsColor"]));
+            }
+            set {
+                this["AttemptsColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color GoalBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GoalBackgroundColor"]));
+            }
+            set {
+                this["GoalBackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color GoalColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GoalColor"]));
+            }
+            set {
+                this["GoalColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font GoalFont {
+            get {
+                return ((global::System.Drawing.Font)(this["GoalFont"]));
+            }
+            set {
+                this["GoalFont"] = value;
+            }
+        }
     }
 }

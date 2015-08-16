@@ -90,6 +90,7 @@
     <Compile Include="Model\Information.cs" />
     <Compile Include="Model\InformationFlagsFactory.cs" />
     <Compile Include="Model\InformationIndexs.cs" />
+    <Compile Include="Model\InformationStyleFactory.cs" />
     <Compile Include="Model\RunStatus.cs" />
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Split.cs" />

@@ -20,8 +20,11 @@ namespace FaceSplit.Model
         private bool above;
         private TextFormatFlags primaryTextFlags;
         private TextFormatFlags secondaryTextFlags;
+        private Font primaryTextFont;
+        private Font secondaryTextFont;
         private Color primaryTextColor;
         private Color secondaryTextColor;
+        private Color backgroundColor;
 
         public Information(string informationName, string primaryText, string secondaryText, int position, Boolean display, Boolean above)
         {
@@ -38,8 +41,12 @@ namespace FaceSplit.Model
             {
                 this.secondaryTextFlags = flags.ElementAt(1);
             }
-            this.primaryTextColor = Color.White;
-            this.secondaryTextColor = Color.White;
+            InformationStyleFactory.SetInformationStyle(this);
+        }
+
+        public String InformationName
+        {
+            get { return this.informationName; }
         }
 
         public String PrimaryText
@@ -69,7 +76,7 @@ namespace FaceSplit.Model
             get { return this.secondaryTextFlags; }
         }
 
-        public Color InformationColor
+        public Color PrimaryTextColor
         {
             get { return this.primaryTextColor; }
             set { this.primaryTextColor = value; }
@@ -79,6 +86,29 @@ namespace FaceSplit.Model
         {
             get { return this.secondaryTextColor; }
             set { this.secondaryTextColor = value; }
+        }
+
+        public Color BackgroundColor
+        {
+            get { return this.backgroundColor; }
+            set { this.backgroundColor = value; }
+        }
+
+        public Font PrimaryTextFont
+        {
+            get { return this.primaryTextFont; }
+            set { this.primaryTextFont = value; }
+        }
+
+        public Font SecondaryTextFont
+        {
+            get { return this.secondaryTextFont; }
+            set { this.secondaryTextFont = value; }
+        }
+
+        public void UpdateStyle()
+        {
+            InformationStyleFactory.SetInformationStyle(this);
         }
     }
 }

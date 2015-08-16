@@ -41,10 +41,22 @@ namespace FaceSplit
             this.pnlSplitDeltaBehindLosingColor.BackColor = Settings.Default.SplitDeltasBehindLosingColor;
             this.pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
 
+            this.pnlTitleBackgroundColor.BackColor = Settings.Default.TitleBackgroundColor;
+            this.lblTitleFontName.Text = Settings.Default.TitleFont.FontFamily.Name;
+            this.pnlTitleColor.BackColor = Settings.Default.TitleColor;
+
+            this.lblAttemptsFontName.Text = Settings.Default.AttemptsFont.FontFamily.Name;
+            this.pnlAttemptsColor.BackColor = Settings.Default.AttemptsColor;
+
+            this.pnlGoalBackgroundColor.BackColor = Settings.Default.GoalBackgroundColor;
+            this.lblGoalFontName.Text = Settings.Default.GoalFont.FontFamily.Name;
+            this.pnlGoalColor.BackColor = Settings.Default.GoalColor;
+
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
         {
+            fontDialog.Font = Settings.Default.TimerFont;
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerFont = fontDialog.Font;
@@ -117,6 +129,7 @@ namespace FaceSplit
 
         private void btnChooseSplitTimesFont_Click(object sender, EventArgs e)
         {
+            fontDialog.Font = Settings.Default.SplitTimesFont;
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitTimesFont = fontDialog.Font;
@@ -135,6 +148,7 @@ namespace FaceSplit
 
         private void btnChooseSplitNamesFont_Click(object sender, EventArgs e)
         {
+            fontDialog.Font = Settings.Default.SplitNamesFont;
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitNamesFont = fontDialog.Font;
@@ -153,6 +167,7 @@ namespace FaceSplit
 
         private void btnChooseSplitDeltasFont_Click(object sender, EventArgs e)
         {
+            fontDialog.Font = Settings.Default.SplitDeltasFont;
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasFont = fontDialog.Font;
@@ -202,6 +217,81 @@ namespace FaceSplit
             {
                 Settings.Default.SplitDeltasBestSegmentColor = colorDialog.Color;
                 this.pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
+            }
+        }
+
+        private void pnlTitleBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.TitleBackgroundColor = colorDialog.Color;
+                this.pnlTitleBackgroundColor.BackColor = Settings.Default.TitleBackgroundColor;
+            }
+        }
+
+        private void btnChooseTitleFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.TitleFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.TitleFont = fontDialog.Font;
+                this.lblTitleFontName.Text = Settings.Default.TitleFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlTitleColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.TitleColor = colorDialog.Color;
+                this.pnlTitleColor.BackColor = Settings.Default.TitleColor;
+            }
+        }
+
+        private void btnChooseAttemptsFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.AttemptsFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.AttemptsFont = fontDialog.Font;
+                this.lblAttemptsFontName.Text = Settings.Default.AttemptsFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlAttemptsColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.AttemptsColor = colorDialog.Color;
+                this.pnlAttemptsColor.BackColor = Settings.Default.AttemptsColor;
+            }
+        }
+
+        private void pnlGoalBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.GoalBackgroundColor = colorDialog.Color;
+                this.pnlGoalBackgroundColor.BackColor = Settings.Default.GoalBackgroundColor;
+            }
+        }
+
+        private void btnChooseGoalFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.GoalFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.GoalFont = fontDialog.Font;
+                this.lblGoalFontName.Text = Settings.Default.GoalFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlGoalColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.GoalColor = colorDialog.Color;
+                this.pnlGoalColor.BackColor = Settings.Default.GoalColor;
             }
         }
     }

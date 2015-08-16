@@ -161,7 +161,7 @@ namespace FaceSplit
             this.Invalidate();
             if (this.displayMode == DisplayMode.SEGMENTS)
             {
-                UpdateInformations();
+                UpdateInformationsData();
             }
         }
 
@@ -220,8 +220,14 @@ namespace FaceSplit
         private void mnuEditLayout_Click(object sender, EventArgs e)
         {
             LayoutSettings layoutSettings = new LayoutSettings();
-            layoutSettings.ShowDialog();
-            Settings.Default.Save();
+            if (layoutSettings.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default.Reload();
+            }
         }
 
         private void mnuCloseSplit_Click(object sender, EventArgs e)
@@ -252,6 +258,15 @@ namespace FaceSplit
                 {
                     DrawSegmentTimer(e.Graphics);
                 }
+            }
+            UpdateInformationsStyle();
+        }
+
+        private void UpdateInformationsStyle()
+        {
+            foreach (Information information in this.informations)
+            {
+                information.UpdateStyle();
             }
         }
 
@@ -525,12 +540,12 @@ namespace FaceSplit
                 if (this.informations.ElementAt(i).Above)
                 {
                     Rectangle informationRectangle = new Rectangle(0, aboveDrawn * SEGMENT_HEIGHT, DEFAULT_WIDTH, SEGMENT_HEIGHT);
-                    graphics.FillRectangle(new SolidBrush(Color.Black), informationRectangle);
-                    TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
-                        informationRectangle, this.informations.ElementAt(i).InformationColor, this.informations.ElementAt(i).PrimaryTextFlags);
+                    graphics.FillRectangle(new SolidBrush(this.informations.ElementAt(i).BackgroundColor), informationRectangle);
+                    TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, this.informations.ElementAt(i).PrimaryTextFont,
+                        informationRectangle, this.informations.ElementAt(i).PrimaryTextColor, this.informations.ElementAt(i).PrimaryTextFlags);
                     if (informations.ElementAt(i).SecondaryText != null)
                     {
-                        TextRenderer.DrawText(graphics, this.informations.ElementAt(i).SecondaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
+                        TextRenderer.DrawText(graphics, this.informations.ElementAt(i).SecondaryText, this.informations.ElementAt(i).SecondaryTextFont,
                             informationRectangle, this.informations.ElementAt(i).SecondaryTextColor, this.informations.ElementAt(i).SecondaryTextFlags);
                     }
                     aboveDrawn++;
@@ -538,9 +553,9 @@ namespace FaceSplit
                 else
                 {
                     Rectangle informationRectangle = new Rectangle(0, (watchRectangle.Y + (watchRectangle.Height * 2)) + (belowDrawn * SEGMENT_HEIGHT), DEFAULT_WIDTH, SEGMENT_HEIGHT);
-                    graphics.FillRectangle(new SolidBrush(Color.Black), informationRectangle);
+                    graphics.FillRectangle(new SolidBrush(this.informations.ElementAt(i).BackgroundColor), informationRectangle);
                     TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
-                        informationRectangle, this.informations.ElementAt(i).InformationColor, this.informations.ElementAt(i).PrimaryTextFlags);
+                        informationRectangle, this.informations.ElementAt(i).PrimaryTextColor, this.informations.ElementAt(i).PrimaryTextFlags);
                     if (informations.ElementAt(i).SecondaryText != null)
                     {
                         TextRenderer.DrawText(graphics, this.informations.ElementAt(i).SecondaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
@@ -747,7 +762,10 @@ namespace FaceSplit
             this.timeElapsedSinceSplit = 0;
         }
 
-        public void UpdateInformations()
+        /// <summary>
+        /// Update the data that is shown by each information.
+        /// </summary>
+        public void UpdateInformationsData()
         {
             this.informations[(int)InformationIndexs.TITLE].SecondaryText = this.split.RunsCompleted + "/" + this.split.AttemptsCount;
             this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryText = GetPreviousSegmentDeltaString();
