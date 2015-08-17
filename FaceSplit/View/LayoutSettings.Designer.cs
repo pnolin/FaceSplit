@@ -100,6 +100,27 @@
             this.lblGoalFont = new System.Windows.Forms.Label();
             this.pnlGoalBackgroundColor = new System.Windows.Forms.Panel();
             this.lblGoalBackgroundColor = new System.Windows.Forms.Label();
+            this.tabLayoutPreviousSegment = new System.Windows.Forms.TabPage();
+            this.gboPreviousSegmentDelta = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblPreviousSegmentDeltaLostTime = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnChoosePreviousSegmentDeltaFont = new System.Windows.Forms.Button();
+            this.lblPreviousSegmentDeltaSavedTimeColor = new System.Windows.Forms.Label();
+            this.lblPreviousSegmentDeltaFontName = new System.Windows.Forms.Label();
+            this.lblPreviousSegmentDeltaFont = new System.Windows.Forms.Label();
+            this.gboPreviousSegment = new System.Windows.Forms.GroupBox();
+            this.pnlPreviousSegmentTextColor = new System.Windows.Forms.Panel();
+            this.btnChoosePreviousSegmentTextFont = new System.Windows.Forms.Button();
+            this.lblPreviousSegmentTextColor = new System.Windows.Forms.Label();
+            this.lblPreviousSegmentTextFontName = new System.Windows.Forms.Label();
+            this.lblPreviousSegmentTextFont = new System.Windows.Forms.Label();
+            this.pnlPreviousSegmentBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblPreviousSegmentBackgroundColor = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.tabLayoutSettings.SuspendLayout();
@@ -114,6 +135,9 @@
             this.gboTitle.SuspendLayout();
             this.tabLayoutGoal.SuspendLayout();
             this.gboGoal.SuspendLayout();
+            this.tabLayoutPreviousSegment.SuspendLayout();
+            this.gboPreviousSegmentDelta.SuspendLayout();
+            this.gboPreviousSegment.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
@@ -122,6 +146,7 @@
             this.tabLayoutSettings.Controls.Add(this.tabLayoutSplit);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTitle);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutGoal);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutPreviousSegment);
             this.tabLayoutSettings.Location = new System.Drawing.Point(1, 1);
             this.tabLayoutSettings.Name = "tabLayoutSettings";
             this.tabLayoutSettings.SelectedIndex = 0;
@@ -835,6 +860,214 @@
             this.lblGoalBackgroundColor.TabIndex = 15;
             this.lblGoalBackgroundColor.Text = "Background:";
             // 
+            // tabLayoutPreviousSegment
+            // 
+            this.tabLayoutPreviousSegment.Controls.Add(this.gboPreviousSegmentDelta);
+            this.tabLayoutPreviousSegment.Controls.Add(this.gboPreviousSegment);
+            this.tabLayoutPreviousSegment.Controls.Add(this.pnlPreviousSegmentBackgroundColor);
+            this.tabLayoutPreviousSegment.Controls.Add(this.lblPreviousSegmentBackgroundColor);
+            this.tabLayoutPreviousSegment.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutPreviousSegment.Name = "tabLayoutPreviousSegment";
+            this.tabLayoutPreviousSegment.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutPreviousSegment.Size = new System.Drawing.Size(322, 415);
+            this.tabLayoutPreviousSegment.TabIndex = 4;
+            this.tabLayoutPreviousSegment.Text = "Previous Segment";
+            this.tabLayoutPreviousSegment.UseVisualStyleBackColor = true;
+            // 
+            // gboPreviousSegmentDelta
+            // 
+            this.gboPreviousSegmentDelta.Controls.Add(this.panel2);
+            this.gboPreviousSegmentDelta.Controls.Add(this.label4);
+            this.gboPreviousSegmentDelta.Controls.Add(this.panel3);
+            this.gboPreviousSegmentDelta.Controls.Add(this.label5);
+            this.gboPreviousSegmentDelta.Controls.Add(this.panel4);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaLostTime);
+            this.gboPreviousSegmentDelta.Controls.Add(this.panel1);
+            this.gboPreviousSegmentDelta.Controls.Add(this.btnChoosePreviousSegmentDeltaFont);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaSavedTimeColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaFontName);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaFont);
+            this.gboPreviousSegmentDelta.Location = new System.Drawing.Point(10, 111);
+            this.gboPreviousSegmentDelta.Name = "gboPreviousSegmentDelta";
+            this.gboPreviousSegmentDelta.Size = new System.Drawing.Size(306, 206);
+            this.gboPreviousSegmentDelta.TabIndex = 21;
+            this.gboPreviousSegmentDelta.TabStop = false;
+            this.gboPreviousSegmentDelta.Text = "Previous Segment Delta";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Location = new System.Drawing.Point(115, 122);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(20, 20);
+            this.panel2.TabIndex = 29;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 124);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "No delta:";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Location = new System.Drawing.Point(115, 97);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(20, 20);
+            this.panel3.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 99);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Best segment:";
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Location = new System.Drawing.Point(115, 72);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(20, 20);
+            this.panel4.TabIndex = 25;
+            // 
+            // lblPreviousSegmentDeltaLostTime
+            // 
+            this.lblPreviousSegmentDeltaLostTime.AutoSize = true;
+            this.lblPreviousSegmentDeltaLostTime.Location = new System.Drawing.Point(6, 74);
+            this.lblPreviousSegmentDeltaLostTime.Name = "lblPreviousSegmentDeltaLostTime";
+            this.lblPreviousSegmentDeltaLostTime.Size = new System.Drawing.Size(52, 13);
+            this.lblPreviousSegmentDeltaLostTime.TabIndex = 24;
+            this.lblPreviousSegmentDeltaLostTime.Text = "Lost time:";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(115, 48);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(20, 20);
+            this.panel1.TabIndex = 11;
+            // 
+            // btnChoosePreviousSegmentDeltaFont
+            // 
+            this.btnChoosePreviousSegmentDeltaFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChoosePreviousSegmentDeltaFont.Name = "btnChoosePreviousSegmentDeltaFont";
+            this.btnChoosePreviousSegmentDeltaFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChoosePreviousSegmentDeltaFont.TabIndex = 12;
+            this.btnChoosePreviousSegmentDeltaFont.Text = "Choose...";
+            this.btnChoosePreviousSegmentDeltaFont.UseVisualStyleBackColor = true;
+            this.btnChoosePreviousSegmentDeltaFont.Click += new System.EventHandler(this.btnChoosePreviousSegmentDeltaFont_Click);
+            // 
+            // lblPreviousSegmentDeltaSavedTimeColor
+            // 
+            this.lblPreviousSegmentDeltaSavedTimeColor.AutoSize = true;
+            this.lblPreviousSegmentDeltaSavedTimeColor.Location = new System.Drawing.Point(6, 50);
+            this.lblPreviousSegmentDeltaSavedTimeColor.Name = "lblPreviousSegmentDeltaSavedTimeColor";
+            this.lblPreviousSegmentDeltaSavedTimeColor.Size = new System.Drawing.Size(63, 13);
+            this.lblPreviousSegmentDeltaSavedTimeColor.TabIndex = 10;
+            this.lblPreviousSegmentDeltaSavedTimeColor.Text = "Saved time:";
+            // 
+            // lblPreviousSegmentDeltaFontName
+            // 
+            this.lblPreviousSegmentDeltaFontName.AutoSize = true;
+            this.lblPreviousSegmentDeltaFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblPreviousSegmentDeltaFontName.Name = "lblPreviousSegmentDeltaFontName";
+            this.lblPreviousSegmentDeltaFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblPreviousSegmentDeltaFontName.TabIndex = 11;
+            this.lblPreviousSegmentDeltaFontName.Text = "fontName";
+            // 
+            // lblPreviousSegmentDeltaFont
+            // 
+            this.lblPreviousSegmentDeltaFont.AutoSize = true;
+            this.lblPreviousSegmentDeltaFont.Location = new System.Drawing.Point(6, 25);
+            this.lblPreviousSegmentDeltaFont.Name = "lblPreviousSegmentDeltaFont";
+            this.lblPreviousSegmentDeltaFont.Size = new System.Drawing.Size(31, 13);
+            this.lblPreviousSegmentDeltaFont.TabIndex = 10;
+            this.lblPreviousSegmentDeltaFont.Text = "Font:";
+            // 
+            // gboPreviousSegment
+            // 
+            this.gboPreviousSegment.Controls.Add(this.pnlPreviousSegmentTextColor);
+            this.gboPreviousSegment.Controls.Add(this.btnChoosePreviousSegmentTextFont);
+            this.gboPreviousSegment.Controls.Add(this.lblPreviousSegmentTextColor);
+            this.gboPreviousSegment.Controls.Add(this.lblPreviousSegmentTextFontName);
+            this.gboPreviousSegment.Controls.Add(this.lblPreviousSegmentTextFont);
+            this.gboPreviousSegment.Location = new System.Drawing.Point(10, 32);
+            this.gboPreviousSegment.Name = "gboPreviousSegment";
+            this.gboPreviousSegment.Size = new System.Drawing.Size(306, 73);
+            this.gboPreviousSegment.TabIndex = 20;
+            this.gboPreviousSegment.TabStop = false;
+            this.gboPreviousSegment.Text = "Previous Segment";
+            // 
+            // pnlPreviousSegmentTextColor
+            // 
+            this.pnlPreviousSegmentTextColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPreviousSegmentTextColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlPreviousSegmentTextColor.Name = "pnlPreviousSegmentTextColor";
+            this.pnlPreviousSegmentTextColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPreviousSegmentTextColor.TabIndex = 11;
+            this.pnlPreviousSegmentTextColor.Click += new System.EventHandler(this.pnlPreviousSegmentTextColor_Click);
+            // 
+            // btnChoosePreviousSegmentTextFont
+            // 
+            this.btnChoosePreviousSegmentTextFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChoosePreviousSegmentTextFont.Name = "btnChoosePreviousSegmentTextFont";
+            this.btnChoosePreviousSegmentTextFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChoosePreviousSegmentTextFont.TabIndex = 12;
+            this.btnChoosePreviousSegmentTextFont.Text = "Choose...";
+            this.btnChoosePreviousSegmentTextFont.UseVisualStyleBackColor = true;
+            this.btnChoosePreviousSegmentTextFont.Click += new System.EventHandler(this.btnChoosePreviousSegmentTextFont_Click);
+            // 
+            // lblPreviousSegmentTextColor
+            // 
+            this.lblPreviousSegmentTextColor.AutoSize = true;
+            this.lblPreviousSegmentTextColor.Location = new System.Drawing.Point(6, 50);
+            this.lblPreviousSegmentTextColor.Name = "lblPreviousSegmentTextColor";
+            this.lblPreviousSegmentTextColor.Size = new System.Drawing.Size(34, 13);
+            this.lblPreviousSegmentTextColor.TabIndex = 10;
+            this.lblPreviousSegmentTextColor.Text = "Color:";
+            // 
+            // lblPreviousSegmentTextFontName
+            // 
+            this.lblPreviousSegmentTextFontName.AutoSize = true;
+            this.lblPreviousSegmentTextFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblPreviousSegmentTextFontName.Name = "lblPreviousSegmentTextFontName";
+            this.lblPreviousSegmentTextFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblPreviousSegmentTextFontName.TabIndex = 11;
+            this.lblPreviousSegmentTextFontName.Text = "fontName";
+            // 
+            // lblPreviousSegmentTextFont
+            // 
+            this.lblPreviousSegmentTextFont.AutoSize = true;
+            this.lblPreviousSegmentTextFont.Location = new System.Drawing.Point(6, 25);
+            this.lblPreviousSegmentTextFont.Name = "lblPreviousSegmentTextFont";
+            this.lblPreviousSegmentTextFont.Size = new System.Drawing.Size(31, 13);
+            this.lblPreviousSegmentTextFont.TabIndex = 10;
+            this.lblPreviousSegmentTextFont.Text = "Font:";
+            // 
+            // pnlPreviousSegmentBackgroundColor
+            // 
+            this.pnlPreviousSegmentBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPreviousSegmentBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlPreviousSegmentBackgroundColor.Name = "pnlPreviousSegmentBackgroundColor";
+            this.pnlPreviousSegmentBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPreviousSegmentBackgroundColor.TabIndex = 19;
+            this.pnlPreviousSegmentBackgroundColor.Click += new System.EventHandler(this.pnlPreviousSegmentBackgroundColor_Click);
+            // 
+            // lblPreviousSegmentBackgroundColor
+            // 
+            this.lblPreviousSegmentBackgroundColor.AutoSize = true;
+            this.lblPreviousSegmentBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblPreviousSegmentBackgroundColor.Name = "lblPreviousSegmentBackgroundColor";
+            this.lblPreviousSegmentBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblPreviousSegmentBackgroundColor.TabIndex = 18;
+            this.lblPreviousSegmentBackgroundColor.Text = "Background:";
+            // 
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -890,6 +1123,12 @@
             this.tabLayoutGoal.PerformLayout();
             this.gboGoal.ResumeLayout(false);
             this.gboGoal.PerformLayout();
+            this.tabLayoutPreviousSegment.ResumeLayout(false);
+            this.tabLayoutPreviousSegment.PerformLayout();
+            this.gboPreviousSegmentDelta.ResumeLayout(false);
+            this.gboPreviousSegmentDelta.PerformLayout();
+            this.gboPreviousSegment.ResumeLayout(false);
+            this.gboPreviousSegment.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -969,5 +1208,26 @@
         private System.Windows.Forms.Label lblGoalFont;
         private System.Windows.Forms.Panel pnlGoalBackgroundColor;
         private System.Windows.Forms.Label lblGoalBackgroundColor;
+        private System.Windows.Forms.TabPage tabLayoutPreviousSegment;
+        private System.Windows.Forms.GroupBox gboPreviousSegment;
+        private System.Windows.Forms.Panel pnlPreviousSegmentTextColor;
+        private System.Windows.Forms.Button btnChoosePreviousSegmentTextFont;
+        private System.Windows.Forms.Label lblPreviousSegmentTextColor;
+        private System.Windows.Forms.Label lblPreviousSegmentTextFontName;
+        private System.Windows.Forms.Label lblPreviousSegmentTextFont;
+        private System.Windows.Forms.Panel pnlPreviousSegmentBackgroundColor;
+        private System.Windows.Forms.Label lblPreviousSegmentBackgroundColor;
+        private System.Windows.Forms.GroupBox gboPreviousSegmentDelta;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnChoosePreviousSegmentDeltaFont;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaSavedTimeColor;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaFontName;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaFont;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaLostTime;
     }
 }

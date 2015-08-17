@@ -24,6 +24,14 @@ namespace FaceSplit.Model
                 information.PrimaryTextFont = Settings.Default.GoalFont;
                 information.PrimaryTextColor = Settings.Default.GoalColor;
             }
+            else if(information.InformationName == InformationName.PREVIOUS_SEGMENT)
+            {
+                information.BackgroundColor = Settings.Default.PreviousSegmentBackgroundColor;
+                information.PrimaryTextFont = Settings.Default.PreviousSegmentTextFont;
+                information.PrimaryTextColor = Settings.Default.PreviousSegmentTextColor;
+                information.SecondaryTextFont = Settings.Default.PreviousSegmentDeltaFont;
+                information.SecondaryTextColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+            }
         }
     }
 }

@@ -52,6 +52,11 @@ namespace FaceSplit
             this.lblGoalFontName.Text = Settings.Default.GoalFont.FontFamily.Name;
             this.pnlGoalColor.BackColor = Settings.Default.GoalColor;
 
+            this.pnlPreviousSegmentBackgroundColor.BackColor = Settings.Default.PreviousSegmentBackgroundColor;
+            this.lblPreviousSegmentTextFontName.Text = Settings.Default.PreviousSegmentTextFont.FontFamily.Name;
+            this.pnlPreviousSegmentTextColor.BackColor = Settings.Default.PreviousSegmentTextColor;
+
+            this.lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -292,6 +297,45 @@ namespace FaceSplit
             {
                 Settings.Default.GoalColor = colorDialog.Color;
                 this.pnlGoalColor.BackColor = Settings.Default.GoalColor;
+            }
+        }
+
+        private void pnlPreviousSegmentBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentBackgroundColor = colorDialog.Color;
+                this.pnlPreviousSegmentBackgroundColor.BackColor = Settings.Default.PreviousSegmentBackgroundColor;
+            }
+        }
+
+        private void btnChoosePreviousSegmentTextFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.PreviousSegmentTextFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentTextFont = fontDialog.Font;
+                this.lblPreviousSegmentTextFontName.Text = Settings.Default.PreviousSegmentTextFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlPreviousSegmentTextColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentTextColor = colorDialog.Color;
+                this.pnlPreviousSegmentTextColor.BackColor = Settings.Default.PreviousSegmentTextColor;
+            }
+        }
+
+        private void btnChoosePreviousSegmentDeltaFont_Click(object sender, EventArgs e)
+        {
+
+            fontDialog.Font = Settings.Default.PreviousSegmentDeltaFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentDeltaFont = fontDialog.Font;
+                this.lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
             }
         }
     }

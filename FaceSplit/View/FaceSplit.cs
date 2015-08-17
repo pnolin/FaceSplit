@@ -554,11 +554,11 @@ namespace FaceSplit
                 {
                     Rectangle informationRectangle = new Rectangle(0, (watchRectangle.Y + (watchRectangle.Height * 2)) + (belowDrawn * SEGMENT_HEIGHT), DEFAULT_WIDTH, SEGMENT_HEIGHT);
                     graphics.FillRectangle(new SolidBrush(this.informations.ElementAt(i).BackgroundColor), informationRectangle);
-                    TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
+                    TextRenderer.DrawText(graphics, this.informations.ElementAt(i).PrimaryText, this.informations.ElementAt(i).PrimaryTextFont,
                         informationRectangle, this.informations.ElementAt(i).PrimaryTextColor, this.informations.ElementAt(i).PrimaryTextFlags);
                     if (informations.ElementAt(i).SecondaryText != null)
                     {
-                        TextRenderer.DrawText(graphics, this.informations.ElementAt(i).SecondaryText, new Font(FontFamily.GenericSansSerif, 8.0F),
+                        TextRenderer.DrawText(graphics, this.informations.ElementAt(i).SecondaryText, this.informations.ElementAt(i).SecondaryTextFont,
                             informationRectangle, this.informations.ElementAt(i).SecondaryTextColor, this.informations.ElementAt(i).SecondaryTextFlags);
                     }
                     belowDrawn++;
@@ -793,13 +793,13 @@ namespace FaceSplit
                 lostTime = (segmentDelta > 0);
                 if (lostTime)
                 {
-                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkRed;
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLosingColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "+");
                     this.segmentWatchColor = Color.Red;
                 }
                 else
                 {
-                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkGreen;
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavingColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "-");
                 }
             }
@@ -811,19 +811,19 @@ namespace FaceSplit
                 lostTime = (segmentDelta > 0);
                 if (bestSegment)
                 {
-                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.Gold;
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "-");
                 }
                 else
                 {
                     if (lostTime)
                     {
-                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkRed;
+                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLosingColor;
                         segmentDeltaString = segmentDeltaString.Insert(0, "+");
                     }
                     else
                     {
-                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.DarkGreen;
+                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavingColor;
                         segmentDeltaString = segmentDeltaString.Insert(0, "-");
                     }
                 }
@@ -832,7 +832,7 @@ namespace FaceSplit
             else
             {
                 this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].PrimaryText = "Previous segment: ";
-                this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Color.White;
+                this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
                 segmentDeltaString = "-";
             }
             segmentDeltaString = FaceSplitUtils.CutDecimals(segmentDeltaString, 2);

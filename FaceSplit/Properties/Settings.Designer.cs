@@ -334,5 +334,101 @@ namespace FaceSplit.Properties {
                 this["GoalFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color PreviousSegmentBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PreviousSegmentBackgroundColor"]));
+            }
+            set {
+                this["PreviousSegmentBackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color PreviousSegmentTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PreviousSegmentTextColor"]));
+            }
+            set {
+                this["PreviousSegmentTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font PreviousSegmentTextFont {
+            get {
+                return ((global::System.Drawing.Font)(this["PreviousSegmentTextFont"]));
+            }
+            set {
+                this["PreviousSegmentTextFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkGreen")]
+        public global::System.Drawing.Color PreviousSegmentDeltaSavingColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaSavingColor"]));
+            }
+            set {
+                this["PreviousSegmentDeltaSavingColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkRed")]
+        public global::System.Drawing.Color PreviousSegmentDeltaLosingColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaLosingColor"]));
+            }
+            set {
+                this["PreviousSegmentDeltaLosingColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gold")]
+        public global::System.Drawing.Color PreviousSegmentDeltaBestSegmentColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaBestSegmentColor"]));
+            }
+            set {
+                this["PreviousSegmentDeltaBestSegmentColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font PreviousSegmentDeltaFont {
+            get {
+                return ((global::System.Drawing.Font)(this["PreviousSegmentDeltaFont"]));
+            }
+            set {
+                this["PreviousSegmentDeltaFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color PreviousSegmentDeltaNoDeltaColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaNoDeltaColor"]));
+            }
+            set {
+                this["PreviousSegmentDeltaNoDeltaColor"] = value;
+            }
+        }
     }
 }
