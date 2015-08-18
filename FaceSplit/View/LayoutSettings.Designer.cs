@@ -102,15 +102,15 @@
             this.lblGoalBackgroundColor = new System.Windows.Forms.Label();
             this.tabLayoutPreviousSegment = new System.Windows.Forms.TabPage();
             this.gboPreviousSegmentDelta = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblPreviousSegmentDeltaLostTime = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlPreviousSegmentDeltaNoDeltaColor = new System.Windows.Forms.Panel();
+            this.lblPreviousSegmentDeltaNoDeltaColor = new System.Windows.Forms.Label();
+            this.pnlPreviousSegmentDeltaBestSegmentColor = new System.Windows.Forms.Panel();
+            this.lblPreviousSegmentDeltaBestSegmentColor = new System.Windows.Forms.Label();
+            this.pnlPreviousSegmentDeltaLostColor = new System.Windows.Forms.Panel();
+            this.lblPreviousSegmentDeltaLostColor = new System.Windows.Forms.Label();
+            this.pnlPreviousSegmentDeltaSavedColor = new System.Windows.Forms.Panel();
             this.btnChoosePreviousSegmentDeltaFont = new System.Windows.Forms.Button();
-            this.lblPreviousSegmentDeltaSavedTimeColor = new System.Windows.Forms.Label();
+            this.lblPreviousSegmentDeltaSavedColor = new System.Windows.Forms.Label();
             this.lblPreviousSegmentDeltaFontName = new System.Windows.Forms.Label();
             this.lblPreviousSegmentDeltaFont = new System.Windows.Forms.Label();
             this.gboPreviousSegment = new System.Windows.Forms.GroupBox();
@@ -123,6 +123,21 @@
             this.lblPreviousSegmentBackgroundColor = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.tabLayoutPossibleTimeSave = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.gboPossibleTimeSaveText = new System.Windows.Forms.GroupBox();
+            this.pnlPossibleTimeSaveTextColor = new System.Windows.Forms.Panel();
+            this.btnChoosePossibleTimeSaveTextFont = new System.Windows.Forms.Button();
+            this.lblPossibleTimeSaveTextColor = new System.Windows.Forms.Label();
+            this.lblPossibleTimeSaveTextFontName = new System.Windows.Forms.Label();
+            this.lblPossibleTimeSaveTextFont = new System.Windows.Forms.Label();
+            this.pnlPossibleTimeSaveBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblPossibleTimeSaveBackgroundColor = new System.Windows.Forms.Label();
             this.tabLayoutSettings.SuspendLayout();
             this.tabLayoutTimer.SuspendLayout();
             this.gboTimerColors.SuspendLayout();
@@ -138,6 +153,9 @@
             this.tabLayoutPreviousSegment.SuspendLayout();
             this.gboPreviousSegmentDelta.SuspendLayout();
             this.gboPreviousSegment.SuspendLayout();
+            this.tabLayoutPossibleTimeSave.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.gboPossibleTimeSaveText.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
@@ -147,6 +165,7 @@
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTitle);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutGoal);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutPreviousSegment);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutPossibleTimeSave);
             this.tabLayoutSettings.Location = new System.Drawing.Point(1, 1);
             this.tabLayoutSettings.Name = "tabLayoutSettings";
             this.tabLayoutSettings.SelectedIndex = 0;
@@ -876,82 +895,86 @@
             // 
             // gboPreviousSegmentDelta
             // 
-            this.gboPreviousSegmentDelta.Controls.Add(this.panel2);
-            this.gboPreviousSegmentDelta.Controls.Add(this.label4);
-            this.gboPreviousSegmentDelta.Controls.Add(this.panel3);
-            this.gboPreviousSegmentDelta.Controls.Add(this.label5);
-            this.gboPreviousSegmentDelta.Controls.Add(this.panel4);
-            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaLostTime);
-            this.gboPreviousSegmentDelta.Controls.Add(this.panel1);
+            this.gboPreviousSegmentDelta.Controls.Add(this.pnlPreviousSegmentDeltaNoDeltaColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaNoDeltaColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.pnlPreviousSegmentDeltaBestSegmentColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaBestSegmentColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.pnlPreviousSegmentDeltaLostColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaLostColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.pnlPreviousSegmentDeltaSavedColor);
             this.gboPreviousSegmentDelta.Controls.Add(this.btnChoosePreviousSegmentDeltaFont);
-            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaSavedTimeColor);
+            this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaSavedColor);
             this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaFontName);
             this.gboPreviousSegmentDelta.Controls.Add(this.lblPreviousSegmentDeltaFont);
             this.gboPreviousSegmentDelta.Location = new System.Drawing.Point(10, 111);
             this.gboPreviousSegmentDelta.Name = "gboPreviousSegmentDelta";
-            this.gboPreviousSegmentDelta.Size = new System.Drawing.Size(306, 206);
+            this.gboPreviousSegmentDelta.Size = new System.Drawing.Size(306, 148);
             this.gboPreviousSegmentDelta.TabIndex = 21;
             this.gboPreviousSegmentDelta.TabStop = false;
             this.gboPreviousSegmentDelta.Text = "Previous Segment Delta";
             // 
-            // panel2
+            // pnlPreviousSegmentDeltaNoDeltaColor
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(115, 122);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(20, 20);
-            this.panel2.TabIndex = 29;
+            this.pnlPreviousSegmentDeltaNoDeltaColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPreviousSegmentDeltaNoDeltaColor.Location = new System.Drawing.Point(115, 122);
+            this.pnlPreviousSegmentDeltaNoDeltaColor.Name = "pnlPreviousSegmentDeltaNoDeltaColor";
+            this.pnlPreviousSegmentDeltaNoDeltaColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPreviousSegmentDeltaNoDeltaColor.TabIndex = 29;
+            this.pnlPreviousSegmentDeltaNoDeltaColor.Click += new System.EventHandler(this.pnlPreviousSegmentDeltaNoDeltaColor_Click);
             // 
-            // label4
+            // lblPreviousSegmentDeltaNoDeltaColor
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 124);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 13);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "No delta:";
+            this.lblPreviousSegmentDeltaNoDeltaColor.AutoSize = true;
+            this.lblPreviousSegmentDeltaNoDeltaColor.Location = new System.Drawing.Point(6, 124);
+            this.lblPreviousSegmentDeltaNoDeltaColor.Name = "lblPreviousSegmentDeltaNoDeltaColor";
+            this.lblPreviousSegmentDeltaNoDeltaColor.Size = new System.Drawing.Size(50, 13);
+            this.lblPreviousSegmentDeltaNoDeltaColor.TabIndex = 28;
+            this.lblPreviousSegmentDeltaNoDeltaColor.Text = "No delta:";
             // 
-            // panel3
+            // pnlPreviousSegmentDeltaBestSegmentColor
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Location = new System.Drawing.Point(115, 97);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 20);
-            this.panel3.TabIndex = 27;
+            this.pnlPreviousSegmentDeltaBestSegmentColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPreviousSegmentDeltaBestSegmentColor.Location = new System.Drawing.Point(115, 97);
+            this.pnlPreviousSegmentDeltaBestSegmentColor.Name = "pnlPreviousSegmentDeltaBestSegmentColor";
+            this.pnlPreviousSegmentDeltaBestSegmentColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPreviousSegmentDeltaBestSegmentColor.TabIndex = 27;
+            this.pnlPreviousSegmentDeltaBestSegmentColor.Click += new System.EventHandler(this.pnlPreviousSegmentDeltaBestSegmentColors_Click);
             // 
-            // label5
+            // lblPreviousSegmentDeltaBestSegmentColor
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 99);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "Best segment:";
+            this.lblPreviousSegmentDeltaBestSegmentColor.AutoSize = true;
+            this.lblPreviousSegmentDeltaBestSegmentColor.Location = new System.Drawing.Point(6, 99);
+            this.lblPreviousSegmentDeltaBestSegmentColor.Name = "lblPreviousSegmentDeltaBestSegmentColor";
+            this.lblPreviousSegmentDeltaBestSegmentColor.Size = new System.Drawing.Size(74, 13);
+            this.lblPreviousSegmentDeltaBestSegmentColor.TabIndex = 26;
+            this.lblPreviousSegmentDeltaBestSegmentColor.Text = "Best segment:";
             // 
-            // panel4
+            // pnlPreviousSegmentDeltaLostColor
             // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Location = new System.Drawing.Point(115, 72);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(20, 20);
-            this.panel4.TabIndex = 25;
+            this.pnlPreviousSegmentDeltaLostColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPreviousSegmentDeltaLostColor.Location = new System.Drawing.Point(115, 72);
+            this.pnlPreviousSegmentDeltaLostColor.Name = "pnlPreviousSegmentDeltaLostColor";
+            this.pnlPreviousSegmentDeltaLostColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPreviousSegmentDeltaLostColor.TabIndex = 25;
+            this.pnlPreviousSegmentDeltaLostColor.Click += new System.EventHandler(this.pnlPreviousSegmentDeltaLosingTimeColor_Click);
             // 
-            // lblPreviousSegmentDeltaLostTime
+            // lblPreviousSegmentDeltaLostColor
             // 
-            this.lblPreviousSegmentDeltaLostTime.AutoSize = true;
-            this.lblPreviousSegmentDeltaLostTime.Location = new System.Drawing.Point(6, 74);
-            this.lblPreviousSegmentDeltaLostTime.Name = "lblPreviousSegmentDeltaLostTime";
-            this.lblPreviousSegmentDeltaLostTime.Size = new System.Drawing.Size(52, 13);
-            this.lblPreviousSegmentDeltaLostTime.TabIndex = 24;
-            this.lblPreviousSegmentDeltaLostTime.Text = "Lost time:";
+            this.lblPreviousSegmentDeltaLostColor.AutoSize = true;
+            this.lblPreviousSegmentDeltaLostColor.Location = new System.Drawing.Point(6, 74);
+            this.lblPreviousSegmentDeltaLostColor.Name = "lblPreviousSegmentDeltaLostColor";
+            this.lblPreviousSegmentDeltaLostColor.Size = new System.Drawing.Size(52, 13);
+            this.lblPreviousSegmentDeltaLostColor.TabIndex = 24;
+            this.lblPreviousSegmentDeltaLostColor.Text = "Lost time:";
             // 
-            // panel1
+            // pnlPreviousSegmentDeltaSavedColor
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(115, 48);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(20, 20);
-            this.panel1.TabIndex = 11;
+            this.pnlPreviousSegmentDeltaSavedColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPreviousSegmentDeltaSavedColor.Location = new System.Drawing.Point(115, 48);
+            this.pnlPreviousSegmentDeltaSavedColor.Name = "pnlPreviousSegmentDeltaSavedColor";
+            this.pnlPreviousSegmentDeltaSavedColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPreviousSegmentDeltaSavedColor.TabIndex = 11;
+            this.pnlPreviousSegmentDeltaSavedColor.Click += new System.EventHandler(this.pnlPreviousSegmentDeltaSavedTimeColor_Click);
             // 
             // btnChoosePreviousSegmentDeltaFont
             // 
@@ -963,14 +986,14 @@
             this.btnChoosePreviousSegmentDeltaFont.UseVisualStyleBackColor = true;
             this.btnChoosePreviousSegmentDeltaFont.Click += new System.EventHandler(this.btnChoosePreviousSegmentDeltaFont_Click);
             // 
-            // lblPreviousSegmentDeltaSavedTimeColor
+            // lblPreviousSegmentDeltaSavedColor
             // 
-            this.lblPreviousSegmentDeltaSavedTimeColor.AutoSize = true;
-            this.lblPreviousSegmentDeltaSavedTimeColor.Location = new System.Drawing.Point(6, 50);
-            this.lblPreviousSegmentDeltaSavedTimeColor.Name = "lblPreviousSegmentDeltaSavedTimeColor";
-            this.lblPreviousSegmentDeltaSavedTimeColor.Size = new System.Drawing.Size(63, 13);
-            this.lblPreviousSegmentDeltaSavedTimeColor.TabIndex = 10;
-            this.lblPreviousSegmentDeltaSavedTimeColor.Text = "Saved time:";
+            this.lblPreviousSegmentDeltaSavedColor.AutoSize = true;
+            this.lblPreviousSegmentDeltaSavedColor.Location = new System.Drawing.Point(6, 50);
+            this.lblPreviousSegmentDeltaSavedColor.Name = "lblPreviousSegmentDeltaSavedColor";
+            this.lblPreviousSegmentDeltaSavedColor.Size = new System.Drawing.Size(63, 13);
+            this.lblPreviousSegmentDeltaSavedColor.TabIndex = 10;
+            this.lblPreviousSegmentDeltaSavedColor.Text = "Saved time:";
             // 
             // lblPreviousSegmentDeltaFontName
             // 
@@ -1088,6 +1111,156 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // tabLayoutPossibleTimeSave
+            // 
+            this.tabLayoutPossibleTimeSave.Controls.Add(this.groupBox1);
+            this.tabLayoutPossibleTimeSave.Controls.Add(this.gboPossibleTimeSaveText);
+            this.tabLayoutPossibleTimeSave.Controls.Add(this.pnlPossibleTimeSaveBackgroundColor);
+            this.tabLayoutPossibleTimeSave.Controls.Add(this.lblPossibleTimeSaveBackgroundColor);
+            this.tabLayoutPossibleTimeSave.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutPossibleTimeSave.Name = "tabLayoutPossibleTimeSave";
+            this.tabLayoutPossibleTimeSave.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutPossibleTimeSave.Size = new System.Drawing.Size(322, 415);
+            this.tabLayoutPossibleTimeSave.TabIndex = 5;
+            this.tabLayoutPossibleTimeSave.Text = "Possible Time Save";
+            this.tabLayoutPossibleTimeSave.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.panel4);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Location = new System.Drawing.Point(10, 111);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(306, 148);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Previous Segment Delta";
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Location = new System.Drawing.Point(115, 48);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(20, 20);
+            this.panel4.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(225, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Choose...";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Saved time:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(43, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "fontName";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(31, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Font:";
+            // 
+            // gboPossibleTimeSaveText
+            // 
+            this.gboPossibleTimeSaveText.Controls.Add(this.pnlPossibleTimeSaveTextColor);
+            this.gboPossibleTimeSaveText.Controls.Add(this.btnChoosePossibleTimeSaveTextFont);
+            this.gboPossibleTimeSaveText.Controls.Add(this.lblPossibleTimeSaveTextColor);
+            this.gboPossibleTimeSaveText.Controls.Add(this.lblPossibleTimeSaveTextFontName);
+            this.gboPossibleTimeSaveText.Controls.Add(this.lblPossibleTimeSaveTextFont);
+            this.gboPossibleTimeSaveText.Location = new System.Drawing.Point(10, 32);
+            this.gboPossibleTimeSaveText.Name = "gboPossibleTimeSaveText";
+            this.gboPossibleTimeSaveText.Size = new System.Drawing.Size(306, 73);
+            this.gboPossibleTimeSaveText.TabIndex = 24;
+            this.gboPossibleTimeSaveText.TabStop = false;
+            this.gboPossibleTimeSaveText.Text = "Possible time save";
+            // 
+            // pnlPossibleTimeSaveTextColor
+            // 
+            this.pnlPossibleTimeSaveTextColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPossibleTimeSaveTextColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlPossibleTimeSaveTextColor.Name = "pnlPossibleTimeSaveTextColor";
+            this.pnlPossibleTimeSaveTextColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPossibleTimeSaveTextColor.TabIndex = 11;
+            this.pnlPossibleTimeSaveTextColor.Click += new System.EventHandler(this.pnlPossibleTimeSaveTextColor_Click);
+            // 
+            // btnChoosePossibleTimeSaveTextFont
+            // 
+            this.btnChoosePossibleTimeSaveTextFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChoosePossibleTimeSaveTextFont.Name = "btnChoosePossibleTimeSaveTextFont";
+            this.btnChoosePossibleTimeSaveTextFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChoosePossibleTimeSaveTextFont.TabIndex = 12;
+            this.btnChoosePossibleTimeSaveTextFont.Text = "Choose...";
+            this.btnChoosePossibleTimeSaveTextFont.UseVisualStyleBackColor = true;
+            this.btnChoosePossibleTimeSaveTextFont.Click += new System.EventHandler(this.btnChoosePossibleTimeSaveTextFont_Click);
+            // 
+            // lblPossibleTimeSaveTextColor
+            // 
+            this.lblPossibleTimeSaveTextColor.AutoSize = true;
+            this.lblPossibleTimeSaveTextColor.Location = new System.Drawing.Point(6, 50);
+            this.lblPossibleTimeSaveTextColor.Name = "lblPossibleTimeSaveTextColor";
+            this.lblPossibleTimeSaveTextColor.Size = new System.Drawing.Size(34, 13);
+            this.lblPossibleTimeSaveTextColor.TabIndex = 10;
+            this.lblPossibleTimeSaveTextColor.Text = "Color:";
+            // 
+            // lblPossibleTimeSaveTextFontName
+            // 
+            this.lblPossibleTimeSaveTextFontName.AutoSize = true;
+            this.lblPossibleTimeSaveTextFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblPossibleTimeSaveTextFontName.Name = "lblPossibleTimeSaveTextFontName";
+            this.lblPossibleTimeSaveTextFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblPossibleTimeSaveTextFontName.TabIndex = 11;
+            this.lblPossibleTimeSaveTextFontName.Text = "fontName";
+            // 
+            // lblPossibleTimeSaveTextFont
+            // 
+            this.lblPossibleTimeSaveTextFont.AutoSize = true;
+            this.lblPossibleTimeSaveTextFont.Location = new System.Drawing.Point(6, 25);
+            this.lblPossibleTimeSaveTextFont.Name = "lblPossibleTimeSaveTextFont";
+            this.lblPossibleTimeSaveTextFont.Size = new System.Drawing.Size(31, 13);
+            this.lblPossibleTimeSaveTextFont.TabIndex = 10;
+            this.lblPossibleTimeSaveTextFont.Text = "Font:";
+            // 
+            // pnlPossibleTimeSaveBackgroundColor
+            // 
+            this.pnlPossibleTimeSaveBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPossibleTimeSaveBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlPossibleTimeSaveBackgroundColor.Name = "pnlPossibleTimeSaveBackgroundColor";
+            this.pnlPossibleTimeSaveBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPossibleTimeSaveBackgroundColor.TabIndex = 23;
+            this.pnlPossibleTimeSaveBackgroundColor.Click += new System.EventHandler(this.pnlPossibleTimeSaveBackgroundColor_Click);
+            // 
+            // lblPossibleTimeSaveBackgroundColor
+            // 
+            this.lblPossibleTimeSaveBackgroundColor.AutoSize = true;
+            this.lblPossibleTimeSaveBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblPossibleTimeSaveBackgroundColor.Name = "lblPossibleTimeSaveBackgroundColor";
+            this.lblPossibleTimeSaveBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblPossibleTimeSaveBackgroundColor.TabIndex = 22;
+            this.lblPossibleTimeSaveBackgroundColor.Text = "Background:";
+            // 
             // LayoutSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1129,6 +1302,12 @@
             this.gboPreviousSegmentDelta.PerformLayout();
             this.gboPreviousSegment.ResumeLayout(false);
             this.gboPreviousSegment.PerformLayout();
+            this.tabLayoutPossibleTimeSave.ResumeLayout(false);
+            this.tabLayoutPossibleTimeSave.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.gboPossibleTimeSaveText.ResumeLayout(false);
+            this.gboPossibleTimeSaveText.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1218,16 +1397,31 @@
         private System.Windows.Forms.Panel pnlPreviousSegmentBackgroundColor;
         private System.Windows.Forms.Label lblPreviousSegmentBackgroundColor;
         private System.Windows.Forms.GroupBox gboPreviousSegmentDelta;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlPreviousSegmentDeltaSavedColor;
         private System.Windows.Forms.Button btnChoosePreviousSegmentDeltaFont;
-        private System.Windows.Forms.Label lblPreviousSegmentDeltaSavedTimeColor;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaSavedColor;
         private System.Windows.Forms.Label lblPreviousSegmentDeltaFontName;
         private System.Windows.Forms.Label lblPreviousSegmentDeltaFont;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel pnlPreviousSegmentDeltaNoDeltaColor;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaNoDeltaColor;
+        private System.Windows.Forms.Panel pnlPreviousSegmentDeltaBestSegmentColor;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaBestSegmentColor;
+        private System.Windows.Forms.Panel pnlPreviousSegmentDeltaLostColor;
+        private System.Windows.Forms.Label lblPreviousSegmentDeltaLostColor;
+        private System.Windows.Forms.TabPage tabLayoutPossibleTimeSave;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblPreviousSegmentDeltaLostTime;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox gboPossibleTimeSaveText;
+        private System.Windows.Forms.Panel pnlPossibleTimeSaveTextColor;
+        private System.Windows.Forms.Button btnChoosePossibleTimeSaveTextFont;
+        private System.Windows.Forms.Label lblPossibleTimeSaveTextColor;
+        private System.Windows.Forms.Label lblPossibleTimeSaveTextFontName;
+        private System.Windows.Forms.Label lblPossibleTimeSaveTextFont;
+        private System.Windows.Forms.Panel pnlPossibleTimeSaveBackgroundColor;
+        private System.Windows.Forms.Label lblPossibleTimeSaveBackgroundColor;
     }
 }

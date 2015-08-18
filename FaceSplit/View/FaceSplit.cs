@@ -793,13 +793,13 @@ namespace FaceSplit
                 lostTime = (segmentDelta > 0);
                 if (lostTime)
                 {
-                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLosingColor;
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLostColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "+");
                     this.segmentWatchColor = Color.Red;
                 }
                 else
                 {
-                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavingColor;
+                    this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavedColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "-");
                 }
             }
@@ -818,12 +818,12 @@ namespace FaceSplit
                 {
                     if (lostTime)
                     {
-                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLosingColor;
+                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLostColor;
                         segmentDeltaString = segmentDeltaString.Insert(0, "+");
                     }
                     else
                     {
-                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavingColor;
+                        this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavedColor;
                         segmentDeltaString = segmentDeltaString.Insert(0, "-");
                     }
                 }

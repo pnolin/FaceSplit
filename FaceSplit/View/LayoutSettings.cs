@@ -57,6 +57,14 @@ namespace FaceSplit
             this.pnlPreviousSegmentTextColor.BackColor = Settings.Default.PreviousSegmentTextColor;
 
             this.lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
+            this.pnlPreviousSegmentDeltaSavedColor.BackColor = Settings.Default.PreviousSegmentDeltaSavedColor;
+            this.pnlPreviousSegmentDeltaLostColor.BackColor = Settings.Default.PreviousSegmentDeltaLostColor;
+            this.pnlPreviousSegmentDeltaBestSegmentColor.BackColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
+            this.pnlPreviousSegmentDeltaNoDeltaColor.BackColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+
+            this.pnlPossibleTimeSaveBackgroundColor.BackColor = Settings.Default.PossibleTimeSaveBackgroundColor;
+            this.lblPossibleTimeSaveTextFontName.Text = Settings.Default.PossibleTimeSaveTextFont.FontFamily.Name;
+            this.pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -330,12 +338,75 @@ namespace FaceSplit
 
         private void btnChoosePreviousSegmentDeltaFont_Click(object sender, EventArgs e)
         {
-
             fontDialog.Font = Settings.Default.PreviousSegmentDeltaFont;
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaFont = fontDialog.Font;
                 this.lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlPreviousSegmentDeltaSavedTimeColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentDeltaSavedColor = colorDialog.Color;
+                this.pnlPreviousSegmentDeltaSavedColor.BackColor = Settings.Default.PreviousSegmentDeltaSavedColor;
+            }
+        }
+
+        private void pnlPreviousSegmentDeltaLosingTimeColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentDeltaLostColor = colorDialog.Color;
+                this.pnlPreviousSegmentDeltaLostColor.BackColor = Settings.Default.PreviousSegmentDeltaLostColor;
+            }
+        }
+
+        private void pnlPreviousSegmentDeltaBestSegmentColors_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentDeltaBestSegmentColor = colorDialog.Color;
+                this.pnlPreviousSegmentDeltaBestSegmentColor.BackColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
+            }
+        }
+
+        private void pnlPreviousSegmentDeltaNoDeltaColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PreviousSegmentDeltaNoDeltaColor = colorDialog.Color;
+                this.pnlPreviousSegmentDeltaNoDeltaColor.BackColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+            }
+        }
+
+        private void pnlPossibleTimeSaveBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PossibleTimeSaveBackgroundColor = colorDialog.Color;
+                this.pnlPossibleTimeSaveBackgroundColor.BackColor = Settings.Default.PossibleTimeSaveBackgroundColor;
+            }
+        }
+
+        private void btnChoosePossibleTimeSaveTextFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.PossibleTimeSaveTextFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PossibleTimeSaveTextFont = fontDialog.Font;
+                this.lblPossibleTimeSaveTextFontName.Text = Settings.Default.PossibleTimeSaveTextFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlPossibleTimeSaveTextColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PossibleTimeSaveTextColor = colorDialog.Color;
+                this.pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
             }
         }
     }

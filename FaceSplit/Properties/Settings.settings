@@ -89,10 +89,10 @@
     <Setting Name="PreviousSegmentTextFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 8.25pt, style=Bold</Value>
     </Setting>
-    <Setting Name="PreviousSegmentDeltaSavingColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="PreviousSegmentDeltaSavedColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">DarkGreen</Value>
     </Setting>
-    <Setting Name="PreviousSegmentDeltaLosingColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="PreviousSegmentDeltaLostColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">DarkRed</Value>
     </Setting>
     <Setting Name="PreviousSegmentDeltaBestSegmentColor" Type="System.Drawing.Color" Scope="User">
@@ -103,6 +103,21 @@
     </Setting>
     <Setting Name="PreviousSegmentDeltaNoDeltaColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="PossibleTimeSaveBackgroundColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="PossibleTimeSaveTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="PossibleTimeSaveTextFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Microsoft Sans Serif, 8.25pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="PossibleTimeSaveColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PossibleTimeSaveFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Microsoft Sans Serif, 8.25pt, style=Bold</Value>
     </Setting>
   </Settings>
 </SettingsFile>

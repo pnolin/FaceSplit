@@ -32,6 +32,14 @@ namespace FaceSplit.Model
                 information.SecondaryTextFont = Settings.Default.PreviousSegmentDeltaFont;
                 information.SecondaryTextColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
             }
+            else if (information.InformationName == InformationName.POSSIBLE_TIME_SAVE)
+            {
+                information.BackgroundColor = Settings.Default.PossibleTimeSaveBackgroundColor;
+                information.PrimaryTextFont = Settings.Default.PossibleTimeSaveTextFont;
+                information.PrimaryTextColor = Settings.Default.PossibleTimeSaveTextColor;
+                information.SecondaryTextFont = Settings.Default.PossibleTimeSaveFont;
+                information.SecondaryTextColor = Settings.Default.PossibleTimeSaveColor;
+            }
         }
     }
 }

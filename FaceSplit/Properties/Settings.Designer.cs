@@ -374,24 +374,24 @@ namespace FaceSplit.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("DarkGreen")]
-        public global::System.Drawing.Color PreviousSegmentDeltaSavingColor {
+        public global::System.Drawing.Color PreviousSegmentDeltaSavedColor {
             get {
-                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaSavingColor"]));
+                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaSavedColor"]));
             }
             set {
-                this["PreviousSegmentDeltaSavingColor"] = value;
+                this["PreviousSegmentDeltaSavedColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("DarkRed")]
-        public global::System.Drawing.Color PreviousSegmentDeltaLosingColor {
+        public global::System.Drawing.Color PreviousSegmentDeltaLostColor {
             get {
-                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaLosingColor"]));
+                return ((global::System.Drawing.Color)(this["PreviousSegmentDeltaLostColor"]));
             }
             set {
-                this["PreviousSegmentDeltaLosingColor"] = value;
+                this["PreviousSegmentDeltaLostColor"] = value;
             }
         }
         
@@ -428,6 +428,65 @@ namespace FaceSplit.Properties {
             }
             set {
                 this["PreviousSegmentDeltaNoDeltaColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color PossibleTimeSaveBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PossibleTimeSaveBackgroundColor"]));
+            }
+            set {
+                this["PossibleTimeSaveBackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color PossibleTimeSaveTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PossibleTimeSaveTextColor"]));
+            }
+            set {
+                this["PossibleTimeSaveTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font PossibleTimeSaveTextFont {
+            get {
+                return ((global::System.Drawing.Font)(this["PossibleTimeSaveTextFont"]));
+            }
+            set {
+                this["PossibleTimeSaveTextFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color PossibleTimeSaveColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PossibleTimeSaveColor"]));
+            }
+            set {
+                this["PossibleTimeSaveColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font PossibleTimeSaveFont {
+            get {
+                return ((global::System.Drawing.Font)(this["PossibleTimeSaveFont"]));
+            }
+            set {
+                this["PossibleTimeSaveFont"] = value;
             }
         }
     }
