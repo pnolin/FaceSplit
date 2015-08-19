@@ -65,6 +65,14 @@ namespace FaceSplit
             this.pnlPossibleTimeSaveBackgroundColor.BackColor = Settings.Default.PossibleTimeSaveBackgroundColor;
             this.lblPossibleTimeSaveTextFontName.Text = Settings.Default.PossibleTimeSaveTextFont.FontFamily.Name;
             this.pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
+            this.lblPossibleTimeSaveFontName.Text = Settings.Default.PossibleTimeSaveFont.FontFamily.Name;
+            this.pnlPossibleTimeSaveColor.BackColor = Settings.Default.PossibleTimeSaveColor;
+
+            this.pnlPredictedTimeBackgroundColor.BackColor = Settings.Default.PredictedTimeBackgroundColor;
+            this.lblPredictedTimeTextFontName.Text = Settings.Default.PredictedTimeTextFont.FontFamily.Name;
+            this.pnlPredictedTimeTextColor.BackColor = Settings.Default.PredictedTimeTextColor;
+            this.lblPredictedTimeFontName.Text = Settings.Default.PredictedTimeFont.FontFamily.Name;
+            this.pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -407,6 +415,72 @@ namespace FaceSplit
             {
                 Settings.Default.PossibleTimeSaveTextColor = colorDialog.Color;
                 this.pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
+            }
+        }
+
+        private void btnChoosePossibleTimeSaveFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.PossibleTimeSaveFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PossibleTimeSaveFont = fontDialog.Font;
+                this.lblPossibleTimeSaveFontName.Text = Settings.Default.PossibleTimeSaveFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlPossibleTimeSaveColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PossibleTimeSaveColor = colorDialog.Color;
+                this.pnlPossibleTimeSaveColor.BackColor = Settings.Default.PossibleTimeSaveColor;
+            }
+        }
+
+        private void pnlPredictedTimeBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PredictedTimeBackgroundColor = colorDialog.Color;
+                this.pnlPredictedTimeBackgroundColor.BackColor = Settings.Default.PredictedTimeBackgroundColor;
+            }
+        }
+
+        private void btnChoosePredictedTimeTextFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.PredictedTimeTextFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PredictedTimeTextFont = fontDialog.Font;
+                this.lblPredictedTimeTextFontName.Text = Settings.Default.PredictedTimeTextFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlPredictedTimeTextColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PredictedTimeTextColor = colorDialog.Color;
+                this.pnlPredictedTimeTextColor.BackColor = Settings.Default.PredictedTimeTextColor;
+            }
+        }
+
+        private void btnChoosePredictedTimeFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.PredictedTimeFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PredictedTimeFont = fontDialog.Font;
+                this.lblPredictedTimeFontName.Text = Settings.Default.PredictedTimeFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlPredictedTimeColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PredictedTimeColor = colorDialog.Color;
+                this.pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
             }
         }
     }

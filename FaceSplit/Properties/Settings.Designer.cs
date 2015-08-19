@@ -489,5 +489,65 @@ namespace FaceSplit.Properties {
                 this["PossibleTimeSaveFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color PredictedTimeBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PredictedTimeBackgroundColor"]));
+            }
+            set {
+                this["PredictedTimeBackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color PredictedTimeTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PredictedTimeTextColor"]));
+            }
+            set {
+                this["PredictedTimeTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font PredictedTimeTextFont {
+            get {
+                return ((global::System.Drawing.Font)(this["PredictedTimeTextFont"]));
+            }
+            set {
+                this["PredictedTimeTextFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color PredictedTimeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PredictedTimeColor"]));
+            }
+            set {
+                this["PredictedTimeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font PredictedTimeFont {
+            get {
+                return ((global::System.Drawing.Font)(this["PredictedTimeFont"]));
+            }
+            set {
+                this["PredictedTimeFont"] = value;
+            }
+        }
     }
 }

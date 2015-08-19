@@ -121,15 +121,13 @@
             this.lblPreviousSegmentTextFont = new System.Windows.Forms.Label();
             this.pnlPreviousSegmentBackgroundColor = new System.Windows.Forms.Panel();
             this.lblPreviousSegmentBackgroundColor = new System.Windows.Forms.Label();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.tabLayoutPossibleTimeSave = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.gboPossibleTimeSave = new System.Windows.Forms.GroupBox();
+            this.pnlPossibleTimeSaveColor = new System.Windows.Forms.Panel();
+            this.btnChoosePossibleTimeSaveFont = new System.Windows.Forms.Button();
+            this.lblPossibleTimeSaveColor = new System.Windows.Forms.Label();
+            this.lblPossibleTimeSaveFontName = new System.Windows.Forms.Label();
+            this.lblPossibleTimeSaveFont = new System.Windows.Forms.Label();
             this.gboPossibleTimeSaveText = new System.Windows.Forms.GroupBox();
             this.pnlPossibleTimeSaveTextColor = new System.Windows.Forms.Panel();
             this.btnChoosePossibleTimeSaveTextFont = new System.Windows.Forms.Button();
@@ -138,6 +136,23 @@
             this.lblPossibleTimeSaveTextFont = new System.Windows.Forms.Label();
             this.pnlPossibleTimeSaveBackgroundColor = new System.Windows.Forms.Panel();
             this.lblPossibleTimeSaveBackgroundColor = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.tabLayoutPredictedTime = new System.Windows.Forms.TabPage();
+            this.gboPredictedTime = new System.Windows.Forms.GroupBox();
+            this.pnlPredictedTimeColor = new System.Windows.Forms.Panel();
+            this.btnChoosePredictedTimeFont = new System.Windows.Forms.Button();
+            this.lblPredictedTimeColor = new System.Windows.Forms.Label();
+            this.lblPredictedTimeFontName = new System.Windows.Forms.Label();
+            this.lblPredictedTimeFont = new System.Windows.Forms.Label();
+            this.gboPredictedTimeText = new System.Windows.Forms.GroupBox();
+            this.pnlPredictedTimeTextColor = new System.Windows.Forms.Panel();
+            this.btnChoosePredictedTimeTextFont = new System.Windows.Forms.Button();
+            this.lblPredictedTimeTextColor = new System.Windows.Forms.Label();
+            this.lblPredictedTimeTextFontName = new System.Windows.Forms.Label();
+            this.lblPredictedTimeTextFont = new System.Windows.Forms.Label();
+            this.pnlPredictedTimeBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblPredictedTimeBackgroundColor = new System.Windows.Forms.Label();
             this.tabLayoutSettings.SuspendLayout();
             this.tabLayoutTimer.SuspendLayout();
             this.gboTimerColors.SuspendLayout();
@@ -154,8 +169,11 @@
             this.gboPreviousSegmentDelta.SuspendLayout();
             this.gboPreviousSegment.SuspendLayout();
             this.tabLayoutPossibleTimeSave.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gboPossibleTimeSave.SuspendLayout();
             this.gboPossibleTimeSaveText.SuspendLayout();
+            this.tabLayoutPredictedTime.SuspendLayout();
+            this.gboPredictedTime.SuspendLayout();
+            this.gboPredictedTimeText.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
@@ -166,6 +184,7 @@
             this.tabLayoutSettings.Controls.Add(this.tabLayoutGoal);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutPreviousSegment);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutPossibleTimeSave);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutPredictedTime);
             this.tabLayoutSettings.Location = new System.Drawing.Point(1, 1);
             this.tabLayoutSettings.Name = "tabLayoutSettings";
             this.tabLayoutSettings.SelectedIndex = 0;
@@ -1091,29 +1110,9 @@
             this.lblPreviousSegmentBackgroundColor.TabIndex = 18;
             this.lblPreviousSegmentBackgroundColor.Text = "Background:";
             // 
-            // btnOk
-            // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(168, 446);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.btnCancel.Location = new System.Drawing.Point(249, 446);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
             // tabLayoutPossibleTimeSave
             // 
-            this.tabLayoutPossibleTimeSave.Controls.Add(this.groupBox1);
+            this.tabLayoutPossibleTimeSave.Controls.Add(this.gboPossibleTimeSave);
             this.tabLayoutPossibleTimeSave.Controls.Add(this.gboPossibleTimeSaveText);
             this.tabLayoutPossibleTimeSave.Controls.Add(this.pnlPossibleTimeSaveBackgroundColor);
             this.tabLayoutPossibleTimeSave.Controls.Add(this.lblPossibleTimeSaveBackgroundColor);
@@ -1125,63 +1124,65 @@
             this.tabLayoutPossibleTimeSave.Text = "Possible Time Save";
             this.tabLayoutPossibleTimeSave.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // gboPossibleTimeSave
             // 
-            this.groupBox1.Controls.Add(this.panel4);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(10, 111);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(306, 148);
-            this.groupBox1.TabIndex = 25;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Previous Segment Delta";
+            this.gboPossibleTimeSave.Controls.Add(this.pnlPossibleTimeSaveColor);
+            this.gboPossibleTimeSave.Controls.Add(this.btnChoosePossibleTimeSaveFont);
+            this.gboPossibleTimeSave.Controls.Add(this.lblPossibleTimeSaveColor);
+            this.gboPossibleTimeSave.Controls.Add(this.lblPossibleTimeSaveFontName);
+            this.gboPossibleTimeSave.Controls.Add(this.lblPossibleTimeSaveFont);
+            this.gboPossibleTimeSave.Location = new System.Drawing.Point(10, 111);
+            this.gboPossibleTimeSave.Name = "gboPossibleTimeSave";
+            this.gboPossibleTimeSave.Size = new System.Drawing.Size(306, 73);
+            this.gboPossibleTimeSave.TabIndex = 25;
+            this.gboPossibleTimeSave.TabStop = false;
+            this.gboPossibleTimeSave.Text = "Possible time save";
             // 
-            // panel4
+            // pnlPossibleTimeSaveColor
             // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Location = new System.Drawing.Point(115, 48);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(20, 20);
-            this.panel4.TabIndex = 11;
+            this.pnlPossibleTimeSaveColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPossibleTimeSaveColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlPossibleTimeSaveColor.Name = "pnlPossibleTimeSaveColor";
+            this.pnlPossibleTimeSaveColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPossibleTimeSaveColor.TabIndex = 11;
+            this.pnlPossibleTimeSaveColor.Click += new System.EventHandler(this.pnlPossibleTimeSaveColor_Click);
             // 
-            // button1
+            // btnChoosePossibleTimeSaveFont
             // 
-            this.button1.Location = new System.Drawing.Point(225, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Choose...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnChoosePossibleTimeSaveFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChoosePossibleTimeSaveFont.Name = "btnChoosePossibleTimeSaveFont";
+            this.btnChoosePossibleTimeSaveFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChoosePossibleTimeSaveFont.TabIndex = 12;
+            this.btnChoosePossibleTimeSaveFont.Text = "Choose...";
+            this.btnChoosePossibleTimeSaveFont.UseVisualStyleBackColor = true;
+            this.btnChoosePossibleTimeSaveFont.Click += new System.EventHandler(this.btnChoosePossibleTimeSaveFont_Click);
             // 
-            // label4
+            // lblPossibleTimeSaveColor
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Saved time:";
+            this.lblPossibleTimeSaveColor.AutoSize = true;
+            this.lblPossibleTimeSaveColor.Location = new System.Drawing.Point(6, 50);
+            this.lblPossibleTimeSaveColor.Name = "lblPossibleTimeSaveColor";
+            this.lblPossibleTimeSaveColor.Size = new System.Drawing.Size(34, 13);
+            this.lblPossibleTimeSaveColor.TabIndex = 10;
+            this.lblPossibleTimeSaveColor.Text = "Color:";
             // 
-            // label5
+            // lblPossibleTimeSaveFontName
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(43, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "fontName";
+            this.lblPossibleTimeSaveFontName.AutoSize = true;
+            this.lblPossibleTimeSaveFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblPossibleTimeSaveFontName.Name = "lblPossibleTimeSaveFontName";
+            this.lblPossibleTimeSaveFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblPossibleTimeSaveFontName.TabIndex = 11;
+            this.lblPossibleTimeSaveFontName.Text = "fontName";
             // 
-            // label6
+            // lblPossibleTimeSaveFont
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Font:";
+            this.lblPossibleTimeSaveFont.AutoSize = true;
+            this.lblPossibleTimeSaveFont.Location = new System.Drawing.Point(6, 25);
+            this.lblPossibleTimeSaveFont.Name = "lblPossibleTimeSaveFont";
+            this.lblPossibleTimeSaveFont.Size = new System.Drawing.Size(31, 13);
+            this.lblPossibleTimeSaveFont.TabIndex = 10;
+            this.lblPossibleTimeSaveFont.Text = "Font:";
             // 
             // gboPossibleTimeSaveText
             // 
@@ -1195,7 +1196,7 @@
             this.gboPossibleTimeSaveText.Size = new System.Drawing.Size(306, 73);
             this.gboPossibleTimeSaveText.TabIndex = 24;
             this.gboPossibleTimeSaveText.TabStop = false;
-            this.gboPossibleTimeSaveText.Text = "Possible time save";
+            this.gboPossibleTimeSaveText.Text = "Possible time save text";
             // 
             // pnlPossibleTimeSaveTextColor
             // 
@@ -1261,6 +1262,178 @@
             this.lblPossibleTimeSaveBackgroundColor.TabIndex = 22;
             this.lblPossibleTimeSaveBackgroundColor.Text = "Background:";
             // 
+            // btnOk
+            // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOk.Location = new System.Drawing.Point(168, 446);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 1;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.btnCancel.Location = new System.Drawing.Point(249, 446);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // tabLayoutPredictedTime
+            // 
+            this.tabLayoutPredictedTime.Controls.Add(this.gboPredictedTime);
+            this.tabLayoutPredictedTime.Controls.Add(this.gboPredictedTimeText);
+            this.tabLayoutPredictedTime.Controls.Add(this.pnlPredictedTimeBackgroundColor);
+            this.tabLayoutPredictedTime.Controls.Add(this.lblPredictedTimeBackgroundColor);
+            this.tabLayoutPredictedTime.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutPredictedTime.Name = "tabLayoutPredictedTime";
+            this.tabLayoutPredictedTime.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutPredictedTime.Size = new System.Drawing.Size(322, 415);
+            this.tabLayoutPredictedTime.TabIndex = 6;
+            this.tabLayoutPredictedTime.Text = "Predicted Time";
+            this.tabLayoutPredictedTime.UseVisualStyleBackColor = true;
+            // 
+            // gboPredictedTime
+            // 
+            this.gboPredictedTime.Controls.Add(this.pnlPredictedTimeColor);
+            this.gboPredictedTime.Controls.Add(this.btnChoosePredictedTimeFont);
+            this.gboPredictedTime.Controls.Add(this.lblPredictedTimeColor);
+            this.gboPredictedTime.Controls.Add(this.lblPredictedTimeFontName);
+            this.gboPredictedTime.Controls.Add(this.lblPredictedTimeFont);
+            this.gboPredictedTime.Location = new System.Drawing.Point(10, 111);
+            this.gboPredictedTime.Name = "gboPredictedTime";
+            this.gboPredictedTime.Size = new System.Drawing.Size(306, 73);
+            this.gboPredictedTime.TabIndex = 29;
+            this.gboPredictedTime.TabStop = false;
+            this.gboPredictedTime.Text = "Predicted time";
+            // 
+            // pnlPredictedTimeColor
+            // 
+            this.pnlPredictedTimeColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPredictedTimeColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlPredictedTimeColor.Name = "pnlPredictedTimeColor";
+            this.pnlPredictedTimeColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPredictedTimeColor.TabIndex = 11;
+            this.pnlPredictedTimeColor.Click += new System.EventHandler(this.pnlPredictedTimeColor_Click);
+            // 
+            // btnChoosePredictedTimeFont
+            // 
+            this.btnChoosePredictedTimeFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChoosePredictedTimeFont.Name = "btnChoosePredictedTimeFont";
+            this.btnChoosePredictedTimeFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChoosePredictedTimeFont.TabIndex = 12;
+            this.btnChoosePredictedTimeFont.Text = "Choose...";
+            this.btnChoosePredictedTimeFont.UseVisualStyleBackColor = true;
+            this.btnChoosePredictedTimeFont.Click += new System.EventHandler(this.btnChoosePredictedTimeFont_Click);
+            // 
+            // lblPredictedTimeColor
+            // 
+            this.lblPredictedTimeColor.AutoSize = true;
+            this.lblPredictedTimeColor.Location = new System.Drawing.Point(6, 50);
+            this.lblPredictedTimeColor.Name = "lblPredictedTimeColor";
+            this.lblPredictedTimeColor.Size = new System.Drawing.Size(34, 13);
+            this.lblPredictedTimeColor.TabIndex = 10;
+            this.lblPredictedTimeColor.Text = "Color:";
+            // 
+            // lblPredictedTimeFontName
+            // 
+            this.lblPredictedTimeFontName.AutoSize = true;
+            this.lblPredictedTimeFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblPredictedTimeFontName.Name = "lblPredictedTimeFontName";
+            this.lblPredictedTimeFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblPredictedTimeFontName.TabIndex = 11;
+            this.lblPredictedTimeFontName.Text = "fontName";
+            // 
+            // lblPredictedTimeFont
+            // 
+            this.lblPredictedTimeFont.AutoSize = true;
+            this.lblPredictedTimeFont.Location = new System.Drawing.Point(6, 25);
+            this.lblPredictedTimeFont.Name = "lblPredictedTimeFont";
+            this.lblPredictedTimeFont.Size = new System.Drawing.Size(31, 13);
+            this.lblPredictedTimeFont.TabIndex = 10;
+            this.lblPredictedTimeFont.Text = "Font:";
+            // 
+            // gboPredictedTimeText
+            // 
+            this.gboPredictedTimeText.Controls.Add(this.pnlPredictedTimeTextColor);
+            this.gboPredictedTimeText.Controls.Add(this.btnChoosePredictedTimeTextFont);
+            this.gboPredictedTimeText.Controls.Add(this.lblPredictedTimeTextColor);
+            this.gboPredictedTimeText.Controls.Add(this.lblPredictedTimeTextFontName);
+            this.gboPredictedTimeText.Controls.Add(this.lblPredictedTimeTextFont);
+            this.gboPredictedTimeText.Location = new System.Drawing.Point(10, 32);
+            this.gboPredictedTimeText.Name = "gboPredictedTimeText";
+            this.gboPredictedTimeText.Size = new System.Drawing.Size(306, 73);
+            this.gboPredictedTimeText.TabIndex = 28;
+            this.gboPredictedTimeText.TabStop = false;
+            this.gboPredictedTimeText.Text = "Predicted time text";
+            // 
+            // pnlPredictedTimeTextColor
+            // 
+            this.pnlPredictedTimeTextColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPredictedTimeTextColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlPredictedTimeTextColor.Name = "pnlPredictedTimeTextColor";
+            this.pnlPredictedTimeTextColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPredictedTimeTextColor.TabIndex = 11;
+            this.pnlPredictedTimeTextColor.Click += new System.EventHandler(this.pnlPredictedTimeTextColor_Click);
+            // 
+            // btnChoosePredictedTimeTextFont
+            // 
+            this.btnChoosePredictedTimeTextFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChoosePredictedTimeTextFont.Name = "btnChoosePredictedTimeTextFont";
+            this.btnChoosePredictedTimeTextFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChoosePredictedTimeTextFont.TabIndex = 12;
+            this.btnChoosePredictedTimeTextFont.Text = "Choose...";
+            this.btnChoosePredictedTimeTextFont.UseVisualStyleBackColor = true;
+            this.btnChoosePredictedTimeTextFont.Click += new System.EventHandler(this.btnChoosePredictedTimeTextFont_Click);
+            // 
+            // lblPredictedTimeTextColor
+            // 
+            this.lblPredictedTimeTextColor.AutoSize = true;
+            this.lblPredictedTimeTextColor.Location = new System.Drawing.Point(6, 50);
+            this.lblPredictedTimeTextColor.Name = "lblPredictedTimeTextColor";
+            this.lblPredictedTimeTextColor.Size = new System.Drawing.Size(34, 13);
+            this.lblPredictedTimeTextColor.TabIndex = 10;
+            this.lblPredictedTimeTextColor.Text = "Color:";
+            // 
+            // lblPredictedTimeTextFontName
+            // 
+            this.lblPredictedTimeTextFontName.AutoSize = true;
+            this.lblPredictedTimeTextFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblPredictedTimeTextFontName.Name = "lblPredictedTimeTextFontName";
+            this.lblPredictedTimeTextFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblPredictedTimeTextFontName.TabIndex = 11;
+            this.lblPredictedTimeTextFontName.Text = "fontName";
+            // 
+            // lblPredictedTimeTextFont
+            // 
+            this.lblPredictedTimeTextFont.AutoSize = true;
+            this.lblPredictedTimeTextFont.Location = new System.Drawing.Point(6, 25);
+            this.lblPredictedTimeTextFont.Name = "lblPredictedTimeTextFont";
+            this.lblPredictedTimeTextFont.Size = new System.Drawing.Size(31, 13);
+            this.lblPredictedTimeTextFont.TabIndex = 10;
+            this.lblPredictedTimeTextFont.Text = "Font:";
+            // 
+            // pnlPredictedTimeBackgroundColor
+            // 
+            this.pnlPredictedTimeBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPredictedTimeBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlPredictedTimeBackgroundColor.Name = "pnlPredictedTimeBackgroundColor";
+            this.pnlPredictedTimeBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlPredictedTimeBackgroundColor.TabIndex = 27;
+            this.pnlPredictedTimeBackgroundColor.Click += new System.EventHandler(this.pnlPredictedTimeBackgroundColor_Click);
+            // 
+            // lblPredictedTimeBackgroundColor
+            // 
+            this.lblPredictedTimeBackgroundColor.AutoSize = true;
+            this.lblPredictedTimeBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblPredictedTimeBackgroundColor.Name = "lblPredictedTimeBackgroundColor";
+            this.lblPredictedTimeBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblPredictedTimeBackgroundColor.TabIndex = 26;
+            this.lblPredictedTimeBackgroundColor.Text = "Background:";
+            // 
             // LayoutSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1304,10 +1477,16 @@
             this.gboPreviousSegment.PerformLayout();
             this.tabLayoutPossibleTimeSave.ResumeLayout(false);
             this.tabLayoutPossibleTimeSave.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gboPossibleTimeSave.ResumeLayout(false);
+            this.gboPossibleTimeSave.PerformLayout();
             this.gboPossibleTimeSaveText.ResumeLayout(false);
             this.gboPossibleTimeSaveText.PerformLayout();
+            this.tabLayoutPredictedTime.ResumeLayout(false);
+            this.tabLayoutPredictedTime.PerformLayout();
+            this.gboPredictedTime.ResumeLayout(false);
+            this.gboPredictedTime.PerformLayout();
+            this.gboPredictedTimeText.ResumeLayout(false);
+            this.gboPredictedTimeText.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1409,12 +1588,12 @@
         private System.Windows.Forms.Panel pnlPreviousSegmentDeltaLostColor;
         private System.Windows.Forms.Label lblPreviousSegmentDeltaLostColor;
         private System.Windows.Forms.TabPage tabLayoutPossibleTimeSave;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox gboPossibleTimeSave;
+        private System.Windows.Forms.Panel pnlPossibleTimeSaveColor;
+        private System.Windows.Forms.Button btnChoosePossibleTimeSaveFont;
+        private System.Windows.Forms.Label lblPossibleTimeSaveColor;
+        private System.Windows.Forms.Label lblPossibleTimeSaveFontName;
+        private System.Windows.Forms.Label lblPossibleTimeSaveFont;
         private System.Windows.Forms.GroupBox gboPossibleTimeSaveText;
         private System.Windows.Forms.Panel pnlPossibleTimeSaveTextColor;
         private System.Windows.Forms.Button btnChoosePossibleTimeSaveTextFont;
@@ -1423,5 +1602,20 @@
         private System.Windows.Forms.Label lblPossibleTimeSaveTextFont;
         private System.Windows.Forms.Panel pnlPossibleTimeSaveBackgroundColor;
         private System.Windows.Forms.Label lblPossibleTimeSaveBackgroundColor;
+        private System.Windows.Forms.TabPage tabLayoutPredictedTime;
+        private System.Windows.Forms.GroupBox gboPredictedTime;
+        private System.Windows.Forms.Panel pnlPredictedTimeColor;
+        private System.Windows.Forms.Button btnChoosePredictedTimeFont;
+        private System.Windows.Forms.Label lblPredictedTimeColor;
+        private System.Windows.Forms.Label lblPredictedTimeFontName;
+        private System.Windows.Forms.Label lblPredictedTimeFont;
+        private System.Windows.Forms.GroupBox gboPredictedTimeText;
+        private System.Windows.Forms.Panel pnlPredictedTimeTextColor;
+        private System.Windows.Forms.Button btnChoosePredictedTimeTextFont;
+        private System.Windows.Forms.Label lblPredictedTimeTextColor;
+        private System.Windows.Forms.Label lblPredictedTimeTextFontName;
+        private System.Windows.Forms.Label lblPredictedTimeTextFont;
+        private System.Windows.Forms.Panel pnlPredictedTimeBackgroundColor;
+        private System.Windows.Forms.Label lblPredictedTimeBackgroundColor;
     }
 }
