@@ -48,6 +48,14 @@ namespace FaceSplit.Model
                 information.SecondaryTextFont = Settings.Default.PredictedTimeFont;
                 information.SecondaryTextColor = Settings.Default.PredictedTimeColor;
             }
+            else if (information.InformationName == InformationName.SUM_OF_BEST)
+            {
+                information.BackgroundColor = Settings.Default.SumOfBestBackgroundColor;
+                information.PrimaryTextFont = Settings.Default.SumOfBestTextFont;
+                information.PrimaryTextColor = Settings.Default.SumOfBestTextColor;
+                information.SecondaryTextFont = Settings.Default.SumOfBestFont;
+                information.SecondaryTextColor = Settings.Default.SumOfBestColor;
+            }
         }
     }
 }

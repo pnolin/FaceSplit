@@ -549,5 +549,65 @@ namespace FaceSplit.Properties {
                 this["PredictedTimeFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color SumOfBestBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SumOfBestBackgroundColor"]));
+            }
+            set {
+                this["SumOfBestBackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SumOfBestTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SumOfBestTextColor"]));
+            }
+            set {
+                this["SumOfBestTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font SumOfBestTextFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SumOfBestTextFont"]));
+            }
+            set {
+                this["SumOfBestTextFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SumOfBestColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SumOfBestColor"]));
+            }
+            set {
+                this["SumOfBestColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font SumOfBestFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SumOfBestFont"]));
+            }
+            set {
+                this["SumOfBestFont"] = value;
+            }
+        }
     }
 }

@@ -136,8 +136,6 @@
             this.lblPossibleTimeSaveTextFont = new System.Windows.Forms.Label();
             this.pnlPossibleTimeSaveBackgroundColor = new System.Windows.Forms.Panel();
             this.lblPossibleTimeSaveBackgroundColor = new System.Windows.Forms.Label();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.tabLayoutPredictedTime = new System.Windows.Forms.TabPage();
             this.gboPredictedTime = new System.Windows.Forms.GroupBox();
             this.pnlPredictedTimeColor = new System.Windows.Forms.Panel();
@@ -153,6 +151,23 @@
             this.lblPredictedTimeTextFont = new System.Windows.Forms.Label();
             this.pnlPredictedTimeBackgroundColor = new System.Windows.Forms.Panel();
             this.lblPredictedTimeBackgroundColor = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.tabLayoutSumOfBest = new System.Windows.Forms.TabPage();
+            this.gboSumOfBest = new System.Windows.Forms.GroupBox();
+            this.pnlSumOfBestColor = new System.Windows.Forms.Panel();
+            this.btnChooseSumOfBestFont = new System.Windows.Forms.Button();
+            this.lblSumOfBestColor = new System.Windows.Forms.Label();
+            this.lblSumOfBestFontName = new System.Windows.Forms.Label();
+            this.lblSumOfBestFont = new System.Windows.Forms.Label();
+            this.gboSumOfBestText = new System.Windows.Forms.GroupBox();
+            this.pnlSumOfBestTextColor = new System.Windows.Forms.Panel();
+            this.btnChooseSumOfBestTextFont = new System.Windows.Forms.Button();
+            this.lblSumOfBestTextColor = new System.Windows.Forms.Label();
+            this.lblSumOfBestTextFontName = new System.Windows.Forms.Label();
+            this.lblSumOfBestTextFont = new System.Windows.Forms.Label();
+            this.pnlSumOfBestBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblSumOfBestBackgroundColor = new System.Windows.Forms.Label();
             this.tabLayoutSettings.SuspendLayout();
             this.tabLayoutTimer.SuspendLayout();
             this.gboTimerColors.SuspendLayout();
@@ -174,6 +189,9 @@
             this.tabLayoutPredictedTime.SuspendLayout();
             this.gboPredictedTime.SuspendLayout();
             this.gboPredictedTimeText.SuspendLayout();
+            this.tabLayoutSumOfBest.SuspendLayout();
+            this.gboSumOfBest.SuspendLayout();
+            this.gboSumOfBestText.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
@@ -185,6 +203,7 @@
             this.tabLayoutSettings.Controls.Add(this.tabLayoutPreviousSegment);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutPossibleTimeSave);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutPredictedTime);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutSumOfBest);
             this.tabLayoutSettings.Location = new System.Drawing.Point(1, 1);
             this.tabLayoutSettings.Name = "tabLayoutSettings";
             this.tabLayoutSettings.SelectedIndex = 0;
@@ -1262,26 +1281,6 @@
             this.lblPossibleTimeSaveBackgroundColor.TabIndex = 22;
             this.lblPossibleTimeSaveBackgroundColor.Text = "Background:";
             // 
-            // btnOk
-            // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(168, 446);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.btnCancel.Location = new System.Drawing.Point(249, 446);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
             // tabLayoutPredictedTime
             // 
             this.tabLayoutPredictedTime.Controls.Add(this.gboPredictedTime);
@@ -1434,6 +1433,178 @@
             this.lblPredictedTimeBackgroundColor.TabIndex = 26;
             this.lblPredictedTimeBackgroundColor.Text = "Background:";
             // 
+            // btnOk
+            // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOk.Location = new System.Drawing.Point(168, 446);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 1;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.btnCancel.Location = new System.Drawing.Point(249, 446);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // tabLayoutSumOfBest
+            // 
+            this.tabLayoutSumOfBest.Controls.Add(this.gboSumOfBest);
+            this.tabLayoutSumOfBest.Controls.Add(this.gboSumOfBestText);
+            this.tabLayoutSumOfBest.Controls.Add(this.pnlSumOfBestBackgroundColor);
+            this.tabLayoutSumOfBest.Controls.Add(this.lblSumOfBestBackgroundColor);
+            this.tabLayoutSumOfBest.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutSumOfBest.Name = "tabLayoutSumOfBest";
+            this.tabLayoutSumOfBest.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutSumOfBest.Size = new System.Drawing.Size(322, 415);
+            this.tabLayoutSumOfBest.TabIndex = 7;
+            this.tabLayoutSumOfBest.Text = "Sum of best";
+            this.tabLayoutSumOfBest.UseVisualStyleBackColor = true;
+            // 
+            // gboSumOfBest
+            // 
+            this.gboSumOfBest.Controls.Add(this.pnlSumOfBestColor);
+            this.gboSumOfBest.Controls.Add(this.btnChooseSumOfBestFont);
+            this.gboSumOfBest.Controls.Add(this.lblSumOfBestColor);
+            this.gboSumOfBest.Controls.Add(this.lblSumOfBestFontName);
+            this.gboSumOfBest.Controls.Add(this.lblSumOfBestFont);
+            this.gboSumOfBest.Location = new System.Drawing.Point(10, 111);
+            this.gboSumOfBest.Name = "gboSumOfBest";
+            this.gboSumOfBest.Size = new System.Drawing.Size(306, 73);
+            this.gboSumOfBest.TabIndex = 33;
+            this.gboSumOfBest.TabStop = false;
+            this.gboSumOfBest.Text = "Sum of best";
+            // 
+            // pnlSumOfBestColor
+            // 
+            this.pnlSumOfBestColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSumOfBestColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlSumOfBestColor.Name = "pnlSumOfBestColor";
+            this.pnlSumOfBestColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSumOfBestColor.TabIndex = 11;
+            this.pnlSumOfBestColor.Click += new System.EventHandler(this.pnlSumOfBestColor_Click);
+            // 
+            // btnChooseSumOfBestFont
+            // 
+            this.btnChooseSumOfBestFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseSumOfBestFont.Name = "btnChooseSumOfBestFont";
+            this.btnChooseSumOfBestFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseSumOfBestFont.TabIndex = 12;
+            this.btnChooseSumOfBestFont.Text = "Choose...";
+            this.btnChooseSumOfBestFont.UseVisualStyleBackColor = true;
+            this.btnChooseSumOfBestFont.Click += new System.EventHandler(this.btnChooseSumOfBestFont_Click);
+            // 
+            // lblSumOfBestColor
+            // 
+            this.lblSumOfBestColor.AutoSize = true;
+            this.lblSumOfBestColor.Location = new System.Drawing.Point(6, 50);
+            this.lblSumOfBestColor.Name = "lblSumOfBestColor";
+            this.lblSumOfBestColor.Size = new System.Drawing.Size(34, 13);
+            this.lblSumOfBestColor.TabIndex = 10;
+            this.lblSumOfBestColor.Text = "Color:";
+            // 
+            // lblSumOfBestFontName
+            // 
+            this.lblSumOfBestFontName.AutoSize = true;
+            this.lblSumOfBestFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblSumOfBestFontName.Name = "lblSumOfBestFontName";
+            this.lblSumOfBestFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblSumOfBestFontName.TabIndex = 11;
+            this.lblSumOfBestFontName.Text = "fontName";
+            // 
+            // lblSumOfBestFont
+            // 
+            this.lblSumOfBestFont.AutoSize = true;
+            this.lblSumOfBestFont.Location = new System.Drawing.Point(6, 25);
+            this.lblSumOfBestFont.Name = "lblSumOfBestFont";
+            this.lblSumOfBestFont.Size = new System.Drawing.Size(31, 13);
+            this.lblSumOfBestFont.TabIndex = 10;
+            this.lblSumOfBestFont.Text = "Font:";
+            // 
+            // gboSumOfBestText
+            // 
+            this.gboSumOfBestText.Controls.Add(this.pnlSumOfBestTextColor);
+            this.gboSumOfBestText.Controls.Add(this.btnChooseSumOfBestTextFont);
+            this.gboSumOfBestText.Controls.Add(this.lblSumOfBestTextColor);
+            this.gboSumOfBestText.Controls.Add(this.lblSumOfBestTextFontName);
+            this.gboSumOfBestText.Controls.Add(this.lblSumOfBestTextFont);
+            this.gboSumOfBestText.Location = new System.Drawing.Point(10, 32);
+            this.gboSumOfBestText.Name = "gboSumOfBestText";
+            this.gboSumOfBestText.Size = new System.Drawing.Size(306, 73);
+            this.gboSumOfBestText.TabIndex = 32;
+            this.gboSumOfBestText.TabStop = false;
+            this.gboSumOfBestText.Text = "Sum of best text";
+            // 
+            // pnlSumOfBestTextColor
+            // 
+            this.pnlSumOfBestTextColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSumOfBestTextColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlSumOfBestTextColor.Name = "pnlSumOfBestTextColor";
+            this.pnlSumOfBestTextColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSumOfBestTextColor.TabIndex = 11;
+            this.pnlSumOfBestTextColor.Click += new System.EventHandler(this.pnlSumOfBestTextColor_Click);
+            // 
+            // btnChooseSumOfBestTextFont
+            // 
+            this.btnChooseSumOfBestTextFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseSumOfBestTextFont.Name = "btnChooseSumOfBestTextFont";
+            this.btnChooseSumOfBestTextFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseSumOfBestTextFont.TabIndex = 12;
+            this.btnChooseSumOfBestTextFont.Text = "Choose...";
+            this.btnChooseSumOfBestTextFont.UseVisualStyleBackColor = true;
+            this.btnChooseSumOfBestTextFont.Click += new System.EventHandler(this.btnChooseSumOfBestTextFont_Click);
+            // 
+            // lblSumOfBestTextColor
+            // 
+            this.lblSumOfBestTextColor.AutoSize = true;
+            this.lblSumOfBestTextColor.Location = new System.Drawing.Point(6, 50);
+            this.lblSumOfBestTextColor.Name = "lblSumOfBestTextColor";
+            this.lblSumOfBestTextColor.Size = new System.Drawing.Size(34, 13);
+            this.lblSumOfBestTextColor.TabIndex = 10;
+            this.lblSumOfBestTextColor.Text = "Color:";
+            // 
+            // lblSumOfBestTextFontName
+            // 
+            this.lblSumOfBestTextFontName.AutoSize = true;
+            this.lblSumOfBestTextFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblSumOfBestTextFontName.Name = "lblSumOfBestTextFontName";
+            this.lblSumOfBestTextFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblSumOfBestTextFontName.TabIndex = 11;
+            this.lblSumOfBestTextFontName.Text = "fontName";
+            // 
+            // lblSumOfBestTextFont
+            // 
+            this.lblSumOfBestTextFont.AutoSize = true;
+            this.lblSumOfBestTextFont.Location = new System.Drawing.Point(6, 25);
+            this.lblSumOfBestTextFont.Name = "lblSumOfBestTextFont";
+            this.lblSumOfBestTextFont.Size = new System.Drawing.Size(31, 13);
+            this.lblSumOfBestTextFont.TabIndex = 10;
+            this.lblSumOfBestTextFont.Text = "Font:";
+            // 
+            // pnlSumOfBestBackgroundColor
+            // 
+            this.pnlSumOfBestBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSumOfBestBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlSumOfBestBackgroundColor.Name = "pnlSumOfBestBackgroundColor";
+            this.pnlSumOfBestBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSumOfBestBackgroundColor.TabIndex = 31;
+            this.pnlSumOfBestBackgroundColor.Click += new System.EventHandler(this.pnlSumOfBestBackgroundColor_Click);
+            // 
+            // lblSumOfBestBackgroundColor
+            // 
+            this.lblSumOfBestBackgroundColor.AutoSize = true;
+            this.lblSumOfBestBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblSumOfBestBackgroundColor.Name = "lblSumOfBestBackgroundColor";
+            this.lblSumOfBestBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblSumOfBestBackgroundColor.TabIndex = 30;
+            this.lblSumOfBestBackgroundColor.Text = "Background:";
+            // 
             // LayoutSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1487,6 +1658,12 @@
             this.gboPredictedTime.PerformLayout();
             this.gboPredictedTimeText.ResumeLayout(false);
             this.gboPredictedTimeText.PerformLayout();
+            this.tabLayoutSumOfBest.ResumeLayout(false);
+            this.tabLayoutSumOfBest.PerformLayout();
+            this.gboSumOfBest.ResumeLayout(false);
+            this.gboSumOfBest.PerformLayout();
+            this.gboSumOfBestText.ResumeLayout(false);
+            this.gboSumOfBestText.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1617,5 +1794,20 @@
         private System.Windows.Forms.Label lblPredictedTimeTextFont;
         private System.Windows.Forms.Panel pnlPredictedTimeBackgroundColor;
         private System.Windows.Forms.Label lblPredictedTimeBackgroundColor;
+        private System.Windows.Forms.TabPage tabLayoutSumOfBest;
+        private System.Windows.Forms.GroupBox gboSumOfBest;
+        private System.Windows.Forms.Panel pnlSumOfBestColor;
+        private System.Windows.Forms.Button btnChooseSumOfBestFont;
+        private System.Windows.Forms.Label lblSumOfBestColor;
+        private System.Windows.Forms.Label lblSumOfBestFontName;
+        private System.Windows.Forms.Label lblSumOfBestFont;
+        private System.Windows.Forms.GroupBox gboSumOfBestText;
+        private System.Windows.Forms.Panel pnlSumOfBestTextColor;
+        private System.Windows.Forms.Button btnChooseSumOfBestTextFont;
+        private System.Windows.Forms.Label lblSumOfBestTextColor;
+        private System.Windows.Forms.Label lblSumOfBestTextFontName;
+        private System.Windows.Forms.Label lblSumOfBestTextFont;
+        private System.Windows.Forms.Panel pnlSumOfBestBackgroundColor;
+        private System.Windows.Forms.Label lblSumOfBestBackgroundColor;
     }
 }

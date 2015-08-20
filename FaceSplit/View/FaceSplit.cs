@@ -230,6 +230,11 @@ namespace FaceSplit
             }
         }
 
+        private void mnuResetLayout_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Reset();
+        }
+
         private void mnuCloseSplit_Click(object sender, EventArgs e)
         {
             this.split = null;

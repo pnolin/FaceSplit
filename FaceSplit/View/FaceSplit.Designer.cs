@@ -42,6 +42,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCloseSplit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuResetLayout = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,75 +61,83 @@
             this.mnuLoadRun,
             this.toolStripMenuItem2,
             this.mnuEditLayout,
+            this.mnuResetLayout,
             this.toolStripMenuItem3,
             this.mnuCloseSplit,
             this.mnuExit});
             this.contextMnuPrincipal.Name = "contextMnuPrincipal";
-            this.contextMnuPrincipal.Size = new System.Drawing.Size(154, 198);
+            this.contextMnuPrincipal.Size = new System.Drawing.Size(153, 220);
             // 
             // mnuEditRun
             // 
             this.mnuEditRun.Name = "mnuEditRun";
-            this.mnuEditRun.Size = new System.Drawing.Size(153, 22);
-            this.mnuEditRun.Text = "New / Edit Run";
+            this.mnuEditRun.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditRun.Text = "New / Edit run";
             this.mnuEditRun.Click += new System.EventHandler(this.mnuEditRun_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(150, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // mnuSaveRun
             // 
             this.mnuSaveRun.Name = "mnuSaveRun";
-            this.mnuSaveRun.Size = new System.Drawing.Size(153, 22);
+            this.mnuSaveRun.Size = new System.Drawing.Size(152, 22);
             this.mnuSaveRun.Text = "Save run";
             this.mnuSaveRun.Click += new System.EventHandler(this.mnuSaveRun_Click);
             // 
             // mnuSaveRunAs
             // 
             this.mnuSaveRunAs.Name = "mnuSaveRunAs";
-            this.mnuSaveRunAs.Size = new System.Drawing.Size(153, 22);
+            this.mnuSaveRunAs.Size = new System.Drawing.Size(152, 22);
             this.mnuSaveRunAs.Text = "Save run as";
             this.mnuSaveRunAs.Click += new System.EventHandler(this.mnuSaveRunAs_Click);
             // 
             // mnuLoadRun
             // 
             this.mnuLoadRun.Name = "mnuLoadRun";
-            this.mnuLoadRun.Size = new System.Drawing.Size(153, 22);
+            this.mnuLoadRun.Size = new System.Drawing.Size(152, 22);
             this.mnuLoadRun.Text = "Load run";
             this.mnuLoadRun.Click += new System.EventHandler(this.mnuLoadRun_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(150, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
             // 
             // mnuEditLayout
             // 
             this.mnuEditLayout.Name = "mnuEditLayout";
-            this.mnuEditLayout.Size = new System.Drawing.Size(153, 22);
-            this.mnuEditLayout.Text = "Edit Layout";
+            this.mnuEditLayout.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditLayout.Text = "Edit layout";
             this.mnuEditLayout.Click += new System.EventHandler(this.mnuEditLayout_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(150, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(149, 6);
             // 
             // mnuCloseSplit
             // 
             this.mnuCloseSplit.Name = "mnuCloseSplit";
-            this.mnuCloseSplit.Size = new System.Drawing.Size(153, 22);
+            this.mnuCloseSplit.Size = new System.Drawing.Size(152, 22);
             this.mnuCloseSplit.Text = "Close split";
             this.mnuCloseSplit.Click += new System.EventHandler(this.mnuCloseSplit_Click);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(153, 22);
+            this.mnuExit.Size = new System.Drawing.Size(152, 22);
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
+            // 
+            // mnuResetLayout
+            // 
+            this.mnuResetLayout.Name = "mnuResetLayout";
+            this.mnuResetLayout.Size = new System.Drawing.Size(152, 22);
+            this.mnuResetLayout.Text = "Reset layout";
+            this.mnuResetLayout.Click += new System.EventHandler(this.mnuResetLayout_Click);
             // 
             // FaceSplit
             // 
@@ -162,6 +171,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuEditLayout;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem mnuResetLayout;
     }
 }
 

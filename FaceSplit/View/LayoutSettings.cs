@@ -73,6 +73,12 @@ namespace FaceSplit
             this.pnlPredictedTimeTextColor.BackColor = Settings.Default.PredictedTimeTextColor;
             this.lblPredictedTimeFontName.Text = Settings.Default.PredictedTimeFont.FontFamily.Name;
             this.pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
+
+            this.pnlSumOfBestBackgroundColor.BackColor = Settings.Default.SumOfBestBackgroundColor;
+            this.lblSumOfBestTextFontName.Text = Settings.Default.SumOfBestTextFont.FontFamily.Name;
+            this.pnlSumOfBestTextColor.BackColor = Settings.Default.SumOfBestTextColor;
+            this.lblSumOfBestFontName.Text = Settings.Default.SumOfBestFont.FontFamily.Name;
+            this.pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -481,6 +487,53 @@ namespace FaceSplit
             {
                 Settings.Default.PredictedTimeColor = colorDialog.Color;
                 this.pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
+            }
+        }
+
+        private void pnlSumOfBestBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SumOfBestBackgroundColor = colorDialog.Color;
+                this.pnlSumOfBestBackgroundColor.BackColor = Settings.Default.SumOfBestBackgroundColor;
+            }
+        }
+
+        private void btnChooseSumOfBestTextFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.SumOfBestTextFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SumOfBestTextFont = fontDialog.Font;
+                this.lblSumOfBestTextFontName.Text = Settings.Default.SumOfBestTextFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlSumOfBestTextColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SumOfBestTextColor = colorDialog.Color;
+                this.pnlSumOfBestTextColor.BackColor = Settings.Default.SumOfBestTextColor;
+            }
+        }
+
+        private void btnChooseSumOfBestFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.SumOfBestFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SumOfBestFont = fontDialog.Font;
+                this.lblSumOfBestFontName.Text = Settings.Default.SumOfBestFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlSumOfBestColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SumOfBestColor = colorDialog.Color;
+                this.pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
             }
         }
     }
