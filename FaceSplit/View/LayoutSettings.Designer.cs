@@ -151,8 +151,6 @@
             this.lblPredictedTimeTextFont = new System.Windows.Forms.Label();
             this.pnlPredictedTimeBackgroundColor = new System.Windows.Forms.Panel();
             this.lblPredictedTimeBackgroundColor = new System.Windows.Forms.Label();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.tabLayoutSumOfBest = new System.Windows.Forms.TabPage();
             this.gboSumOfBest = new System.Windows.Forms.GroupBox();
             this.pnlSumOfBestColor = new System.Windows.Forms.Panel();
@@ -168,6 +166,35 @@
             this.lblSumOfBestTextFont = new System.Windows.Forms.Label();
             this.pnlSumOfBestBackgroundColor = new System.Windows.Forms.Panel();
             this.lblSumOfBestBackgroundColor = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.tabLayoutSegmentTimer = new System.Windows.Forms.TabPage();
+            this.pnlSegmentTimerBackgroundColor = new System.Windows.Forms.Panel();
+            this.lblSegmentTimerBackgroundColor = new System.Windows.Forms.Label();
+            this.gboSegmentTimerPB = new System.Windows.Forms.GroupBox();
+            this.pnlSegmentTimerPBColor = new System.Windows.Forms.Panel();
+            this.btnChooseSegmentTimerPBFont = new System.Windows.Forms.Button();
+            this.lblSegmentTimerPBColor = new System.Windows.Forms.Label();
+            this.lblSegmentTimerPBFontName = new System.Windows.Forms.Label();
+            this.lblSegmentTimerPBFont = new System.Windows.Forms.Label();
+            this.gboSegmentTimerBest = new System.Windows.Forms.GroupBox();
+            this.pnlSegmentTimerBestColor = new System.Windows.Forms.Panel();
+            this.btnChooseSegmentTimerBestFont = new System.Windows.Forms.Button();
+            this.lblSegmentTimerBestColor = new System.Windows.Forms.Label();
+            this.lblSegmentTimerBestFontName = new System.Windows.Forms.Label();
+            this.lblSegmentTimerBestFont = new System.Windows.Forms.Label();
+            this.gboSegmentTimer = new System.Windows.Forms.GroupBox();
+            this.pnlSegmentTimerPausedColor = new System.Windows.Forms.Panel();
+            this.lblSegmentTimerPausedColor = new System.Windows.Forms.Label();
+            this.pnlSegmentTimerLosingTimeColor = new System.Windows.Forms.Panel();
+            this.lblSegmentTimerLosingTimeColor = new System.Windows.Forms.Label();
+            this.pnlSegmentTimerRunningColor = new System.Windows.Forms.Panel();
+            this.lblSegmentTimerRunningColor = new System.Windows.Forms.Label();
+            this.pnlSegmentTimerNotRunningColor = new System.Windows.Forms.Panel();
+            this.btnChooseSegmentTimerFont = new System.Windows.Forms.Button();
+            this.lblSegmentTimerNotRunningColor = new System.Windows.Forms.Label();
+            this.lblSegmentTimerFontName = new System.Windows.Forms.Label();
+            this.lblSegmentTimerFont = new System.Windows.Forms.Label();
             this.tabLayoutSettings.SuspendLayout();
             this.tabLayoutTimer.SuspendLayout();
             this.gboTimerColors.SuspendLayout();
@@ -192,11 +219,16 @@
             this.tabLayoutSumOfBest.SuspendLayout();
             this.gboSumOfBest.SuspendLayout();
             this.gboSumOfBestText.SuspendLayout();
+            this.tabLayoutSegmentTimer.SuspendLayout();
+            this.gboSegmentTimerPB.SuspendLayout();
+            this.gboSegmentTimerBest.SuspendLayout();
+            this.gboSegmentTimer.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLayoutSettings
             // 
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTimer);
+            this.tabLayoutSettings.Controls.Add(this.tabLayoutSegmentTimer);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutSplit);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutTitle);
             this.tabLayoutSettings.Controls.Add(this.tabLayoutGoal);
@@ -1433,26 +1465,6 @@
             this.lblPredictedTimeBackgroundColor.TabIndex = 26;
             this.lblPredictedTimeBackgroundColor.Text = "Background:";
             // 
-            // btnOk
-            // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(168, 446);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.btnCancel.Location = new System.Drawing.Point(249, 446);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
             // tabLayoutSumOfBest
             // 
             this.tabLayoutSumOfBest.Controls.Add(this.gboSumOfBest);
@@ -1464,7 +1476,7 @@
             this.tabLayoutSumOfBest.Padding = new System.Windows.Forms.Padding(3);
             this.tabLayoutSumOfBest.Size = new System.Drawing.Size(322, 415);
             this.tabLayoutSumOfBest.TabIndex = 7;
-            this.tabLayoutSumOfBest.Text = "Sum of best";
+            this.tabLayoutSumOfBest.Text = "Sum Of Best";
             this.tabLayoutSumOfBest.UseVisualStyleBackColor = true;
             // 
             // gboSumOfBest
@@ -1605,6 +1617,289 @@
             this.lblSumOfBestBackgroundColor.TabIndex = 30;
             this.lblSumOfBestBackgroundColor.Text = "Background:";
             // 
+            // btnOk
+            // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOk.Location = new System.Drawing.Point(168, 446);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 1;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.btnCancel.Location = new System.Drawing.Point(249, 446);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // tabLayoutSegmentTimer
+            // 
+            this.tabLayoutSegmentTimer.Controls.Add(this.gboSegmentTimer);
+            this.tabLayoutSegmentTimer.Controls.Add(this.gboSegmentTimerBest);
+            this.tabLayoutSegmentTimer.Controls.Add(this.gboSegmentTimerPB);
+            this.tabLayoutSegmentTimer.Controls.Add(this.pnlSegmentTimerBackgroundColor);
+            this.tabLayoutSegmentTimer.Controls.Add(this.lblSegmentTimerBackgroundColor);
+            this.tabLayoutSegmentTimer.Location = new System.Drawing.Point(4, 22);
+            this.tabLayoutSegmentTimer.Name = "tabLayoutSegmentTimer";
+            this.tabLayoutSegmentTimer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayoutSegmentTimer.Size = new System.Drawing.Size(322, 415);
+            this.tabLayoutSegmentTimer.TabIndex = 8;
+            this.tabLayoutSegmentTimer.Text = "Segment Timer";
+            this.tabLayoutSegmentTimer.UseVisualStyleBackColor = true;
+            // 
+            // pnlSegmentTimerBackgroundColor
+            // 
+            this.pnlSegmentTimerBackgroundColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSegmentTimerBackgroundColor.Location = new System.Drawing.Point(78, 6);
+            this.pnlSegmentTimerBackgroundColor.Name = "pnlSegmentTimerBackgroundColor";
+            this.pnlSegmentTimerBackgroundColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSegmentTimerBackgroundColor.TabIndex = 8;
+            // 
+            // lblSegmentTimerBackgroundColor
+            // 
+            this.lblSegmentTimerBackgroundColor.AutoSize = true;
+            this.lblSegmentTimerBackgroundColor.Location = new System.Drawing.Point(7, 7);
+            this.lblSegmentTimerBackgroundColor.Name = "lblSegmentTimerBackgroundColor";
+            this.lblSegmentTimerBackgroundColor.Size = new System.Drawing.Size(68, 13);
+            this.lblSegmentTimerBackgroundColor.TabIndex = 7;
+            this.lblSegmentTimerBackgroundColor.Text = "Background:";
+            // 
+            // gboSegmentTimerPB
+            // 
+            this.gboSegmentTimerPB.Controls.Add(this.pnlSegmentTimerPBColor);
+            this.gboSegmentTimerPB.Controls.Add(this.btnChooseSegmentTimerPBFont);
+            this.gboSegmentTimerPB.Controls.Add(this.lblSegmentTimerPBColor);
+            this.gboSegmentTimerPB.Controls.Add(this.lblSegmentTimerPBFontName);
+            this.gboSegmentTimerPB.Controls.Add(this.lblSegmentTimerPBFont);
+            this.gboSegmentTimerPB.Location = new System.Drawing.Point(10, 32);
+            this.gboSegmentTimerPB.Name = "gboSegmentTimerPB";
+            this.gboSegmentTimerPB.Size = new System.Drawing.Size(306, 73);
+            this.gboSegmentTimerPB.TabIndex = 14;
+            this.gboSegmentTimerPB.TabStop = false;
+            this.gboSegmentTimerPB.Text = "Segment time in personal best";
+            // 
+            // pnlSegmentTimerPBColor
+            // 
+            this.pnlSegmentTimerPBColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSegmentTimerPBColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlSegmentTimerPBColor.Name = "pnlSegmentTimerPBColor";
+            this.pnlSegmentTimerPBColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSegmentTimerPBColor.TabIndex = 11;
+            // 
+            // btnChooseSegmentTimerPBFont
+            // 
+            this.btnChooseSegmentTimerPBFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseSegmentTimerPBFont.Name = "btnChooseSegmentTimerPBFont";
+            this.btnChooseSegmentTimerPBFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseSegmentTimerPBFont.TabIndex = 12;
+            this.btnChooseSegmentTimerPBFont.Text = "Choose...";
+            this.btnChooseSegmentTimerPBFont.UseVisualStyleBackColor = true;
+            // 
+            // lblSegmentTimerPBColor
+            // 
+            this.lblSegmentTimerPBColor.AutoSize = true;
+            this.lblSegmentTimerPBColor.Location = new System.Drawing.Point(6, 50);
+            this.lblSegmentTimerPBColor.Name = "lblSegmentTimerPBColor";
+            this.lblSegmentTimerPBColor.Size = new System.Drawing.Size(34, 13);
+            this.lblSegmentTimerPBColor.TabIndex = 10;
+            this.lblSegmentTimerPBColor.Text = "Color:";
+            // 
+            // lblSegmentTimerPBFontName
+            // 
+            this.lblSegmentTimerPBFontName.AutoSize = true;
+            this.lblSegmentTimerPBFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblSegmentTimerPBFontName.Name = "lblSegmentTimerPBFontName";
+            this.lblSegmentTimerPBFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblSegmentTimerPBFontName.TabIndex = 11;
+            this.lblSegmentTimerPBFontName.Text = "fontName";
+            // 
+            // lblSegmentTimerPBFont
+            // 
+            this.lblSegmentTimerPBFont.AutoSize = true;
+            this.lblSegmentTimerPBFont.Location = new System.Drawing.Point(6, 25);
+            this.lblSegmentTimerPBFont.Name = "lblSegmentTimerPBFont";
+            this.lblSegmentTimerPBFont.Size = new System.Drawing.Size(31, 13);
+            this.lblSegmentTimerPBFont.TabIndex = 10;
+            this.lblSegmentTimerPBFont.Text = "Font:";
+            // 
+            // gboSegmentTimerBest
+            // 
+            this.gboSegmentTimerBest.Controls.Add(this.pnlSegmentTimerBestColor);
+            this.gboSegmentTimerBest.Controls.Add(this.btnChooseSegmentTimerBestFont);
+            this.gboSegmentTimerBest.Controls.Add(this.lblSegmentTimerBestColor);
+            this.gboSegmentTimerBest.Controls.Add(this.lblSegmentTimerBestFontName);
+            this.gboSegmentTimerBest.Controls.Add(this.lblSegmentTimerBestFont);
+            this.gboSegmentTimerBest.Location = new System.Drawing.Point(10, 111);
+            this.gboSegmentTimerBest.Name = "gboSegmentTimerBest";
+            this.gboSegmentTimerBest.Size = new System.Drawing.Size(306, 73);
+            this.gboSegmentTimerBest.TabIndex = 15;
+            this.gboSegmentTimerBest.TabStop = false;
+            this.gboSegmentTimerBest.Text = "Segment best";
+            // 
+            // pnlSegmentTimerBestColor
+            // 
+            this.pnlSegmentTimerBestColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSegmentTimerBestColor.Location = new System.Drawing.Point(43, 48);
+            this.pnlSegmentTimerBestColor.Name = "pnlSegmentTimerBestColor";
+            this.pnlSegmentTimerBestColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSegmentTimerBestColor.TabIndex = 11;
+            // 
+            // btnChooseSegmentTimerBestFont
+            // 
+            this.btnChooseSegmentTimerBestFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseSegmentTimerBestFont.Name = "btnChooseSegmentTimerBestFont";
+            this.btnChooseSegmentTimerBestFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseSegmentTimerBestFont.TabIndex = 12;
+            this.btnChooseSegmentTimerBestFont.Text = "Choose...";
+            this.btnChooseSegmentTimerBestFont.UseVisualStyleBackColor = true;
+            // 
+            // lblSegmentTimerBestColor
+            // 
+            this.lblSegmentTimerBestColor.AutoSize = true;
+            this.lblSegmentTimerBestColor.Location = new System.Drawing.Point(6, 50);
+            this.lblSegmentTimerBestColor.Name = "lblSegmentTimerBestColor";
+            this.lblSegmentTimerBestColor.Size = new System.Drawing.Size(34, 13);
+            this.lblSegmentTimerBestColor.TabIndex = 10;
+            this.lblSegmentTimerBestColor.Text = "Color:";
+            // 
+            // lblSegmentTimerBestFontName
+            // 
+            this.lblSegmentTimerBestFontName.AutoSize = true;
+            this.lblSegmentTimerBestFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblSegmentTimerBestFontName.Name = "lblSegmentTimerBestFontName";
+            this.lblSegmentTimerBestFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblSegmentTimerBestFontName.TabIndex = 11;
+            this.lblSegmentTimerBestFontName.Text = "fontName";
+            // 
+            // lblSegmentTimerBestFont
+            // 
+            this.lblSegmentTimerBestFont.AutoSize = true;
+            this.lblSegmentTimerBestFont.Location = new System.Drawing.Point(6, 25);
+            this.lblSegmentTimerBestFont.Name = "lblSegmentTimerBestFont";
+            this.lblSegmentTimerBestFont.Size = new System.Drawing.Size(31, 13);
+            this.lblSegmentTimerBestFont.TabIndex = 10;
+            this.lblSegmentTimerBestFont.Text = "Font:";
+            // 
+            // gboSegmentTimer
+            // 
+            this.gboSegmentTimer.Controls.Add(this.pnlSegmentTimerPausedColor);
+            this.gboSegmentTimer.Controls.Add(this.lblSegmentTimerPausedColor);
+            this.gboSegmentTimer.Controls.Add(this.pnlSegmentTimerLosingTimeColor);
+            this.gboSegmentTimer.Controls.Add(this.lblSegmentTimerLosingTimeColor);
+            this.gboSegmentTimer.Controls.Add(this.pnlSegmentTimerRunningColor);
+            this.gboSegmentTimer.Controls.Add(this.lblSegmentTimerRunningColor);
+            this.gboSegmentTimer.Controls.Add(this.pnlSegmentTimerNotRunningColor);
+            this.gboSegmentTimer.Controls.Add(this.btnChooseSegmentTimerFont);
+            this.gboSegmentTimer.Controls.Add(this.lblSegmentTimerNotRunningColor);
+            this.gboSegmentTimer.Controls.Add(this.lblSegmentTimerFontName);
+            this.gboSegmentTimer.Controls.Add(this.lblSegmentTimerFont);
+            this.gboSegmentTimer.Location = new System.Drawing.Point(10, 190);
+            this.gboSegmentTimer.Name = "gboSegmentTimer";
+            this.gboSegmentTimer.Size = new System.Drawing.Size(306, 148);
+            this.gboSegmentTimer.TabIndex = 22;
+            this.gboSegmentTimer.TabStop = false;
+            this.gboSegmentTimer.Text = "Timer";
+            // 
+            // pnlSegmentTimerPausedColor
+            // 
+            this.pnlSegmentTimerPausedColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSegmentTimerPausedColor.Location = new System.Drawing.Point(115, 122);
+            this.pnlSegmentTimerPausedColor.Name = "pnlSegmentTimerPausedColor";
+            this.pnlSegmentTimerPausedColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSegmentTimerPausedColor.TabIndex = 29;
+            // 
+            // lblSegmentTimerPausedColor
+            // 
+            this.lblSegmentTimerPausedColor.AutoSize = true;
+            this.lblSegmentTimerPausedColor.Location = new System.Drawing.Point(6, 124);
+            this.lblSegmentTimerPausedColor.Name = "lblSegmentTimerPausedColor";
+            this.lblSegmentTimerPausedColor.Size = new System.Drawing.Size(50, 13);
+            this.lblSegmentTimerPausedColor.TabIndex = 28;
+            this.lblSegmentTimerPausedColor.Text = "No delta:";
+            // 
+            // pnlSegmentTimerLosingTimeColor
+            // 
+            this.pnlSegmentTimerLosingTimeColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSegmentTimerLosingTimeColor.Location = new System.Drawing.Point(115, 97);
+            this.pnlSegmentTimerLosingTimeColor.Name = "pnlSegmentTimerLosingTimeColor";
+            this.pnlSegmentTimerLosingTimeColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSegmentTimerLosingTimeColor.TabIndex = 27;
+            // 
+            // lblSegmentTimerLosingTimeColor
+            // 
+            this.lblSegmentTimerLosingTimeColor.AutoSize = true;
+            this.lblSegmentTimerLosingTimeColor.Location = new System.Drawing.Point(6, 99);
+            this.lblSegmentTimerLosingTimeColor.Name = "lblSegmentTimerLosingTimeColor";
+            this.lblSegmentTimerLosingTimeColor.Size = new System.Drawing.Size(63, 13);
+            this.lblSegmentTimerLosingTimeColor.TabIndex = 26;
+            this.lblSegmentTimerLosingTimeColor.Text = "Losing time:";
+            // 
+            // pnlSegmentTimerRunningColor
+            // 
+            this.pnlSegmentTimerRunningColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSegmentTimerRunningColor.Location = new System.Drawing.Point(115, 72);
+            this.pnlSegmentTimerRunningColor.Name = "pnlSegmentTimerRunningColor";
+            this.pnlSegmentTimerRunningColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSegmentTimerRunningColor.TabIndex = 25;
+            // 
+            // lblSegmentTimerRunningColor
+            // 
+            this.lblSegmentTimerRunningColor.AutoSize = true;
+            this.lblSegmentTimerRunningColor.Location = new System.Drawing.Point(6, 74);
+            this.lblSegmentTimerRunningColor.Name = "lblSegmentTimerRunningColor";
+            this.lblSegmentTimerRunningColor.Size = new System.Drawing.Size(50, 13);
+            this.lblSegmentTimerRunningColor.TabIndex = 24;
+            this.lblSegmentTimerRunningColor.Text = "Running:";
+            // 
+            // pnlSegmentTimerNotRunningColor
+            // 
+            this.pnlSegmentTimerNotRunningColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSegmentTimerNotRunningColor.Location = new System.Drawing.Point(115, 48);
+            this.pnlSegmentTimerNotRunningColor.Name = "pnlSegmentTimerNotRunningColor";
+            this.pnlSegmentTimerNotRunningColor.Size = new System.Drawing.Size(20, 20);
+            this.pnlSegmentTimerNotRunningColor.TabIndex = 11;
+            // 
+            // btnChooseSegmentTimerFont
+            // 
+            this.btnChooseSegmentTimerFont.Location = new System.Drawing.Point(225, 20);
+            this.btnChooseSegmentTimerFont.Name = "btnChooseSegmentTimerFont";
+            this.btnChooseSegmentTimerFont.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseSegmentTimerFont.TabIndex = 12;
+            this.btnChooseSegmentTimerFont.Text = "Choose...";
+            this.btnChooseSegmentTimerFont.UseVisualStyleBackColor = true;
+            // 
+            // lblSegmentTimerNotRunningColor
+            // 
+            this.lblSegmentTimerNotRunningColor.AutoSize = true;
+            this.lblSegmentTimerNotRunningColor.Location = new System.Drawing.Point(6, 50);
+            this.lblSegmentTimerNotRunningColor.Name = "lblSegmentTimerNotRunningColor";
+            this.lblSegmentTimerNotRunningColor.Size = new System.Drawing.Size(65, 13);
+            this.lblSegmentTimerNotRunningColor.TabIndex = 10;
+            this.lblSegmentTimerNotRunningColor.Text = "Not running:";
+            // 
+            // lblSegmentTimerFontName
+            // 
+            this.lblSegmentTimerFontName.AutoSize = true;
+            this.lblSegmentTimerFontName.Location = new System.Drawing.Point(43, 26);
+            this.lblSegmentTimerFontName.Name = "lblSegmentTimerFontName";
+            this.lblSegmentTimerFontName.Size = new System.Drawing.Size(53, 13);
+            this.lblSegmentTimerFontName.TabIndex = 11;
+            this.lblSegmentTimerFontName.Text = "fontName";
+            // 
+            // lblSegmentTimerFont
+            // 
+            this.lblSegmentTimerFont.AutoSize = true;
+            this.lblSegmentTimerFont.Location = new System.Drawing.Point(6, 25);
+            this.lblSegmentTimerFont.Name = "lblSegmentTimerFont";
+            this.lblSegmentTimerFont.Size = new System.Drawing.Size(31, 13);
+            this.lblSegmentTimerFont.TabIndex = 10;
+            this.lblSegmentTimerFont.Text = "Font:";
+            // 
             // LayoutSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1664,6 +1959,14 @@
             this.gboSumOfBest.PerformLayout();
             this.gboSumOfBestText.ResumeLayout(false);
             this.gboSumOfBestText.PerformLayout();
+            this.tabLayoutSegmentTimer.ResumeLayout(false);
+            this.tabLayoutSegmentTimer.PerformLayout();
+            this.gboSegmentTimerPB.ResumeLayout(false);
+            this.gboSegmentTimerPB.PerformLayout();
+            this.gboSegmentTimerBest.ResumeLayout(false);
+            this.gboSegmentTimerBest.PerformLayout();
+            this.gboSegmentTimer.ResumeLayout(false);
+            this.gboSegmentTimer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1809,5 +2112,32 @@
         private System.Windows.Forms.Label lblSumOfBestTextFont;
         private System.Windows.Forms.Panel pnlSumOfBestBackgroundColor;
         private System.Windows.Forms.Label lblSumOfBestBackgroundColor;
+        private System.Windows.Forms.TabPage tabLayoutSegmentTimer;
+        private System.Windows.Forms.Panel pnlSegmentTimerBackgroundColor;
+        private System.Windows.Forms.Label lblSegmentTimerBackgroundColor;
+        private System.Windows.Forms.GroupBox gboSegmentTimerPB;
+        private System.Windows.Forms.Panel pnlSegmentTimerPBColor;
+        private System.Windows.Forms.Button btnChooseSegmentTimerPBFont;
+        private System.Windows.Forms.Label lblSegmentTimerPBColor;
+        private System.Windows.Forms.Label lblSegmentTimerPBFontName;
+        private System.Windows.Forms.Label lblSegmentTimerPBFont;
+        private System.Windows.Forms.GroupBox gboSegmentTimer;
+        private System.Windows.Forms.Panel pnlSegmentTimerPausedColor;
+        private System.Windows.Forms.Label lblSegmentTimerPausedColor;
+        private System.Windows.Forms.Panel pnlSegmentTimerLosingTimeColor;
+        private System.Windows.Forms.Label lblSegmentTimerLosingTimeColor;
+        private System.Windows.Forms.Panel pnlSegmentTimerRunningColor;
+        private System.Windows.Forms.Label lblSegmentTimerRunningColor;
+        private System.Windows.Forms.Panel pnlSegmentTimerNotRunningColor;
+        private System.Windows.Forms.Button btnChooseSegmentTimerFont;
+        private System.Windows.Forms.Label lblSegmentTimerNotRunningColor;
+        private System.Windows.Forms.Label lblSegmentTimerFontName;
+        private System.Windows.Forms.Label lblSegmentTimerFont;
+        private System.Windows.Forms.GroupBox gboSegmentTimerBest;
+        private System.Windows.Forms.Panel pnlSegmentTimerBestColor;
+        private System.Windows.Forms.Button btnChooseSegmentTimerBestFont;
+        private System.Windows.Forms.Label lblSegmentTimerBestColor;
+        private System.Windows.Forms.Label lblSegmentTimerBestFontName;
+        private System.Windows.Forms.Label lblSegmentTimerBestFont;
     }
 }
