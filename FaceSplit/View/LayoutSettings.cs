@@ -79,6 +79,8 @@ namespace FaceSplit
             this.pnlSumOfBestTextColor.BackColor = Settings.Default.SumOfBestTextColor;
             this.lblSumOfBestFontName.Text = Settings.Default.SumOfBestFont.FontFamily.Name;
             this.pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
+
+            this.pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -534,6 +536,15 @@ namespace FaceSplit
             {
                 Settings.Default.SumOfBestColor = colorDialog.Color;
                 this.pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
+            }
+        }
+
+        private void pnlSegmentTimerBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerBackgroundColor = colorDialog.Color;
+                this.pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
             }
         }
     }

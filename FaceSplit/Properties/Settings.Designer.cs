@@ -609,5 +609,125 @@ namespace FaceSplit.Properties {
                 this["SumOfBestFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color SegmentTimerBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SegmentTimerBackgroundColor"]));
+            }
+            set {
+                this["SegmentTimerBackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SegmentTimerPBColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SegmentTimerPBColor"]));
+            }
+            set {
+                this["SegmentTimerPBColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font SegmentTimerPBFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SegmentTimerPBFont"]));
+            }
+            set {
+                this["SegmentTimerPBFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SegmentTimerBestColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SegmentTimerBestColor"]));
+            }
+            set {
+                this["SegmentTimerBestColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font SegmentTimerBestFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SegmentTimerBestFont"]));
+            }
+            set {
+                this["SegmentTimerBestFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 14.25pt, style=Bold")]
+        public global::System.Drawing.Font SegmentTimerFont {
+            get {
+                return ((global::System.Drawing.Font)(this["SegmentTimerFont"]));
+            }
+            set {
+                this["SegmentTimerFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SegmentTimerNotRunningColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SegmentTimerNotRunningColor"]));
+            }
+            set {
+                this["SegmentTimerNotRunningColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LimeGreen")]
+        public global::System.Drawing.Color SegmentTimerRunningColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SegmentTimerRunningColor"]));
+            }
+            set {
+                this["SegmentTimerRunningColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkRed")]
+        public global::System.Drawing.Color SegmentTimerLosingTimeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SegmentTimerLosingTimeColor"]));
+            }
+            set {
+                this["SegmentTimerLosingTimeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        public global::System.Drawing.Color SegmentTimerPausedColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SegmentTimerPausedColor"]));
+            }
+            set {
+                this["SegmentTimerPausedColor"] = value;
+            }
+        }
     }
 }

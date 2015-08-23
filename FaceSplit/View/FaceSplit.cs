@@ -103,7 +103,7 @@ namespace FaceSplit
             watchRectangle = new Rectangle(ZERO, ZERO, DEFAULT_WIDTH, DEFAULT_HEIGHT);
             this.displayMode = DisplayMode.TIMER_ONLY;
             this.watchColor = Settings.Default.TimerNotRunningColor;
-            this.segmentWatchColor = Color.White;
+            this.segmentWatchColor = Settings.Default.SegmentTimerNotRunningColor;
             informations = new List<Information>();
             this.splitY_start = 0;
             base.Paint += new PaintEventHandler(this.DrawFaceSplit);
@@ -574,7 +574,7 @@ namespace FaceSplit
         private void FillEmptySegmentTimer(Graphics graphics)
         {
             Rectangle emptySegmentTimerRectangle = new Rectangle(0, watchRectangle.Y + watchRectangle.Height, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-            graphics.FillRectangle(new SolidBrush(Color.Black), emptySegmentTimerRectangle);
+            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), emptySegmentTimerRectangle);
         }
 
         private void DrawSegmentTimer(Graphics graphics)
@@ -586,9 +586,9 @@ namespace FaceSplit
             Rectangle segmentBestimeRectangle = new Rectangle(0, segmentTimeRectangle.Y + segmentTimeRectangle.Height, DEFAULT_WIDTH / 2, DEFAULT_HEIGHT / 2);
             Rectangle segmentTimerRectangle = new Rectangle(DEFAULT_WIDTH / 2, watchRectangle.Y + watchRectangle.Height, DEFAULT_WIDTH / 2, DEFAULT_HEIGHT);
 
-            graphics.FillRectangle(new SolidBrush(Color.Black), segmentTimeRectangle);
-            graphics.FillRectangle(new SolidBrush(Color.Black), segmentBestimeRectangle);
-            graphics.FillRectangle(new SolidBrush(Color.Black), segmentTimerRectangle);
+            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), segmentTimeRectangle);
+            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), segmentBestimeRectangle);
+            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), segmentTimerRectangle);
 
             String segmentTime = (this.split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(this.split.CurrentSegment.BackupSegmentTime) : FaceSplitUtils.TimeFormat(this.split.Segments.Last().BackupSegmentTime);
             String segmentBestTime = (this.split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(this.split.CurrentSegment.BackupBestSegmentTime) : FaceSplitUtils.TimeFormat(this.split.Segments.Last().BackupBestSegmentTime);
@@ -596,13 +596,13 @@ namespace FaceSplit
             segmentTimerString = (this.split.RunStatus == RunStatus.DONE) ? segmentTimeOnCompletionPause.ToString()
                 : FaceSplitUtils.TimeFormat((Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit);
 
-            TextRenderer.DrawText(graphics, "PB: " + segmentTime, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
-                segmentTimeRectangle, Color.White, segmentTimeFlags);
+            TextRenderer.DrawText(graphics, "PB: " + segmentTime, Settings.Default.SegmentTimerPBFont,
+                segmentTimeRectangle, Settings.Default.SegmentTimerPBColor, segmentTimeFlags);
 
-            TextRenderer.DrawText(graphics, "BEST: " + segmentBestTime, new Font(FontFamily.GenericSansSerif, 8.0F, FontStyle.Bold),
-                segmentBestimeRectangle, Color.White, segmentBestTimeFlags);
+            TextRenderer.DrawText(graphics, "BEST: " + segmentBestTime, Settings.Default.SegmentTimerBestFont,
+                segmentBestimeRectangle, Settings.Default.SegmentTimerBestColor, segmentBestTimeFlags);
 
-            TextRenderer.DrawText(graphics, segmentTimerString, new Font(FontFamily.GenericSansSerif, 14.0F, FontStyle.Bold),
+            TextRenderer.DrawText(graphics, segmentTimerString, Settings.Default.SegmentTimerFont,
                 segmentTimerRectangle, segmentWatchColor);
         }
 
@@ -679,7 +679,7 @@ namespace FaceSplit
         {
             if (this.displayMode == DisplayMode.SEGMENTS)
             {
-                this.segmentWatchColor = Color.LimeGreen;
+                this.segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
                 if (this.split.RunStatus == RunStatus.DONE)
                 {
                     this.split.ResumeRun();
@@ -698,7 +698,7 @@ namespace FaceSplit
         {
             if (this.displayMode == DisplayMode.SEGMENTS && this.split.RunStatus == RunStatus.ON_GOING && !this.split.CurrentSplitIsLastSplit())
             {
-                this.segmentWatchColor = Color.LimeGreen;
+                this.segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
                 this.split.SkipSegment((Math.Truncate(this.segmentWatch.Elapsed.TotalSeconds * 100) / 100));
                 this.segmentWatch.Restart();
             }
@@ -732,7 +732,7 @@ namespace FaceSplit
         /// </summary>
         private void DoSplit()
         {
-            this.segmentWatchColor = Color.LimeGreen;
+            this.segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
             if (this.split.RunStatus == RunStatus.STOPPED)
             {
                 this.StartTimer();
@@ -754,7 +754,7 @@ namespace FaceSplit
                     this.runTimeOnCompletionPause = this.watch.Elapsed;
                     this.segmentTimeOnCompletionPause = segmentTime;
                     this.watchColor = Settings.Default.TimerPausedColor;
-                    this.segmentWatchColor = Color.Yellow;
+                    this.segmentWatchColor = Settings.Default.SegmentTimerPausedColor;
                 }
                 this.segmentWatch.Restart();
             }
@@ -800,7 +800,7 @@ namespace FaceSplit
                 {
                     this.informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLostColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "+");
-                    this.segmentWatchColor = Color.Red;
+                    this.segmentWatchColor = Settings.Default.SegmentTimerLosingTimeColor;
                 }
                 else
                 {
@@ -887,7 +887,7 @@ namespace FaceSplit
         {
             this.watch.Start();
             this.watchColor = Settings.Default.TimerRunningColor;
-            this.segmentWatchColor = Color.LimeGreen;
+            this.segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
         }
 
         /// <summary>
@@ -897,7 +897,7 @@ namespace FaceSplit
         {
             this.watch.Stop();
             this.watchColor = Settings.Default.TimerPausedColor;
-            this.segmentWatchColor = Color.Yellow;
+            this.segmentWatchColor = Settings.Default.SegmentTimerPausedColor;
         }
 
         /// <summary>
@@ -907,7 +907,7 @@ namespace FaceSplit
         {
             this.watch.Reset();
             this.watchColor = Settings.Default.TimerNotRunningColor;
-            this.segmentWatchColor = Color.White;
+            this.segmentWatchColor = Settings.Default.SegmentTimerNotRunningColor;
         }
 
         private void StartSegmentTimer()
