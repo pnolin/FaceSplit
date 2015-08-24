@@ -81,6 +81,14 @@ namespace FaceSplit
             this.pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
 
             this.pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
+            this.lblSegmentTimerPBFontName.Text = Settings.Default.SegmentTimerPBFont.FontFamily.Name;
+            this.pnlSegmentTimerPBColor.BackColor = Settings.Default.SegmentTimerPBColor;
+            this.lblSegmentTimerBestFontName.Text = Settings.Default.SegmentTimerBestFont.FontFamily.Name;
+            this.pnlSegmentTimerBestColor.BackColor = Settings.Default.SegmentTimerBestColor;
+            this.lblSegmentTimerFontName.Text = Settings.Default.SegmentTimerFont.FontFamily.Name;
+            this.pnlSegmentTimerRunningColor.BackColor = Settings.Default.SegmentTimerRunningColor;
+            this.pnlSegmentTimerLosingTimeColor.BackColor = Settings.Default.SegmentTimerLosingTimeColor;
+            this.pnlSegmentTimerPausedColor.BackColor = Settings.Default.SegmentTimerPausedColor;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -95,6 +103,7 @@ namespace FaceSplit
 
         private void pnlTimerBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.TimerBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerBackgroundColor = colorDialog.Color;
@@ -104,6 +113,7 @@ namespace FaceSplit
 
         private void pnlTimerNotRunningColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.TimerNotRunningColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerNotRunningColor = colorDialog.Color;
@@ -113,6 +123,7 @@ namespace FaceSplit
 
         private void pnlTimerRunningColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.TimerRunningColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerRunningColor = colorDialog.Color;
@@ -122,6 +133,7 @@ namespace FaceSplit
 
         private void pnlTimerBehindColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.TimerBehindColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerBehindColor = colorDialog.Color;
@@ -131,6 +143,7 @@ namespace FaceSplit
 
         private void pnlTimerPausedColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.TimerPausedColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerPausedColor = colorDialog.Color;
@@ -140,6 +153,7 @@ namespace FaceSplit
 
         private void pnlSplitsBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitsBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitsBackgroundColor = colorDialog.Color;
@@ -149,6 +163,7 @@ namespace FaceSplit
 
         private void pnlCurrentSegmentColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.CurrentSegmentColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.CurrentSegmentColor = colorDialog.Color;
@@ -168,6 +183,7 @@ namespace FaceSplit
 
         private void pnlSplitTimesColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitTimesColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitTimesColor = colorDialog.Color;
@@ -187,6 +203,7 @@ namespace FaceSplit
 
         private void pnlSplitNameColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitNamesColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitNamesColor = colorDialog.Color;
@@ -206,6 +223,7 @@ namespace FaceSplit
 
         private void pnlSplitDeltaAheadSavingColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitDeltasAheadSavingColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasAheadSavingColor = colorDialog.Color;
@@ -215,6 +233,7 @@ namespace FaceSplit
 
         private void pnlSplitDeltaAheadLosingColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitDeltasAheadLosingColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasAheadLosingColor = colorDialog.Color;
@@ -224,6 +243,7 @@ namespace FaceSplit
 
         private void pnlSplitDeltaBehindSavingColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitDeltasBehindSavingColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasBehindSavingColor = colorDialog.Color;
@@ -233,6 +253,7 @@ namespace FaceSplit
 
         private void pnlSplitDeltaBehindLosingColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitDeltasBehindLosingColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasBehindLosingColor = colorDialog.Color;
@@ -242,6 +263,7 @@ namespace FaceSplit
 
         private void pnlSplitDeltaBestSegmentColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SplitDeltasBestSegmentColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasBestSegmentColor = colorDialog.Color;
@@ -251,6 +273,7 @@ namespace FaceSplit
 
         private void pnlTitleBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.TitleBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TitleBackgroundColor = colorDialog.Color;
@@ -270,6 +293,7 @@ namespace FaceSplit
 
         private void pnlTitleColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.TitleColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TitleColor = colorDialog.Color;
@@ -289,6 +313,7 @@ namespace FaceSplit
 
         private void pnlAttemptsColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.AttemptsColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.AttemptsColor = colorDialog.Color;
@@ -298,6 +323,7 @@ namespace FaceSplit
 
         private void pnlGoalBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.GoalBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.GoalBackgroundColor = colorDialog.Color;
@@ -317,6 +343,7 @@ namespace FaceSplit
 
         private void pnlGoalColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.GoalColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.GoalColor = colorDialog.Color;
@@ -326,6 +353,7 @@ namespace FaceSplit
 
         private void pnlPreviousSegmentBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PreviousSegmentBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentBackgroundColor = colorDialog.Color;
@@ -345,6 +373,7 @@ namespace FaceSplit
 
         private void pnlPreviousSegmentTextColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PreviousSegmentTextColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentTextColor = colorDialog.Color;
@@ -364,6 +393,7 @@ namespace FaceSplit
 
         private void pnlPreviousSegmentDeltaSavedTimeColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PreviousSegmentDeltaSavedColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaSavedColor = colorDialog.Color;
@@ -373,6 +403,7 @@ namespace FaceSplit
 
         private void pnlPreviousSegmentDeltaLosingTimeColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PreviousSegmentDeltaLostColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaLostColor = colorDialog.Color;
@@ -382,6 +413,7 @@ namespace FaceSplit
 
         private void pnlPreviousSegmentDeltaBestSegmentColors_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaBestSegmentColor = colorDialog.Color;
@@ -391,6 +423,7 @@ namespace FaceSplit
 
         private void pnlPreviousSegmentDeltaNoDeltaColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaNoDeltaColor = colorDialog.Color;
@@ -400,6 +433,7 @@ namespace FaceSplit
 
         private void pnlPossibleTimeSaveBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PossibleTimeSaveBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveBackgroundColor = colorDialog.Color;
@@ -419,6 +453,7 @@ namespace FaceSplit
 
         private void pnlPossibleTimeSaveTextColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PossibleTimeSaveTextColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveTextColor = colorDialog.Color;
@@ -438,6 +473,7 @@ namespace FaceSplit
 
         private void pnlPossibleTimeSaveColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PossibleTimeSaveColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveColor = colorDialog.Color;
@@ -447,6 +483,7 @@ namespace FaceSplit
 
         private void pnlPredictedTimeBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PossibleTimeSaveColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeBackgroundColor = colorDialog.Color;
@@ -466,6 +503,7 @@ namespace FaceSplit
 
         private void pnlPredictedTimeTextColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PredictedTimeTextColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeTextColor = colorDialog.Color;
@@ -485,6 +523,7 @@ namespace FaceSplit
 
         private void pnlPredictedTimeColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.PredictedTimeColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeColor = colorDialog.Color;
@@ -494,6 +533,7 @@ namespace FaceSplit
 
         private void pnlSumOfBestBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SumOfBestBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestBackgroundColor = colorDialog.Color;
@@ -513,6 +553,7 @@ namespace FaceSplit
 
         private void pnlSumOfBestTextColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SumOfBestTextColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestTextColor = colorDialog.Color;
@@ -532,6 +573,7 @@ namespace FaceSplit
 
         private void pnlSumOfBestColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SumOfBestColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestColor = colorDialog.Color;
@@ -541,10 +583,91 @@ namespace FaceSplit
 
         private void pnlSegmentTimerBackgroundColor_Click(object sender, EventArgs e)
         {
+            colorDialog.Color = Settings.Default.SegmentTimerBackgroundColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerBackgroundColor = colorDialog.Color;
                 this.pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
+            }
+        }
+
+        private void btnChooseSegmentTimerPBFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.SegmentTimerPBFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerPBFont = fontDialog.Font;
+                this.lblSegmentTimerPBFontName.Text = Settings.Default.SegmentTimerPBFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlSegmentTimerPBColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = Settings.Default.SegmentTimerPBColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerPBColor = colorDialog.Color;
+                this.pnlSegmentTimerPBColor.BackColor = Settings.Default.SegmentTimerPBColor;
+            }
+        }
+
+        private void btnChooseSegmentTimerBestFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.SegmentTimerBestFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerBestFont = fontDialog.Font;
+                this.lblSegmentTimerBestFontName.Text = Settings.Default.SegmentTimerBestFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlSegmentTimerBestColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = Settings.Default.SegmentTimerBestColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerBestColor = colorDialog.Color;
+                this.pnlSegmentTimerBestColor.BackColor = Settings.Default.SegmentTimerBestColor;
+            }
+        }
+
+        private void btnChooseSegmentTimerFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = Settings.Default.SegmentTimerFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerFont = fontDialog.Font;
+                this.lblSegmentTimerFontName.Text = Settings.Default.SegmentTimerFont.FontFamily.Name;
+            }
+        }
+
+        private void pnlSegmentTimerRunningColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = Settings.Default.SegmentTimerRunningColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerRunningColor = colorDialog.Color;
+                this.pnlSegmentTimerRunningColor.BackColor = Settings.Default.SegmentTimerRunningColor;
+            }
+        }
+
+        private void pnlSegmentTimerLosingTimeColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = Settings.Default.SegmentTimerLosingTimeColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerLosingTimeColor = colorDialog.Color;
+                this.pnlSegmentTimerLosingTimeColor.BackColor = Settings.Default.SegmentTimerLosingTimeColor;
+            }
+        }
+
+        private void pnlSegmentTimerPausedColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = Settings.Default.SegmentTimerPausedColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.SegmentTimerPausedColor = colorDialog.Color;
+                this.pnlSegmentTimerPausedColor.BackColor = Settings.Default.SegmentTimerPausedColor;
             }
         }
     }
