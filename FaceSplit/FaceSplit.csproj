@@ -94,6 +94,7 @@
     <Compile Include="Model\InformationFlagsFactory.cs" />
     <Compile Include="Model\InformationIndexs.cs" />
     <Compile Include="Model\InformationStyleFactory.cs" />
+    <Compile Include="Model\LayoutSettings.cs" />
     <Compile Include="Model\RunStatus.cs" />
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Split.cs" />
@@ -109,11 +110,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\LayoutSettings.cs">
+    <Compile Include="View\LayoutSettingsEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\LayoutSettings.Designer.cs">
-      <DependentUpon>LayoutSettings.cs</DependentUpon>
+    <Compile Include="View\LayoutSettingsEditor.Designer.cs">
+      <DependentUpon>LayoutSettingsEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="View\RunEditor.cs">
       <SubType>Form</SubType>
@@ -134,8 +135,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\LayoutSettings.resx">
-      <DependentUpon>LayoutSettings.cs</DependentUpon>
+    <EmbeddedResource Include="View\LayoutSettingsEditor.resx">
+      <DependentUpon>LayoutSettingsEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RunEditor.resx">
       <DependentUpon>RunEditor.cs</DependentUpon>

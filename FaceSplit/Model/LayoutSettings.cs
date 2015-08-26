@@ -1,0 +1,136 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Drawing;
+using FaceSplit.Properties;
+
+namespace FaceSplit.Model
+{
+    public class LayoutSettings
+    {
+        private Font timerFont;
+        private Color timerNotRunningColor;
+        private Color timerBackgroundColor;
+        private Color timerRunningColor;
+        private Color timerBehindColor;
+        private Color timerPausedColor;
+        private Color splitsBackgroundColor;
+        private Color currentSegmentColor;
+        private Font splitTimesFont;
+        private Color splitTimesColor;
+        private Font splitNamesFont;
+        private Color splitNamesColor;
+        private Font splitDeltasFont;
+        private Color splitDeltasAheadSavingColor;
+        private Color splitDeltasAheadLosingColor;
+        private Color splitDeltasBehindSavingColor;
+        private Color splitDeltasBehindLosingColor;
+        private Color splitDeltasBestSegmentColor;
+        private Color titleBackgroundColor;
+        private Font titleFont;
+        private Color titleColor;
+        private Font attemptsFont;
+        private Color attemptsColor;
+        private Color goalBackgroundColor;
+        private Color goalColor;
+        private Font goalFont;
+        private Color previousSegmentBackgroundColor;
+        private Color previousSegmentTextColor;
+        private Font previousSegmentTextFont;
+        private Color previousSegmentDeltaSavedColor;
+        private Color previousSegmentDeltaLostColor;
+        private Color previousSegmentDeltaBestSegmentColor;
+        private Font previousSegmentDeltaFont;
+        private Color previousSegmentDeltaNoDeltaColor;
+        private Color possibleTimeSaveBackgroundColor;
+        private Color possibleTimeSaveTextColor;
+        private Font possibleTimeSaveTextFont;
+        private Color possibleTimeSaveColor;
+        private Font possibleTimeSaveFont;
+        private Color predictedTimeBackgroundColor;
+        private Color predictedTimeTextColor;
+        private Font predictedTimeTextFont;
+        private Color predictedTimeColor;
+        private Font predictedTimeFont;
+        private Color sumOfBestBackgroundColor;
+        private Color sumOfBestTextColor;
+        private Font sumOfBestTextFont;
+        private Color sumOfBestColor;
+        private Font sumOfBestFont;
+        private Color segmentTimerBackgroundColor;
+        private Color segmentTimerPBColor;
+        private Font segmentTimerPBFont;
+        private Color segmentTimerBestColor;
+        private Font segmentTimerBestFont;
+        private Font segmentTimerFont;
+        private Color segmentTimerNotRunningColor;
+        private Color segmentTimerRunningColor;
+        private Color segmentTimerLosingTimeColor;
+        private Color segmentTimerPausedColor;
+
+        public void SaveLayoutSettings()
+        {
+            timerFont = Settings.Default.TimerFont;
+            timerNotRunningColor = Settings.Default.TimerNotRunningColor;
+            timerNotRunningColor = Settings.Default.TimerNotRunningColor;
+            timerRunningColor = Settings.Default.TimerRunningColor;
+            timerBehindColor = Settings.Default.TimerBehindColor;
+            timerBehindColor = Settings.Default.TimerBehindColor;
+            splitsBackgroundColor = Settings.Default.SplitsBackgroundColor;
+            currentSegmentColor = Settings.Default.CurrentSegmentColor;
+            splitTimesFont = Settings.Default.SplitTimesFont;
+            splitTimesColor = Settings.Default.SplitTimesColor;
+            splitNamesFont = Settings.Default.SplitNamesFont;
+            splitNamesColor = Settings.Default.SplitNamesColor;
+            splitDeltasFont = Settings.Default.SplitDeltasFont;
+            splitDeltasAheadSavingColor = Settings.Default.SplitDeltasAheadSavingColor;
+            splitDeltasAheadLosingColor = Settings.Default.SplitDeltasAheadLosingColor;
+            splitDeltasBehindSavingColor = Settings.Default.SplitDeltasBehindSavingColor;
+            splitDeltasBehindLosingColor = Settings.Default.SplitDeltasBehindLosingColor;
+            splitDeltasBestSegmentColor = Settings.Default.SplitDeltasBestSegmentColor;
+            titleBackgroundColor = Settings.Default.TitleBackgroundColor;
+            titleFont = Settings.Default.TitleFont;
+            titleColor = Settings.Default.TitleColor;
+            attemptsFont = Settings.Default.AttemptsFont;
+            attemptsColor = Settings.Default.AttemptsColor;
+            goalBackgroundColor = Settings.Default.GoalBackgroundColor;
+            goalColor = Settings.Default.GoalColor;
+            goalFont = Settings.Default.GoalFont;
+            previousSegmentBackgroundColor = Settings.Default.PreviousSegmentBackgroundColor;
+            previousSegmentTextColor = Settings.Default.PreviousSegmentTextColor;
+            previousSegmentTextFont = Settings.Default.PreviousSegmentTextFont;
+            previousSegmentDeltaSavedColor = Settings.Default.PreviousSegmentDeltaSavedColor;
+            previousSegmentDeltaLostColor = Settings.Default.PreviousSegmentDeltaLostColor;
+            previousSegmentDeltaBestSegmentColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
+            previousSegmentDeltaFont = Settings.Default.PreviousSegmentDeltaFont;
+            previousSegmentDeltaNoDeltaColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+            possibleTimeSaveBackgroundColor = Settings.Default.PossibleTimeSaveBackgroundColor;
+            possibleTimeSaveTextColor = Settings.Default.PossibleTimeSaveTextColor;
+            possibleTimeSaveTextFont = Settings.Default.PossibleTimeSaveTextFont;
+            possibleTimeSaveColor = Settings.Default.PossibleTimeSaveColor;
+            possibleTimeSaveFont = Settings.Default.PossibleTimeSaveFont;
+            predictedTimeBackgroundColor = Settings.Default.PredictedTimeBackgroundColor;
+            predictedTimeTextColor = Settings.Default.PredictedTimeTextColor;
+            predictedTimeTextFont = Settings.Default.PredictedTimeTextFont;
+            predictedTimeColor = Settings.Default.PredictedTimeColor;
+            predictedTimeFont = Settings.Default.PredictedTimeFont;
+            sumOfBestBackgroundColor = Settings.Default.SumOfBestBackgroundColor;
+            sumOfBestTextColor = Settings.Default.SumOfBestTextColor;
+            sumOfBestTextFont = Settings.Default.SumOfBestTextFont;
+            sumOfBestColor = Settings.Default.SumOfBestColor;
+            sumOfBestFont = Settings.Default.SumOfBestFont;
+            segmentTimerBackgroundColor = Settings.Default.SegmentTimerBackgroundColor;
+            segmentTimerPBColor = Settings.Default.SegmentTimerPBColor;
+            segmentTimerPBFont = Settings.Default.SegmentTimerPBFont;
+            segmentTimerBestColor = Settings.Default.SegmentTimerBestColor;
+            segmentTimerBestFont = Settings.Default.SegmentTimerBestFont;
+            segmentTimerFont = Settings.Default.SegmentTimerFont;
+            segmentTimerNotRunningColor = Settings.Default.SegmentTimerNotRunningColor;
+            segmentTimerRunningColor = Settings.Default.SegmentTimerRunningColor;
+            segmentTimerLosingTimeColor = Settings.Default.SegmentTimerLosingTimeColor;
+            segmentTimerPausedColor = Settings.Default.SegmentTimerPausedColor;
+        }
+
+    }
+}
