@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Xml;
-using System.Windows.Forms;
-using System.Collections;
 using FaceSplit.Model;
 using FaceSplit;
 
 public class LiveSplitXMLReader
 {
-    private const String GAME_NAME = "GameName";
-    private const String CATEGORY_NAME = "CategoryName";
-    private const String OFFSET = "Offset";
-    private const String ATTEMPTS_COUNT = "AttemptCount";
-    private const String SEGMENTS = "Segments";
-    private const String SEGMENT_NAME = "Name";
-    private const String SPLIT_TIMES = "SplitTimes";
-    private const String BEST_SEGMENT = "BestSegmentTime";
+    private const string GAME_NAME = "GameName";
+    private const string CATEGORY_NAME = "CategoryName";
+    private const string OFFSET = "Offset";
+    private const string ATTEMPTS_COUNT = "AttemptCount";
+    private const string SEGMENTS = "Segments";
+    private const string SEGMENT_NAME = "Name";
+    private const string SPLIT_TIMES = "SplitTimes";
+    private const string BEST_SEGMENT = "BestSegmentTime";
 
     private Split split;
     private XmlDocument xmlDocument;
 
     public LiveSplitXMLReader()
     {
-        this.split = new Split();
+        split = new Split();
         xmlDocument = new XmlDocument();
     }
 
@@ -33,12 +30,12 @@ public class LiveSplitXMLReader
     /// </summary>
     /// <param name="file">The filename of the LiveSplit XML file.</param>
     /// <returns>The split with all its information.</returns>
-    public Split ReadSplit(String file)
+    public Split ReadSplit(string file)
     {
         xmlDocument.Load(file);
         StringBuilder stringBuilder = new StringBuilder();
-        String runTitle = "";
-        String attemptsCountString = "";
+        string runTitle = "";
+        string attemptsCountString = "";
         int attemptsCount = 0;
         XmlNodeList rootNode;
         List<Segment> segments = new List<Segment>();
@@ -68,11 +65,11 @@ public class LiveSplitXMLReader
         }
 
         runTitle = stringBuilder.ToString();
-        this.split.RunTitle = runTitle;
-        Int32.TryParse(attemptsCountString, out attemptsCount);
-        this.split.AttemptsCount = attemptsCount;
-        this.split.Segments = segments;
-        return this.split;
+        split.RunTitle = runTitle;
+        int.TryParse(attemptsCountString, out attemptsCount);
+        split.AttemptsCount = attemptsCount;
+        split.Segments = segments;
+        return split;
     }
 
     /// <summary>
@@ -83,7 +80,7 @@ public class LiveSplitXMLReader
     private void PopulateSegments(List<Segment> segments, XmlNode segmentsNode)
     {
         Segment newSegment;
-        String segmentName = "";
+        string segmentName = "";
         double segmentBestTime = 0.0;
         double segmentBestSegment = 0.0;
         XmlNode nodeSegmentTime;

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using FaceSplit.Properties;
 
@@ -18,77 +12,77 @@ namespace FaceSplit
         public LayoutSettingsEditor()
         {
             InitializeComponent();
-            this.fontDialog = new FontDialog();
+            fontDialog = new FontDialog();
             colorDialog = new ColorDialog();
-            this.lblTimerFontName.Text = Settings.Default.TimerFont.FontFamily.Name;
-            this.pnlTimerBackgroundColor.BackColor = Settings.Default.TimerBackgroundColor;
-            this.pnlTimerNotRunningColor.BackColor = Settings.Default.TimerNotRunningColor;
-            this.pnlTimerRunningColor.BackColor = Settings.Default.TimerRunningColor;
-            this.pnlTimerBehindColor.BackColor = Settings.Default.TimerBehindColor;
-            this.pnlTimerPausedColor.BackColor = Settings.Default.TimerPausedColor;
+            lblTimerFontName.Text = Settings.Default.TimerFont.FontFamily.Name;
+            pnlTimerBackgroundColor.BackColor = Settings.Default.TimerBackgroundColor;
+            pnlTimerNotRunningColor.BackColor = Settings.Default.TimerNotRunningColor;
+            pnlTimerRunningColor.BackColor = Settings.Default.TimerRunningColor;
+            pnlTimerBehindColor.BackColor = Settings.Default.TimerBehindColor;
+            pnlTimerPausedColor.BackColor = Settings.Default.TimerPausedColor;
 
-            this.pnlSplitsBackgroundColor.BackColor = Settings.Default.SplitsBackgroundColor;
-            this.pnlCurrentSegmentColor.BackColor = Settings.Default.CurrentSegmentColor;
-            this.lblSplitTimesFontName.Text = Settings.Default.SplitTimesFont.FontFamily.Name;
-            this.pnlSplitTimesColor.BackColor = Settings.Default.SplitTimesColor;
-            this.lblSplitNamesFontName.Text = Settings.Default.SplitNamesFont.FontFamily.Name;
-            this.pnlSplitNameColor.BackColor = Settings.Default.SplitNamesColor;
+            pnlSplitsBackgroundColor.BackColor = Settings.Default.SplitsBackgroundColor;
+            pnlCurrentSegmentColor.BackColor = Settings.Default.CurrentSegmentColor;
+            lblSplitTimesFontName.Text = Settings.Default.SplitTimesFont.FontFamily.Name;
+            pnlSplitTimesColor.BackColor = Settings.Default.SplitTimesColor;
+            lblSplitNamesFontName.Text = Settings.Default.SplitNamesFont.FontFamily.Name;
+            pnlSplitNameColor.BackColor = Settings.Default.SplitNamesColor;
 
-            this.lblSplitDeltasFontName.Text = Settings.Default.SplitDeltasFont.FontFamily.Name;
-            this.pnlSplitDeltaAheadSavingColor.BackColor = Settings.Default.SplitDeltasAheadSavingColor;
-            this.pnlSplitDeltaAheadLosingColor.BackColor = Settings.Default.SplitDeltasAheadLosingColor;
-            this.pnlSplitDeltaBehindSavingColor.BackColor = Settings.Default.SplitDeltasBehindSavingColor;
-            this.pnlSplitDeltaBehindLosingColor.BackColor = Settings.Default.SplitDeltasBehindLosingColor;
-            this.pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
+            lblSplitDeltasFontName.Text = Settings.Default.SplitDeltasFont.FontFamily.Name;
+            pnlSplitDeltaAheadSavingColor.BackColor = Settings.Default.SplitDeltasAheadSavingColor;
+            pnlSplitDeltaAheadLosingColor.BackColor = Settings.Default.SplitDeltasAheadLosingColor;
+            pnlSplitDeltaBehindSavingColor.BackColor = Settings.Default.SplitDeltasBehindSavingColor;
+            pnlSplitDeltaBehindLosingColor.BackColor = Settings.Default.SplitDeltasBehindLosingColor;
+            pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
 
-            this.pnlTitleBackgroundColor.BackColor = Settings.Default.TitleBackgroundColor;
-            this.lblTitleFontName.Text = Settings.Default.TitleFont.FontFamily.Name;
-            this.pnlTitleColor.BackColor = Settings.Default.TitleColor;
+            pnlTitleBackgroundColor.BackColor = Settings.Default.TitleBackgroundColor;
+            lblTitleFontName.Text = Settings.Default.TitleFont.FontFamily.Name;
+            pnlTitleColor.BackColor = Settings.Default.TitleColor;
 
-            this.lblAttemptsFontName.Text = Settings.Default.AttemptsFont.FontFamily.Name;
-            this.pnlAttemptsColor.BackColor = Settings.Default.AttemptsColor;
+            lblAttemptsFontName.Text = Settings.Default.AttemptsFont.FontFamily.Name;
+            pnlAttemptsColor.BackColor = Settings.Default.AttemptsColor;
 
-            this.pnlGoalBackgroundColor.BackColor = Settings.Default.GoalBackgroundColor;
-            this.lblGoalFontName.Text = Settings.Default.GoalFont.FontFamily.Name;
-            this.pnlGoalColor.BackColor = Settings.Default.GoalColor;
+            pnlGoalBackgroundColor.BackColor = Settings.Default.GoalBackgroundColor;
+            lblGoalFontName.Text = Settings.Default.GoalFont.FontFamily.Name;
+            pnlGoalColor.BackColor = Settings.Default.GoalColor;
 
-            this.pnlPreviousSegmentBackgroundColor.BackColor = Settings.Default.PreviousSegmentBackgroundColor;
-            this.lblPreviousSegmentTextFontName.Text = Settings.Default.PreviousSegmentTextFont.FontFamily.Name;
-            this.pnlPreviousSegmentTextColor.BackColor = Settings.Default.PreviousSegmentTextColor;
+            pnlPreviousSegmentBackgroundColor.BackColor = Settings.Default.PreviousSegmentBackgroundColor;
+            lblPreviousSegmentTextFontName.Text = Settings.Default.PreviousSegmentTextFont.FontFamily.Name;
+            pnlPreviousSegmentTextColor.BackColor = Settings.Default.PreviousSegmentTextColor;
 
-            this.lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
-            this.pnlPreviousSegmentDeltaSavedColor.BackColor = Settings.Default.PreviousSegmentDeltaSavedColor;
-            this.pnlPreviousSegmentDeltaLostColor.BackColor = Settings.Default.PreviousSegmentDeltaLostColor;
-            this.pnlPreviousSegmentDeltaBestSegmentColor.BackColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
-            this.pnlPreviousSegmentDeltaNoDeltaColor.BackColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+            lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
+            pnlPreviousSegmentDeltaSavedColor.BackColor = Settings.Default.PreviousSegmentDeltaSavedColor;
+            pnlPreviousSegmentDeltaLostColor.BackColor = Settings.Default.PreviousSegmentDeltaLostColor;
+            pnlPreviousSegmentDeltaBestSegmentColor.BackColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
+            pnlPreviousSegmentDeltaNoDeltaColor.BackColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
 
-            this.pnlPossibleTimeSaveBackgroundColor.BackColor = Settings.Default.PossibleTimeSaveBackgroundColor;
-            this.lblPossibleTimeSaveTextFontName.Text = Settings.Default.PossibleTimeSaveTextFont.FontFamily.Name;
-            this.pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
-            this.lblPossibleTimeSaveFontName.Text = Settings.Default.PossibleTimeSaveFont.FontFamily.Name;
-            this.pnlPossibleTimeSaveColor.BackColor = Settings.Default.PossibleTimeSaveColor;
+            pnlPossibleTimeSaveBackgroundColor.BackColor = Settings.Default.PossibleTimeSaveBackgroundColor;
+            lblPossibleTimeSaveTextFontName.Text = Settings.Default.PossibleTimeSaveTextFont.FontFamily.Name;
+            pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
+            lblPossibleTimeSaveFontName.Text = Settings.Default.PossibleTimeSaveFont.FontFamily.Name;
+            pnlPossibleTimeSaveColor.BackColor = Settings.Default.PossibleTimeSaveColor;
 
-            this.pnlPredictedTimeBackgroundColor.BackColor = Settings.Default.PredictedTimeBackgroundColor;
-            this.lblPredictedTimeTextFontName.Text = Settings.Default.PredictedTimeTextFont.FontFamily.Name;
-            this.pnlPredictedTimeTextColor.BackColor = Settings.Default.PredictedTimeTextColor;
-            this.lblPredictedTimeFontName.Text = Settings.Default.PredictedTimeFont.FontFamily.Name;
-            this.pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
+            pnlPredictedTimeBackgroundColor.BackColor = Settings.Default.PredictedTimeBackgroundColor;
+            lblPredictedTimeTextFontName.Text = Settings.Default.PredictedTimeTextFont.FontFamily.Name;
+            pnlPredictedTimeTextColor.BackColor = Settings.Default.PredictedTimeTextColor;
+            lblPredictedTimeFontName.Text = Settings.Default.PredictedTimeFont.FontFamily.Name;
+            pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
 
-            this.pnlSumOfBestBackgroundColor.BackColor = Settings.Default.SumOfBestBackgroundColor;
-            this.lblSumOfBestTextFontName.Text = Settings.Default.SumOfBestTextFont.FontFamily.Name;
-            this.pnlSumOfBestTextColor.BackColor = Settings.Default.SumOfBestTextColor;
-            this.lblSumOfBestFontName.Text = Settings.Default.SumOfBestFont.FontFamily.Name;
-            this.pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
+            pnlSumOfBestBackgroundColor.BackColor = Settings.Default.SumOfBestBackgroundColor;
+            lblSumOfBestTextFontName.Text = Settings.Default.SumOfBestTextFont.FontFamily.Name;
+            pnlSumOfBestTextColor.BackColor = Settings.Default.SumOfBestTextColor;
+            lblSumOfBestFontName.Text = Settings.Default.SumOfBestFont.FontFamily.Name;
+            pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
 
-            this.pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
-            this.lblSegmentTimerPBFontName.Text = Settings.Default.SegmentTimerPBFont.FontFamily.Name;
-            this.pnlSegmentTimerPBColor.BackColor = Settings.Default.SegmentTimerPBColor;
-            this.lblSegmentTimerBestFontName.Text = Settings.Default.SegmentTimerBestFont.FontFamily.Name;
-            this.pnlSegmentTimerBestColor.BackColor = Settings.Default.SegmentTimerBestColor;
-            this.lblSegmentTimerFontName.Text = Settings.Default.SegmentTimerFont.FontFamily.Name;
-            this.pnlSegmentTimerRunningColor.BackColor = Settings.Default.SegmentTimerRunningColor;
-            this.pnlSegmentTimerLosingTimeColor.BackColor = Settings.Default.SegmentTimerLosingTimeColor;
-            this.pnlSegmentTimerPausedColor.BackColor = Settings.Default.SegmentTimerPausedColor;
+            pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
+            lblSegmentTimerPBFontName.Text = Settings.Default.SegmentTimerPBFont.FontFamily.Name;
+            pnlSegmentTimerPBColor.BackColor = Settings.Default.SegmentTimerPBColor;
+            lblSegmentTimerBestFontName.Text = Settings.Default.SegmentTimerBestFont.FontFamily.Name;
+            pnlSegmentTimerBestColor.BackColor = Settings.Default.SegmentTimerBestColor;
+            lblSegmentTimerFontName.Text = Settings.Default.SegmentTimerFont.FontFamily.Name;
+            pnlSegmentTimerRunningColor.BackColor = Settings.Default.SegmentTimerRunningColor;
+            pnlSegmentTimerLosingTimeColor.BackColor = Settings.Default.SegmentTimerLosingTimeColor;
+            pnlSegmentTimerPausedColor.BackColor = Settings.Default.SegmentTimerPausedColor;
         }
 
         private void btnChooseTimerFont_Click(object sender, EventArgs e)
@@ -97,7 +91,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerFont = fontDialog.Font;
-                this.lblTimerFontName.Text = Settings.Default.TimerFont.FontFamily.Name;
+                lblTimerFontName.Text = Settings.Default.TimerFont.FontFamily.Name;
             }
         }
 
@@ -107,7 +101,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerBackgroundColor = colorDialog.Color;
-                this.pnlTimerBackgroundColor.BackColor = Settings.Default.TimerBackgroundColor;
+                pnlTimerBackgroundColor.BackColor = Settings.Default.TimerBackgroundColor;
             }
         }
 
@@ -117,7 +111,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerNotRunningColor = colorDialog.Color;
-                this.pnlTimerNotRunningColor.BackColor = Settings.Default.TimerNotRunningColor;
+                pnlTimerNotRunningColor.BackColor = Settings.Default.TimerNotRunningColor;
             }
         }
 
@@ -127,7 +121,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerRunningColor = colorDialog.Color;
-                this.pnlTimerRunningColor.BackColor = Settings.Default.TimerRunningColor;
+                pnlTimerRunningColor.BackColor = Settings.Default.TimerRunningColor;
             }
         }
 
@@ -137,7 +131,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerBehindColor = colorDialog.Color;
-                this.pnlTimerBehindColor.BackColor = Settings.Default.TimerBehindColor;
+                pnlTimerBehindColor.BackColor = Settings.Default.TimerBehindColor;
             }
         }
 
@@ -147,7 +141,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TimerPausedColor = colorDialog.Color;
-                this.pnlTimerPausedColor.BackColor = Settings.Default.TimerPausedColor;
+                pnlTimerPausedColor.BackColor = Settings.Default.TimerPausedColor;
             }
         }
 
@@ -157,7 +151,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitsBackgroundColor = colorDialog.Color;
-                this.pnlSplitsBackgroundColor.BackColor = Settings.Default.SplitsBackgroundColor;
+                pnlSplitsBackgroundColor.BackColor = Settings.Default.SplitsBackgroundColor;
             }
         }
 
@@ -167,7 +161,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.CurrentSegmentColor = colorDialog.Color;
-                this.pnlCurrentSegmentColor.BackColor = Settings.Default.CurrentSegmentColor;
+                pnlCurrentSegmentColor.BackColor = Settings.Default.CurrentSegmentColor;
             }
         }
 
@@ -177,7 +171,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitTimesFont = fontDialog.Font;
-                this.lblSplitTimesFontName.Text = Settings.Default.SplitTimesFont.FontFamily.Name;
+                lblSplitTimesFontName.Text = Settings.Default.SplitTimesFont.FontFamily.Name;
             }
         }
 
@@ -187,7 +181,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitTimesColor = colorDialog.Color;
-                this.pnlSplitTimesColor.BackColor = Settings.Default.SplitTimesColor;
+                pnlSplitTimesColor.BackColor = Settings.Default.SplitTimesColor;
             }
         }
 
@@ -197,7 +191,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitNamesFont = fontDialog.Font;
-                this.lblSplitNamesFontName.Text = Settings.Default.SplitNamesFont.FontFamily.Name;
+                lblSplitNamesFontName.Text = Settings.Default.SplitNamesFont.FontFamily.Name;
             }
         }
 
@@ -207,7 +201,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitNamesColor = colorDialog.Color;
-                this.pnlSplitNameColor.BackColor = Settings.Default.SplitNamesColor;
+                pnlSplitNameColor.BackColor = Settings.Default.SplitNamesColor;
             }
         }
 
@@ -217,7 +211,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasFont = fontDialog.Font;
-                this.lblSplitDeltasFontName.Text = Settings.Default.SplitDeltasFont.FontFamily.Name;
+                lblSplitDeltasFontName.Text = Settings.Default.SplitDeltasFont.FontFamily.Name;
             }
         }
 
@@ -227,7 +221,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasAheadSavingColor = colorDialog.Color;
-                this.pnlSplitDeltaAheadSavingColor.BackColor = Settings.Default.SplitDeltasAheadSavingColor;
+                pnlSplitDeltaAheadSavingColor.BackColor = Settings.Default.SplitDeltasAheadSavingColor;
             }
         }
 
@@ -237,7 +231,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasAheadLosingColor = colorDialog.Color;
-                this.pnlSplitDeltaAheadLosingColor.BackColor = Settings.Default.SplitDeltasAheadLosingColor;
+                pnlSplitDeltaAheadLosingColor.BackColor = Settings.Default.SplitDeltasAheadLosingColor;
             }
         }
 
@@ -247,7 +241,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasBehindSavingColor = colorDialog.Color;
-                this.pnlSplitDeltaBehindSavingColor.BackColor = Settings.Default.SplitDeltasBehindSavingColor;
+                pnlSplitDeltaBehindSavingColor.BackColor = Settings.Default.SplitDeltasBehindSavingColor;
             }
         }
 
@@ -257,7 +251,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasBehindLosingColor = colorDialog.Color;
-                this.pnlSplitDeltaBehindLosingColor.BackColor = Settings.Default.SplitDeltasBehindLosingColor;
+                pnlSplitDeltaBehindLosingColor.BackColor = Settings.Default.SplitDeltasBehindLosingColor;
             }
         }
 
@@ -267,7 +261,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SplitDeltasBestSegmentColor = colorDialog.Color;
-                this.pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
+                pnlSplitDeltaBestSegmentColor.BackColor = Settings.Default.SplitDeltasBestSegmentColor;
             }
         }
 
@@ -277,7 +271,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TitleBackgroundColor = colorDialog.Color;
-                this.pnlTitleBackgroundColor.BackColor = Settings.Default.TitleBackgroundColor;
+                pnlTitleBackgroundColor.BackColor = Settings.Default.TitleBackgroundColor;
             }
         }
 
@@ -287,7 +281,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TitleFont = fontDialog.Font;
-                this.lblTitleFontName.Text = Settings.Default.TitleFont.FontFamily.Name;
+                lblTitleFontName.Text = Settings.Default.TitleFont.FontFamily.Name;
             }
         }
 
@@ -297,7 +291,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.TitleColor = colorDialog.Color;
-                this.pnlTitleColor.BackColor = Settings.Default.TitleColor;
+                pnlTitleColor.BackColor = Settings.Default.TitleColor;
             }
         }
 
@@ -307,7 +301,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.AttemptsFont = fontDialog.Font;
-                this.lblAttemptsFontName.Text = Settings.Default.AttemptsFont.FontFamily.Name;
+                lblAttemptsFontName.Text = Settings.Default.AttemptsFont.FontFamily.Name;
             }
         }
 
@@ -317,7 +311,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.AttemptsColor = colorDialog.Color;
-                this.pnlAttemptsColor.BackColor = Settings.Default.AttemptsColor;
+                pnlAttemptsColor.BackColor = Settings.Default.AttemptsColor;
             }
         }
 
@@ -327,7 +321,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.GoalBackgroundColor = colorDialog.Color;
-                this.pnlGoalBackgroundColor.BackColor = Settings.Default.GoalBackgroundColor;
+                pnlGoalBackgroundColor.BackColor = Settings.Default.GoalBackgroundColor;
             }
         }
 
@@ -337,7 +331,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.GoalFont = fontDialog.Font;
-                this.lblGoalFontName.Text = Settings.Default.GoalFont.FontFamily.Name;
+                lblGoalFontName.Text = Settings.Default.GoalFont.FontFamily.Name;
             }
         }
 
@@ -347,7 +341,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.GoalColor = colorDialog.Color;
-                this.pnlGoalColor.BackColor = Settings.Default.GoalColor;
+                pnlGoalColor.BackColor = Settings.Default.GoalColor;
             }
         }
 
@@ -357,7 +351,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentBackgroundColor = colorDialog.Color;
-                this.pnlPreviousSegmentBackgroundColor.BackColor = Settings.Default.PreviousSegmentBackgroundColor;
+                pnlPreviousSegmentBackgroundColor.BackColor = Settings.Default.PreviousSegmentBackgroundColor;
             }
         }
 
@@ -367,7 +361,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentTextFont = fontDialog.Font;
-                this.lblPreviousSegmentTextFontName.Text = Settings.Default.PreviousSegmentTextFont.FontFamily.Name;
+                lblPreviousSegmentTextFontName.Text = Settings.Default.PreviousSegmentTextFont.FontFamily.Name;
             }
         }
 
@@ -377,7 +371,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentTextColor = colorDialog.Color;
-                this.pnlPreviousSegmentTextColor.BackColor = Settings.Default.PreviousSegmentTextColor;
+                pnlPreviousSegmentTextColor.BackColor = Settings.Default.PreviousSegmentTextColor;
             }
         }
 
@@ -387,7 +381,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaFont = fontDialog.Font;
-                this.lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
+                lblPreviousSegmentDeltaFontName.Text = Settings.Default.PreviousSegmentDeltaFont.FontFamily.Name;
             }
         }
 
@@ -397,7 +391,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaSavedColor = colorDialog.Color;
-                this.pnlPreviousSegmentDeltaSavedColor.BackColor = Settings.Default.PreviousSegmentDeltaSavedColor;
+                pnlPreviousSegmentDeltaSavedColor.BackColor = Settings.Default.PreviousSegmentDeltaSavedColor;
             }
         }
 
@@ -407,7 +401,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaLostColor = colorDialog.Color;
-                this.pnlPreviousSegmentDeltaLostColor.BackColor = Settings.Default.PreviousSegmentDeltaLostColor;
+                pnlPreviousSegmentDeltaLostColor.BackColor = Settings.Default.PreviousSegmentDeltaLostColor;
             }
         }
 
@@ -417,7 +411,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaBestSegmentColor = colorDialog.Color;
-                this.pnlPreviousSegmentDeltaBestSegmentColor.BackColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
+                pnlPreviousSegmentDeltaBestSegmentColor.BackColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
             }
         }
 
@@ -427,7 +421,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PreviousSegmentDeltaNoDeltaColor = colorDialog.Color;
-                this.pnlPreviousSegmentDeltaNoDeltaColor.BackColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+                pnlPreviousSegmentDeltaNoDeltaColor.BackColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
             }
         }
 
@@ -437,7 +431,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveBackgroundColor = colorDialog.Color;
-                this.pnlPossibleTimeSaveBackgroundColor.BackColor = Settings.Default.PossibleTimeSaveBackgroundColor;
+                pnlPossibleTimeSaveBackgroundColor.BackColor = Settings.Default.PossibleTimeSaveBackgroundColor;
             }
         }
 
@@ -447,7 +441,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveTextFont = fontDialog.Font;
-                this.lblPossibleTimeSaveTextFontName.Text = Settings.Default.PossibleTimeSaveTextFont.FontFamily.Name;
+                lblPossibleTimeSaveTextFontName.Text = Settings.Default.PossibleTimeSaveTextFont.FontFamily.Name;
             }
         }
 
@@ -457,7 +451,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveTextColor = colorDialog.Color;
-                this.pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
+                pnlPossibleTimeSaveTextColor.BackColor = Settings.Default.PossibleTimeSaveTextColor;
             }
         }
 
@@ -467,7 +461,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveFont = fontDialog.Font;
-                this.lblPossibleTimeSaveFontName.Text = Settings.Default.PossibleTimeSaveFont.FontFamily.Name;
+                lblPossibleTimeSaveFontName.Text = Settings.Default.PossibleTimeSaveFont.FontFamily.Name;
             }
         }
 
@@ -477,7 +471,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PossibleTimeSaveColor = colorDialog.Color;
-                this.pnlPossibleTimeSaveColor.BackColor = Settings.Default.PossibleTimeSaveColor;
+                pnlPossibleTimeSaveColor.BackColor = Settings.Default.PossibleTimeSaveColor;
             }
         }
 
@@ -487,7 +481,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeBackgroundColor = colorDialog.Color;
-                this.pnlPredictedTimeBackgroundColor.BackColor = Settings.Default.PredictedTimeBackgroundColor;
+                pnlPredictedTimeBackgroundColor.BackColor = Settings.Default.PredictedTimeBackgroundColor;
             }
         }
 
@@ -497,7 +491,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeTextFont = fontDialog.Font;
-                this.lblPredictedTimeTextFontName.Text = Settings.Default.PredictedTimeTextFont.FontFamily.Name;
+                lblPredictedTimeTextFontName.Text = Settings.Default.PredictedTimeTextFont.FontFamily.Name;
             }
         }
 
@@ -507,7 +501,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeTextColor = colorDialog.Color;
-                this.pnlPredictedTimeTextColor.BackColor = Settings.Default.PredictedTimeTextColor;
+                pnlPredictedTimeTextColor.BackColor = Settings.Default.PredictedTimeTextColor;
             }
         }
 
@@ -517,7 +511,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeFont = fontDialog.Font;
-                this.lblPredictedTimeFontName.Text = Settings.Default.PredictedTimeFont.FontFamily.Name;
+                lblPredictedTimeFontName.Text = Settings.Default.PredictedTimeFont.FontFamily.Name;
             }
         }
 
@@ -527,7 +521,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.PredictedTimeColor = colorDialog.Color;
-                this.pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
+                pnlPredictedTimeColor.BackColor = Settings.Default.PredictedTimeColor;
             }
         }
 
@@ -537,7 +531,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestBackgroundColor = colorDialog.Color;
-                this.pnlSumOfBestBackgroundColor.BackColor = Settings.Default.SumOfBestBackgroundColor;
+                pnlSumOfBestBackgroundColor.BackColor = Settings.Default.SumOfBestBackgroundColor;
             }
         }
 
@@ -547,7 +541,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestTextFont = fontDialog.Font;
-                this.lblSumOfBestTextFontName.Text = Settings.Default.SumOfBestTextFont.FontFamily.Name;
+                lblSumOfBestTextFontName.Text = Settings.Default.SumOfBestTextFont.FontFamily.Name;
             }
         }
 
@@ -557,7 +551,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestTextColor = colorDialog.Color;
-                this.pnlSumOfBestTextColor.BackColor = Settings.Default.SumOfBestTextColor;
+                pnlSumOfBestTextColor.BackColor = Settings.Default.SumOfBestTextColor;
             }
         }
 
@@ -567,7 +561,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestFont = fontDialog.Font;
-                this.lblSumOfBestFontName.Text = Settings.Default.SumOfBestFont.FontFamily.Name;
+                lblSumOfBestFontName.Text = Settings.Default.SumOfBestFont.FontFamily.Name;
             }
         }
 
@@ -577,7 +571,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SumOfBestColor = colorDialog.Color;
-                this.pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
+                pnlSumOfBestColor.BackColor = Settings.Default.SumOfBestColor;
             }
         }
 
@@ -587,7 +581,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerBackgroundColor = colorDialog.Color;
-                this.pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
+                pnlSegmentTimerBackgroundColor.BackColor = Settings.Default.SegmentTimerBackgroundColor;
             }
         }
 
@@ -597,7 +591,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerPBFont = fontDialog.Font;
-                this.lblSegmentTimerPBFontName.Text = Settings.Default.SegmentTimerPBFont.FontFamily.Name;
+                lblSegmentTimerPBFontName.Text = Settings.Default.SegmentTimerPBFont.FontFamily.Name;
             }
         }
 
@@ -607,7 +601,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerPBColor = colorDialog.Color;
-                this.pnlSegmentTimerPBColor.BackColor = Settings.Default.SegmentTimerPBColor;
+                pnlSegmentTimerPBColor.BackColor = Settings.Default.SegmentTimerPBColor;
             }
         }
 
@@ -617,7 +611,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerBestFont = fontDialog.Font;
-                this.lblSegmentTimerBestFontName.Text = Settings.Default.SegmentTimerBestFont.FontFamily.Name;
+                lblSegmentTimerBestFontName.Text = Settings.Default.SegmentTimerBestFont.FontFamily.Name;
             }
         }
 
@@ -627,7 +621,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerBestColor = colorDialog.Color;
-                this.pnlSegmentTimerBestColor.BackColor = Settings.Default.SegmentTimerBestColor;
+                pnlSegmentTimerBestColor.BackColor = Settings.Default.SegmentTimerBestColor;
             }
         }
 
@@ -637,7 +631,7 @@ namespace FaceSplit
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerFont = fontDialog.Font;
-                this.lblSegmentTimerFontName.Text = Settings.Default.SegmentTimerFont.FontFamily.Name;
+                lblSegmentTimerFontName.Text = Settings.Default.SegmentTimerFont.FontFamily.Name;
             }
         }
 
@@ -647,7 +641,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerRunningColor = colorDialog.Color;
-                this.pnlSegmentTimerRunningColor.BackColor = Settings.Default.SegmentTimerRunningColor;
+                pnlSegmentTimerRunningColor.BackColor = Settings.Default.SegmentTimerRunningColor;
             }
         }
 
@@ -657,7 +651,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerLosingTimeColor = colorDialog.Color;
-                this.pnlSegmentTimerLosingTimeColor.BackColor = Settings.Default.SegmentTimerLosingTimeColor;
+                pnlSegmentTimerLosingTimeColor.BackColor = Settings.Default.SegmentTimerLosingTimeColor;
             }
         }
 
@@ -667,7 +661,7 @@ namespace FaceSplit
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.SegmentTimerPausedColor = colorDialog.Color;
-                this.pnlSegmentTimerPausedColor.BackColor = Settings.Default.SegmentTimerPausedColor;
+                pnlSegmentTimerPausedColor.BackColor = Settings.Default.SegmentTimerPausedColor;
             }
         }
     }

@@ -1,104 +1,101 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 
 namespace FaceSplit.Model
 {
     public class Segment
     {
-        private String segmentName;
+        private string segmentName;
         private double segmentTime;
         private double backupSegmentTime;
         private double bestSegmentTime;
         private double backupBestSegmentTime;
         private double splitTime;
         private double backupSplitTime;
-        private Boolean wasSkipped;
-        private Boolean previousWasSkipped;
+        private bool wasSkipped;
+        private bool previousWasSkipped;
         private Color runDeltaColor;
 
-        public Segment(String name, double splitTime, double segmentTime, double bestSegmentTime)
+        public Segment(string name, double splitTime, double segmentTime, double bestSegmentTime)
         {
-            this.segmentName = name;
+            segmentName = name;
             this.splitTime = splitTime;
-            this.backupSplitTime = splitTime;
+            backupSplitTime = splitTime;
             this.segmentTime = segmentTime;
-            this.backupSegmentTime = segmentTime;
+            backupSegmentTime = segmentTime;
             this.bestSegmentTime = bestSegmentTime;
-            this.backupBestSegmentTime = bestSegmentTime;
-            this.wasSkipped = false;
+            backupBestSegmentTime = bestSegmentTime;
+            wasSkipped = false;
         }
 
-        public String SegmentName
+        public string SegmentName
         {
-            get { return this.segmentName; }
-            set { this.segmentName = value; }
+            get { return segmentName; }
+            set { segmentName = value; }
         }
 
         public double SplitTime
         {
-            get { return this.splitTime; }
-            set { this.splitTime = value; }
+            get { return splitTime; }
+            set { splitTime = value; }
         }
 
         public double SegmentTime
         {
-            get { return this.segmentTime; }
-            set { this.segmentTime = value; }
+            get { return segmentTime; }
+            set { segmentTime = value; }
         }
 
         public double BestSegmentTime
         {
-            get { return this.bestSegmentTime; }
-            set { this.bestSegmentTime = value; }
+            get { return bestSegmentTime; }
+            set { bestSegmentTime = value; }
         }
 
-        public Double BackupSplitTime
+        public double BackupSplitTime
         {
-            get { return this.backupSplitTime; }
+            get { return backupSplitTime; }
         }
 
-        public Double BackupSegmentTime
+        public double BackupSegmentTime
         {
-            get { return this.backupSegmentTime; }
+            get { return backupSegmentTime; }
         }
 
         public double BackupBestSegmentTime
         {
-            get { return this.backupBestSegmentTime; }
+            get { return backupBestSegmentTime; }
         }
 
-        public Boolean WasSkipped
+        public bool WasSkipped
         {
-            get { return this.wasSkipped; }
+            get { return wasSkipped; }
         }
 
-        public Boolean PreviousWasSkipped
+        public bool PreviousWasSkipped
         {
-            get { return this.previousWasSkipped; }
-            set { this.previousWasSkipped = value; }
+            get { return previousWasSkipped; }
+            set { previousWasSkipped = value; }
         }
 
         public Color RunDeltaColor
         {
-            get { return this.runDeltaColor; }
-            set { this.runDeltaColor = value; }
+            get { return runDeltaColor; }
+            set { runDeltaColor = value; }
         }
 
-        public void DoSplit(Double splitTime, Double segmentTime)
+        public void DoSplit(double splitTime, double segmentTime)
         {
             this.splitTime = splitTime;
             this.segmentTime = segmentTime;
-            this.wasSkipped = false;
+            wasSkipped = false;
         }
 
         /// <summary>
         /// If this segment has no split time, we can't calculate run delta, this is what we are looking at here.
         /// </summary>
         /// <returns></returns>
-        public Boolean HasRunDelta()
+        public bool HasRunDelta()
         {
             return backupSplitTime != 0.0 && splitTime != 0.0;
         }
@@ -107,19 +104,19 @@ namespace FaceSplit.Model
         /// If this is a new run or if the segment was skip in PB we don't have a delta.
         /// </summary>
         /// <returns></returns>
-        public Boolean HasSegmentDelta()
+        public bool HasSegmentDelta()
         {
-            return backupSegmentTime != 0.0 && segmentTime != 0.0 && !this.wasSkipped && !this.previousWasSkipped;
+            return backupSegmentTime != 0.0 && segmentTime != 0.0 && !wasSkipped && !previousWasSkipped;
         }
 
-        public Boolean HasLiveSegmentDelta(double timeElapsed)
+        public bool HasLiveSegmentDelta(double timeElapsed)
         {
-            return !this.previousWasSkipped && timeElapsed >= backupBestSegmentTime && this.backupSegmentTime != 0.0 && this.bestSegmentTime != 0.0;
+            return !previousWasSkipped && timeElapsed >= backupBestSegmentTime && backupSegmentTime != 0.0 && bestSegmentTime != 0.0;
         }
 
-        public Boolean HasPossibleTimeSave()
+        public bool HasPossibleTimeSave()
         {
-            return this.BackupSegmentTime != 0.0 && this.BackupBestSegmentTime != 0.0;
+            return BackupSegmentTime != 0.0 && BackupBestSegmentTime != 0.0;
         }
 
         public double CalculateLiveSegmentDelta(double timeElapsed)
@@ -133,56 +130,56 @@ namespace FaceSplit.Model
         /// <returns></returns>
         public double CalculateRunDelta()
         {
-            return this.splitTime - this.backupSplitTime;
+            return splitTime - backupSplitTime;
         }
 
         public double CalculateSegmentDelta()
         {
-            return this.segmentTime - this.backupSegmentTime;
+            return segmentTime - backupSegmentTime;
         }
 
-        public Boolean IsBestSegment()
+        public bool IsBestSegment()
         {
-            Boolean bestSegment = ((this.segmentTime < this.backupBestSegmentTime || backupBestSegmentTime == 0.0) && !this.wasSkipped);
+            bool bestSegment = ((segmentTime < backupBestSegmentTime || backupBestSegmentTime == 0.0) && !wasSkipped);
             if (bestSegment)
             {
-                this.bestSegmentTime = this.segmentTime;
+                bestSegmentTime = segmentTime;
             }
             return bestSegment;
         }
 
-        public void SaveTimes(Boolean saveOnlyBest)
+        public void SaveTimes(bool saveOnlyBest)
         {
             if (!saveOnlyBest)
             {
-                if (!this.wasSkipped && !this.previousWasSkipped)
+                if (!wasSkipped && !previousWasSkipped)
                 {
-                    this.backupSegmentTime = this.segmentTime;
+                    backupSegmentTime = segmentTime;
                 }
                 else
                 {
-                    this.backupSegmentTime = 0.0;
-                }          
-            this.backupSplitTime = this.splitTime;
+                    backupSegmentTime = 0.0;
+                }
+                backupSplitTime = splitTime;
             }
-            this.backupBestSegmentTime = this.bestSegmentTime;
+            backupBestSegmentTime = bestSegmentTime;
         }
 
-        public void ResetTimes(Boolean resetBest)
+        public void ResetTimes(bool resetBest)
         {
-            this.splitTime = backupSplitTime;
-            this.segmentTime = backupSegmentTime;
+            splitTime = backupSplitTime;
+            segmentTime = backupSegmentTime;
             if (resetBest)
             {
-                this.bestSegmentTime = backupBestSegmentTime;
+                bestSegmentTime = backupBestSegmentTime;
             }
-            this.wasSkipped = false;
+            wasSkipped = false;
         }
 
         public void Skip(double segmentTime)
         {
-            this.wasSkipped = true;
-            this.splitTime = 0.0;
+            wasSkipped = true;
+            splitTime = 0.0;
             this.segmentTime = segmentTime;
         }
 
