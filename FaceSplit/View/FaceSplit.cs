@@ -8,9 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Xml;
+using System.Xml.Serialization;
 using System.Runtime.InteropServices;
 using FaceSplit.Model;
-using System.Xml.Serialization;
 using System.IO;
 using Shortcut;
 using FaceSplit.Properties;
@@ -40,8 +40,15 @@ namespace FaceSplit
         DisplayMode displayMode;
         List<Information> informations;
 
-        SaveFileDialog saveFileDialog;
-        OpenFileDialog openFileDialog;
+        Model.LayoutSettings layoutSettings;
+
+        SaveFileDialog saveRunDialog;
+        SaveFileDialog saveLayoutDialog;
+
+        OpenFileDialog openRunDialog;
+        OpenFileDialog openLayoutDialog;
+
+        XmlSerializer serializer;
 
         /// <summary>
         /// The watch on the screen.
@@ -96,6 +103,11 @@ namespace FaceSplit
         {
             InitializeComponent();
             this.ConfigureFilesDialogs();
+            this.layoutSettings = new Model.LayoutSettings();
+            if (!Settings.Default.LayoutSettingsFile.Equals(""))
+            {
+                this.layoutSettings.File = Settings.Default.LayoutSettingsFile;
+            }
             this.hotkeyBinder = new HotkeyBinder();
             this.BindHotkeys();
             this.globalHotkeysActive = true;
@@ -194,11 +206,11 @@ namespace FaceSplit
             {
                 if (this.split.File == null)
                 {
-                    this.SaveFileAs();
+                    this.SaveRunToFileAs();
                 }
                 else
                 {
-                    this.SaveFile();
+                    this.SaveRunToFile();
                 }
                 
             }
@@ -206,20 +218,20 @@ namespace FaceSplit
 
         private void mnuSaveRunAs_Click(object sender, EventArgs e)
         {
-            this.SaveFileAs();
+            this.SaveRunToFileAs();
         }
 
         private void mnuLoadRun_Click(object sender, EventArgs e)
         {
-            if (this.openFileDialog.ShowDialog() == DialogResult.OK)
+            if (this.openRunDialog.ShowDialog() == DialogResult.OK)
             {
-                this.LoadFile(openFileDialog.FileName);
+                this.LoadFile(openRunDialog.FileName);
             }
         }
 
         private void mnuEditLayout_Click(object sender, EventArgs e)
         {
-            LayoutSettings layoutSettings = new LayoutSettings();
+            LayoutSettingsEditor layoutSettings = new LayoutSettingsEditor();
             if (layoutSettings.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.Save();
@@ -227,6 +239,32 @@ namespace FaceSplit
             else
             {
                 Settings.Default.Reload();
+            }
+        }
+
+        private void mnuSaveLayout_Click(object sender, EventArgs e)
+        {
+            if (this.layoutSettings.File == null)
+            {
+                this.SaveLayoutToFileAs();
+            }
+            else
+            {
+                this.SaveLayoutToFile();
+            }
+        }
+
+        private void mnuSaveLayoutAs_Click(object sender, EventArgs e)
+        {
+            this.SaveLayoutToFileAs();
+        }
+
+
+        private void loadLayoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(openLayoutDialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadLayoutFromFile(openLayoutDialog.FileName);
             }
         }
 
@@ -277,32 +315,42 @@ namespace FaceSplit
 
         private void ConfigureFilesDialogs()
         {
-            this.saveFileDialog = new SaveFileDialog();
-            this.saveFileDialog.DefaultExt = ".fss";
-            this.saveFileDialog.Filter = "FaceSplit split file (*.fss)|*.fss";
-            this.saveFileDialog.AddExtension = true;
+            this.saveRunDialog = new SaveFileDialog();
+            this.saveRunDialog.DefaultExt = ".fss";
+            this.saveRunDialog.Filter = "FaceSplit split file (*.fss)|*.fss";
+            this.saveRunDialog.AddExtension = true;
 
-            this.openFileDialog = new OpenFileDialog();
-            this.openFileDialog.DefaultExt = ".fss";
-            this.openFileDialog.Filter = "FaceSplit split file (*.fss)|*.fss";
-            this.openFileDialog.AddExtension = true;
+            this.saveLayoutDialog = new SaveFileDialog();
+            this.saveLayoutDialog.DefaultExt = ".fsl";
+            this.saveLayoutDialog.Filter = "FaceSplit layout file (*.fsl)|*.fsl";
+            this.saveLayoutDialog.AddExtension = true;
+
+            this.openRunDialog = new OpenFileDialog();
+            this.openRunDialog.DefaultExt = ".fss";
+            this.openRunDialog.Filter = "FaceSplit split file (*.fss)|*.fss";
+            this.openRunDialog.AddExtension = true;
+
+            this.openLayoutDialog = new OpenFileDialog();
+            this.openLayoutDialog.DefaultExt = ".fsl";
+            this.openLayoutDialog.Filter = "FaceSplit layout file (*.fsl)|*.fsl";
+            this.openLayoutDialog.AddExtension = true;
         }
 
-        private void SaveFileAs()
+        private void SaveRunToFileAs()
         {           
             if (this.split != null)
             {
-                if (this.saveFileDialog.ShowDialog() == DialogResult.OK)
+                if (this.saveRunDialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.split.File = saveFileDialog.FileName;
-                    this.SaveFile();
+                    this.split.File = saveRunDialog.FileName;
+                    this.SaveRunToFile();
                 }
             }
         }
 
-        private void SaveFile()
+        private void SaveRunToFile()
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(this.split.File, false))
+            using (StreamWriter file = new StreamWriter(this.split.File, false))
             {
                 file.WriteLine(this.split.RunTitle);
                 file.WriteLine(this.split.RunGoal);
@@ -358,6 +406,33 @@ namespace FaceSplit
             {
                 MessageBox.Show("This file was not recognize as a FaceSplit split file.");
             }
+        }
+
+        private void SaveLayoutToFileAs()
+        {
+            if (this.saveLayoutDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.layoutSettings.File = saveLayoutDialog.FileName;
+                this.SaveLayoutToFile();
+            }
+        }
+
+        private void SaveLayoutToFile()
+        {
+            layoutSettings.SaveLayoutSettings();
+            Settings.Default.LayoutSettingsFile = layoutSettings.File;
+            serializer = new XmlSerializer(layoutSettings.GetType());
+            serializer.Serialize(new StreamWriter(this.layoutSettings.File, false), layoutSettings);
+            Settings.Default.Save();
+        }
+
+        private void LoadLayoutFromFile(String file)
+        {
+            serializer = new XmlSerializer(layoutSettings.GetType());
+            layoutSettings = (Model.LayoutSettings)serializer.Deserialize(new StreamReader(file));
+            layoutSettings.LoadLayoutSettings();
+            layoutSettings.File = file;
+            Settings.Default.Save();
         }
 
         /// <summary>

@@ -39,10 +39,13 @@
             this.mnuLoadRun = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuEditLayout = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSaveLayout = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSaveLayoutAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuResetLayout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCloseSplit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuResetLayout = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadLayoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,12 +64,15 @@
             this.mnuLoadRun,
             this.toolStripMenuItem2,
             this.mnuEditLayout,
+            this.mnuSaveLayout,
+            this.mnuSaveLayoutAs,
+            this.loadLayoutToolStripMenuItem,
             this.mnuResetLayout,
             this.toolStripMenuItem3,
             this.mnuCloseSplit,
             this.mnuExit});
             this.contextMnuPrincipal.Name = "contextMnuPrincipal";
-            this.contextMnuPrincipal.Size = new System.Drawing.Size(153, 220);
+            this.contextMnuPrincipal.Size = new System.Drawing.Size(153, 286);
             // 
             // mnuEditRun
             // 
@@ -113,6 +119,27 @@
             this.mnuEditLayout.Text = "Edit layout";
             this.mnuEditLayout.Click += new System.EventHandler(this.mnuEditLayout_Click);
             // 
+            // mnuSaveLayout
+            // 
+            this.mnuSaveLayout.Name = "mnuSaveLayout";
+            this.mnuSaveLayout.Size = new System.Drawing.Size(152, 22);
+            this.mnuSaveLayout.Text = "Save layout";
+            this.mnuSaveLayout.Click += new System.EventHandler(this.mnuSaveLayout_Click);
+            // 
+            // mnuSaveLayoutAs
+            // 
+            this.mnuSaveLayoutAs.Name = "mnuSaveLayoutAs";
+            this.mnuSaveLayoutAs.Size = new System.Drawing.Size(152, 22);
+            this.mnuSaveLayoutAs.Text = "Save layout as";
+            this.mnuSaveLayoutAs.Click += new System.EventHandler(this.mnuSaveLayoutAs_Click);
+            // 
+            // mnuResetLayout
+            // 
+            this.mnuResetLayout.Name = "mnuResetLayout";
+            this.mnuResetLayout.Size = new System.Drawing.Size(152, 22);
+            this.mnuResetLayout.Text = "Reset layout";
+            this.mnuResetLayout.Click += new System.EventHandler(this.mnuResetLayout_Click);
+            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
@@ -132,12 +159,12 @@
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
-            // mnuResetLayout
+            // loadLayoutToolStripMenuItem
             // 
-            this.mnuResetLayout.Name = "mnuResetLayout";
-            this.mnuResetLayout.Size = new System.Drawing.Size(152, 22);
-            this.mnuResetLayout.Text = "Reset layout";
-            this.mnuResetLayout.Click += new System.EventHandler(this.mnuResetLayout_Click);
+            this.loadLayoutToolStripMenuItem.Name = "loadLayoutToolStripMenuItem";
+            this.loadLayoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadLayoutToolStripMenuItem.Text = "Load layout";
+            this.loadLayoutToolStripMenuItem.Click += new System.EventHandler(this.loadLayoutToolStripMenuItem_Click);
             // 
             // FaceSplit
             // 
@@ -172,6 +199,9 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEditLayout;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnuResetLayout;
+        private System.Windows.Forms.ToolStripMenuItem mnuSaveLayout;
+        private System.Windows.Forms.ToolStripMenuItem mnuSaveLayoutAs;
+        private System.Windows.Forms.ToolStripMenuItem loadLayoutToolStripMenuItem;
     }
 }
 

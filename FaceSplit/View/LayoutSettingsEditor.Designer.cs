@@ -1,6 +1,6 @@
 ﻿namespace FaceSplit
 {
-    partial class LayoutSettings
+    partial class LayoutSettingsEditor
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayoutSettings));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayoutSettingsEditor));
             this.tabLayoutSettings = new System.Windows.Forms.TabControl();
             this.tabLayoutTimer = new System.Windows.Forms.TabPage();
             this.gboTimerColors = new System.Windows.Forms.GroupBox();

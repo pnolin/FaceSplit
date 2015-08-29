@@ -179,5 +179,8 @@
     <Setting Name="SegmentTimerPausedColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Yellow</Value>
     </Setting>
+    <Setting Name="LayoutSettingsFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

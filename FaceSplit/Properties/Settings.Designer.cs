@@ -729,5 +729,17 @@ namespace FaceSplit.Properties {
                 this["SegmentTimerPausedColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LayoutSettingsFile {
+            get {
+                return ((string)(this["LayoutSettingsFile"]));
+            }
+            set {
+                this["LayoutSettingsFile"] = value;
+            }
+        }
     }
 }

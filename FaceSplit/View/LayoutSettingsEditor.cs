@@ -10,12 +10,12 @@ using FaceSplit.Properties;
 
 namespace FaceSplit
 {
-    public partial class LayoutSettings : Form
+    public partial class LayoutSettingsEditor : Form
     {
         private FontDialog fontDialog;
         private ColorDialog colorDialog;
 
-        public LayoutSettings()
+        public LayoutSettingsEditor()
         {
             InitializeComponent();
             this.fontDialog = new FontDialog();
