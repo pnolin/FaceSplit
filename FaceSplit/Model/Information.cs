@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -12,9 +11,9 @@ namespace FaceSplit.Model
     /// </summary>
     public class Information
     {
-        private String informationName;
-        private String primaryText;
-        private String secondaryText;
+        private string informationName;
+        private string primaryText;
+        private string secondaryText;
         private int position;
         private bool display;
         private bool above;
@@ -26,7 +25,7 @@ namespace FaceSplit.Model
         private Color secondaryTextColor;
         private Color backgroundColor;
 
-        public Information(string informationName, string primaryText, string secondaryText, int position, Boolean display, Boolean above)
+        public Information(string informationName, string primaryText, string secondaryText, int position, bool display, bool above)
         {
             List<TextFormatFlags> flags = new List<TextFormatFlags>();
             this.informationName = informationName;
@@ -36,74 +35,74 @@ namespace FaceSplit.Model
             this.display = display;
             this.above = above;
             flags = InformationFlagsFactory.GetInformationFlags(this.informationName);
-            this.primaryTextFlags = flags.ElementAt(0);
+            primaryTextFlags = flags.ElementAt(0);
             if (this.secondaryText != null)
             {
-                this.secondaryTextFlags = flags.ElementAt(1);
+                secondaryTextFlags = flags.ElementAt(1);
             }
             InformationStyleFactory.SetInformationStyle(this);
         }
 
-        public String InformationName
+        public string InformationName
         {
-            get { return this.informationName; }
+            get { return informationName; }
         }
 
-        public String PrimaryText
+        public string PrimaryText
         {
-            get { return this.primaryText; }
-            set { this.primaryText = value; }
+            get { return primaryText; }
+            set { primaryText = value; }
         }
 
-        public String SecondaryText
+        public string SecondaryText
         {
-            get { return this.secondaryText; }
-            set { this.secondaryText = value; }
+            get { return secondaryText; }
+            set { secondaryText = value; }
         }
 
-        public Boolean Above
+        public bool Above
         {
-            get { return this.above; }
+            get { return above; }
         }
 
         public TextFormatFlags PrimaryTextFlags
         {
-            get { return this.primaryTextFlags; }
+            get { return primaryTextFlags; }
         }
 
         public TextFormatFlags SecondaryTextFlags
         {
-            get { return this.secondaryTextFlags; }
+            get { return secondaryTextFlags; }
         }
 
         public Color PrimaryTextColor
         {
-            get { return this.primaryTextColor; }
-            set { this.primaryTextColor = value; }
+            get { return primaryTextColor; }
+            set { primaryTextColor = value; }
         }
 
         public Color SecondaryTextColor
         {
-            get { return this.secondaryTextColor; }
-            set { this.secondaryTextColor = value; }
+            get { return secondaryTextColor; }
+            set { secondaryTextColor = value; }
         }
 
         public Color BackgroundColor
         {
-            get { return this.backgroundColor; }
-            set { this.backgroundColor = value; }
+            get { return backgroundColor; }
+            set { backgroundColor = value; }
         }
 
         public Font PrimaryTextFont
         {
-            get { return this.primaryTextFont; }
-            set { this.primaryTextFont = value; }
+            get { return primaryTextFont; }
+            set { primaryTextFont = value; }
         }
 
         public Font SecondaryTextFont
         {
-            get { return this.secondaryTextFont; }
-            set { this.secondaryTextFont = value; }
+            get { return secondaryTextFont; }
+            set { secondaryTextFont = value; }
         }
 
         public void UpdateStyle()

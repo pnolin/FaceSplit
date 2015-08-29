@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Drawing;
 using FaceSplit.Properties;
 
@@ -11,23 +10,23 @@ namespace FaceSplit.Model
     {
         private RunStatus runStatus;
         private List<Segment> segments;
-        private String runTitle;
-        private String runGoal;
+        private string runTitle;
+        private string runGoal;
         private int attemptsCount;
         private int runsCompleted;
         private int liveIndex;
-        private String file;
+        private string file;
 
         public Split()
         {
-            this.segments = new List<Segment>();
-            this.liveIndex = -1;
-            this.runStatus = RunStatus.STOPPED;
+            segments = new List<Segment>();
+            liveIndex = -1;
+            runStatus = RunStatus.STOPPED;
         }
 
-        public Split(String runTitle, String runGoal, int attemptsCount, List<Segment> segments)
+        public Split(string runTitle, string runGoal, int attemptsCount, List<Segment> segments)
         {
-            this.liveIndex = -1;
+            liveIndex = -1;
             this.runTitle = runTitle;
             this.runGoal = runGoal;
             this.attemptsCount = attemptsCount;
@@ -36,58 +35,58 @@ namespace FaceSplit.Model
             {
                 this.segments.Add(segment);
             }
-            this.runStatus = RunStatus.STOPPED;
+            runStatus = RunStatus.STOPPED;
         }
 
-        public String RunTitle
+        public string RunTitle
         {
-            get { return this.runTitle; }
-            set { this.runTitle = value; }
+            get { return runTitle; }
+            set { runTitle = value; }
         }
 
-        public String RunGoal
+        public string RunGoal
         {
-            get { return this.runGoal; }
-            set { this.runGoal = value; }
+            get { return runGoal; }
+            set { runGoal = value; }
         }
 
         public int RunsCompleted
         {
-            get { return this.runsCompleted; }
-            set { this.runsCompleted = value; }
+            get { return runsCompleted; }
+            set { runsCompleted = value; }
         }
 
         public int AttemptsCount
         {
-            get { return this.attemptsCount; }
-            set { this.attemptsCount = value; }
+            get { return attemptsCount; }
+            set { attemptsCount = value; }
         }
 
         public int LiveIndex
         {
-            get { return this.liveIndex; }
+            get { return liveIndex; }
         }
 
         public RunStatus RunStatus
         {
-            get { return this.runStatus; }
+            get { return runStatus; }
         }
 
         public List<Segment> Segments
         {
-            get { return this.segments; }
-            set { this.segments = value; }
+            get { return segments; }
+            set { segments = value; }
         }
 
         public Segment CurrentSegment
         {
-            get { return this.segments.ElementAt(this.liveIndex); }
+            get { return segments.ElementAt(liveIndex); }
         }
 
-        public String File
+        public string File
         {
-            get { return this.file; }
-            set { this.file = value; }
+            get { return file; }
+            set { file = value; }
         }
 
         /// <summary>
@@ -95,19 +94,19 @@ namespace FaceSplit.Model
         /// </summary>
         public void StartRun()
         {
-            this.liveIndex = 0;
-            this.attemptsCount++;
-            this.runStatus = RunStatus.ON_GOING;
+            liveIndex = 0;
+            attemptsCount++;
+            runStatus = RunStatus.ON_GOING;
         }
 
         /// <summary>
         /// The the time split of the actual segment.
         /// </summary>
         /// <param name="splitTime"></param>
-        public void DoSplit(Double splitTime, Double segmentTime)
+        public void DoSplit(double splitTime, double segmentTime)
         {
-            this.segments.ElementAt(liveIndex).DoSplit(splitTime, segmentTime);
-            this.liveIndex++;
+            segments.ElementAt(liveIndex).DoSplit(splitTime, segmentTime);
+            liveIndex++;
         }
 
 
@@ -116,20 +115,20 @@ namespace FaceSplit.Model
         /// </summary>
         public void UnSplit()
         {
-            if (this.liveIndex > 0)
+            if (liveIndex > 0)
             {
-                this.liveIndex--;
-                this.segments.ElementAt(liveIndex).ResetTimes(true);
-                if (this.liveIndex < this.segments.Count - 1)
+                liveIndex--;
+                segments.ElementAt(liveIndex).ResetTimes(true);
+                if (liveIndex < segments.Count - 1)
                 {
-                    this.segments.ElementAt(liveIndex + 1).PreviousWasSkipped = false;
+                    segments.ElementAt(liveIndex + 1).PreviousWasSkipped = false;
                 }
             }
         }
 
         public void ResumeRun()
         {
-            this.runStatus = RunStatus.ON_GOING;
+            runStatus = RunStatus.ON_GOING;
         }
 
         /// <summary>
@@ -137,9 +136,9 @@ namespace FaceSplit.Model
         /// </summary>
         /// <param name="index">The index of the segment</param>
         /// <returns></returns>
-        public Boolean SegmentHasRunDelta(int index)
+        public bool SegmentHasRunDelta(int index)
         {
-            return this.segments.ElementAt(index).HasRunDelta();
+            return segments.ElementAt(index).HasRunDelta();
         }
 
         /// <summary>
@@ -149,80 +148,80 @@ namespace FaceSplit.Model
         /// <returns>The delta.</returns>
         public double GetRunDelta(int index)
         {
-            return this.segments.ElementAt(index).CalculateRunDelta();
+            return segments.ElementAt(index).CalculateRunDelta();
         }
 
         public void SetCurrentSegmentColor(Color color)
         {
-            this.segments.ElementAt(this.liveIndex).RunDeltaColor = color;
+            segments.ElementAt(liveIndex).RunDeltaColor = color;
         }
 
-        public Boolean PreviousSegmentHasSegmentDelta()
+        public bool PreviousSegmentHasSegmentDelta()
         {
-            if (this.liveIndex > 0)
+            if (liveIndex > 0)
             {
-                return this.segments.ElementAt(this.liveIndex - 1).HasSegmentDelta();
+                return segments.ElementAt(liveIndex - 1).HasSegmentDelta();
             }
             return false;
         }
 
         public double GetPreviousSegmentDelta()
         {
-            if (this.liveIndex > 0)
+            if (liveIndex > 0)
             {
-                return this.segments.ElementAt(this.liveIndex - 1).CalculateSegmentDelta();
+                return segments.ElementAt(liveIndex - 1).CalculateSegmentDelta();
             }
             return 0.0;
         }
 
-        public Boolean PreviousSegmentIsBestSegment()
+        public bool PreviousSegmentIsBestSegment()
         {
-            return this.segments.ElementAt(this.liveIndex - 1).IsBestSegment();
+            return segments.ElementAt(liveIndex - 1).IsBestSegment();
         }
 
-        public void SetPreviousSegmentColor(Boolean bestSegment, bool lostTime)
+        public void SetPreviousSegmentColor(bool bestSegment, bool lostTime)
         {
-            if (this.liveIndex > 0)
+            if (liveIndex > 0)
             {
                 if (bestSegment)
                 {
-                    this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBestSegmentColor;
+                    segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBestSegmentColor;
                 }
                 else
                 {
-                    if (this.liveIndex == 1)
+                    if (liveIndex == 1)
                     {
                         if (!lostTime)
                         {
-                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
+                            segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
                         }
                         else
                         {
-                            this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
+                            segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
                         }
                     }
                     else
                     {
                         if (!lostTime)
                         {
-                            if (GetRunDelta(this.liveIndex - 1) > 0.0)
+                            if (GetRunDelta(liveIndex - 1) > 0.0)
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindSavingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindSavingColor;
                             }
                             else
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
                             }
                         }
                         else
                         {
-                            if (GetRunDelta(this.liveIndex - 1) > 0.0)
+                            if (GetRunDelta(liveIndex - 1) > 0.0)
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
                             }
                             else
                             {
-                                this.segments.ElementAt(this.liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadLosingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadLosingColor;
                             }
                         }
                     }
@@ -232,57 +231,57 @@ namespace FaceSplit.Model
 
         public Color GetSegmentColor(int index)
         {
-            return this.segments.ElementAt(index).RunDeltaColor;
+            return segments.ElementAt(index).RunDeltaColor;
         }
 
         public double GetLiveRunDelta(double runTimeElapsed)
         {
-            return runTimeElapsed - this.segments.ElementAt(liveIndex).SplitTime;
+            return runTimeElapsed - segments.ElementAt(liveIndex).SplitTime;
         }
 
-        public Boolean CurrentSegmentHasLiveDelta(double segmentTimeElapsed)
+        public bool CurrentSegmentHasLiveDelta(double segmentTimeElapsed)
         {
-            if (this.liveIndex >= 0 && this.liveIndex < this.segments.Count)
+            if (liveIndex >= 0 && liveIndex < segments.Count)
             {
-                return this.segments.ElementAt(this.liveIndex).HasLiveSegmentDelta(segmentTimeElapsed);
+                return segments.ElementAt(liveIndex).HasLiveSegmentDelta(segmentTimeElapsed);
             }
             return false;
         }
 
-        public Double GetLiveSegmentDelta(double segmentTimeElapsed)
+        public double GetLiveSegmentDelta(double segmentTimeElapsed)
         {
-            return this.segments.ElementAt(this.liveIndex).CalculateLiveSegmentDelta(segmentTimeElapsed);
+            return segments.ElementAt(liveIndex).CalculateLiveSegmentDelta(segmentTimeElapsed);
         }
 
-        public Boolean SegmentHasPossibleTimeSave()
+        public bool SegmentHasPossibleTimeSave()
         {
-            if (this.liveIndex != -1 && this.liveIndex < this.segments.Count)
+            if (liveIndex != -1 && liveIndex < segments.Count)
             {
-                return this.segments.ElementAt(this.liveIndex).HasPossibleTimeSave();
+                return segments.ElementAt(liveIndex).HasPossibleTimeSave();
             }
             return false;
         }
 
-        public Double GetPossibleTimeSave()
+        public double GetPossibleTimeSave()
         {
-            return this.segments.ElementAt(this.liveIndex).BackupSegmentTime - this.segments.ElementAt(this.liveIndex).BackupBestSegmentTime;
+            return segments.ElementAt(liveIndex).BackupSegmentTime - segments.ElementAt(liveIndex).BackupBestSegmentTime;
         }
 
-        public Double GetPredictedTime()
+        public double GetPredictedTime()
         {
-            Double pred = this.GetSOB();
-            if (this.liveIndex <= 0)
+            double pred = GetSOB();
+            if (liveIndex <= 0)
             {
                 return pred;
             }
             else if(pred != 0.0)
             {
                 pred = 0.0;
-                for (int i = 0; i < this.liveIndex; ++i)
+                for (int i = 0; i < liveIndex; ++i)
                 {
-                    if (!this.segments.ElementAt(i).WasSkipped && !this.segments.ElementAt(i).PreviousWasSkipped)
+                    if (!segments.ElementAt(i).WasSkipped && !segments.ElementAt(i).PreviousWasSkipped)
                     {
-                        pred += this.segments.ElementAt(i).SegmentTime;
+                        pred += segments.ElementAt(i).SegmentTime;
                     }
                     else
                     {
@@ -292,9 +291,9 @@ namespace FaceSplit.Model
                 }
                 if (pred != 0.0)
                 {
-                    for (int i = this.liveIndex; i < this.segments.Count; ++i)
+                    for (int i = liveIndex; i < segments.Count; ++i)
                     {
-                        pred += this.segments.ElementAt(i).BestSegmentTime;
+                        pred += segments.ElementAt(i).BestSegmentTime;
                     }
                 }
                 return pred;
@@ -302,15 +301,15 @@ namespace FaceSplit.Model
             return 0.0;
         }
 
-        public Double GetSOB()
+        public double GetSOB()
         {
-            Boolean incalculableSob = false;
-            Double sob = 0.0;
-            Double bestSegmentTime = 0.0;
+            bool incalculableSob = false;
+            double sob = 0.0;
+            double bestSegmentTime = 0.0;
             int i = 0;
-            for (i = 0; i < this.liveIndex; ++i )
+            for (i = 0; i < liveIndex; ++i )
             {
-                bestSegmentTime = this.segments.ElementAt(i).BestSegmentTime;
+                bestSegmentTime = segments.ElementAt(i).BestSegmentTime;
                 if (bestSegmentTime == 0.0)
                 {
                     incalculableSob = true;
@@ -321,9 +320,9 @@ namespace FaceSplit.Model
             }
             if (!incalculableSob)
             {
-                for (i = (this.liveIndex == -1) ? 0 : this.liveIndex; i < this.segments.Count; ++i)
+                for (i = (liveIndex == -1) ? 0 : liveIndex; i < segments.Count; ++i)
                 {
-                    bestSegmentTime = this.segments.ElementAt(i).BackupBestSegmentTime;
+                    bestSegmentTime = segments.ElementAt(i).BackupBestSegmentTime;
                     if (bestSegmentTime == 0.0)
                     {
                         sob = 0.0;
@@ -340,7 +339,7 @@ namespace FaceSplit.Model
         /// </summary>
         public void CompleteRun()
         {
-            this.runStatus = RunStatus.DONE;
+            runStatus = RunStatus.DONE;
         }
 
         /// <summary>
@@ -350,10 +349,10 @@ namespace FaceSplit.Model
         /// </summary>
         public void SaveRun()
         {
-            this.runsCompleted++;
+            runsCompleted++;
             if(IsNewPb())
             {
-                foreach (Segment segment in this.segments)
+                foreach (Segment segment in segments)
                 {
                     segment.SaveTimes(false);
                     segment.PreviousWasSkipped = false;
@@ -367,53 +366,53 @@ namespace FaceSplit.Model
         /// </summary>
         public void ResetRun()
         {
-            this.runStatus = RunStatus.STOPPED;
-            foreach (Segment segment in this.segments)
+            runStatus = RunStatus.STOPPED;
+            foreach (Segment segment in segments)
             {
                 segment.ResetTimes(false);
                 segment.SaveTimes(true);
                 segment.PreviousWasSkipped = false;
             }
-            this.liveIndex = -1;
+            liveIndex = -1;
         }
 
         public void SkipSegment(double segmentTime)
         {
-            this.segments.ElementAt(liveIndex).Skip(segmentTime);
-            if (this.liveIndex < this.segments.Count - 1)
+            segments.ElementAt(liveIndex).Skip(segmentTime);
+            if (liveIndex < segments.Count - 1)
             {
-                this.segments.ElementAt(liveIndex + 1).PreviousWasSkipped = true;
+                segments.ElementAt(liveIndex + 1).PreviousWasSkipped = true;
             }
-            this.liveIndex++;
+            liveIndex++;
         }
 
-        public Boolean PreviousSegmentWasSkipped()
+        public bool PreviousSegmentWasSkipped()
         {
-            if (this.liveIndex == this.segments.Count)
+            if (liveIndex == segments.Count)
             {
-                return this.segments.Last().PreviousWasSkipped;
+                return segments.Last().PreviousWasSkipped;
             }
 
-            return this.CurrentSegment.PreviousWasSkipped;
+            return CurrentSegment.PreviousWasSkipped;
         }
 
-        private Boolean IsNewPb()
+        private bool IsNewPb()
         {
-            return this.segments.Last().SplitTime < this.segments.Last().BackupSplitTime || (this.segments.Last().BackupSplitTime == 0.0);
+            return segments.Last().SplitTime < segments.Last().BackupSplitTime || (segments.Last().BackupSplitTime == 0.0);
         }
 
-        public Boolean FirstSplit()
+        public bool FirstSplit()
         {
-            return this.liveIndex == 0;
+            return liveIndex == 0;
         }
 
         /// <summary>
         /// If the current split is the last split.
         /// </summary>
         /// <returns></returns>
-        public Boolean CurrentSplitIsLastSplit()
+        public bool CurrentSplitIsLastSplit()
         {
-            return liveIndex == this.segments.Count - 1;
+            return liveIndex == segments.Count - 1;
         }
 
     }

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FaceSplit.Model
 {
     public class InformationFlagsFactory
     {
-        public static List<TextFormatFlags> GetInformationFlags(String informationName)
+        public static List<TextFormatFlags> GetInformationFlags(string informationName)
         {
             List<TextFormatFlags> flags = new List<TextFormatFlags>();
             if (informationName == InformationName.TITLE)
