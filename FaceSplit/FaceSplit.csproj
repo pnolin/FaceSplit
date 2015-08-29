@@ -74,9 +74,6 @@
     <ApplicationIcon>Resources\hotkeysOn.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Shortcut">
-      <HintPath>.\Shortcut.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -194,6 +191,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\noicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\Libs\Shortcut\Shortcut\Shortcut.csproj">
+      <Project>{5deadf0b-dc7b-430f-982e-647f7b05455d}</Project>
+      <Name>Shortcut</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
