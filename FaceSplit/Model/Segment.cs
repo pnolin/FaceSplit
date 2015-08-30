@@ -15,8 +15,9 @@ namespace FaceSplit.Model
         private bool wasSkipped;
         private bool previousWasSkipped;
         private Color runDeltaColor;
+        private Bitmap icon;
 
-        public Segment(string name, double splitTime, double segmentTime, double bestSegmentTime)
+        public Segment(string name, double splitTime, double segmentTime, double bestSegmentTime, Bitmap icon)
         {
             segmentName = name;
             this.splitTime = splitTime;
@@ -25,6 +26,7 @@ namespace FaceSplit.Model
             backupSegmentTime = segmentTime;
             this.bestSegmentTime = bestSegmentTime;
             backupBestSegmentTime = bestSegmentTime;
+            this.icon = icon;
             wasSkipped = false;
         }
 
@@ -50,6 +52,11 @@ namespace FaceSplit.Model
         {
             get { return bestSegmentTime; }
             set { bestSegmentTime = value; }
+        }
+
+        public Bitmap Icon
+        {
+            get { return this.icon; }
         }
 
         public double BackupSplitTime

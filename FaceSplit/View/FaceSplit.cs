@@ -384,7 +384,7 @@ namespace FaceSplit
                     segmentSplitTime = lines.ElementAt(i).Split('-').ElementAt(1);
                     segmentTime = lines.ElementAt(i).Split('-').ElementAt(2);
                     segmentBestTime = lines.ElementAt(i).Split('-').ElementAt(3);
-                    segments.Add(new Segment(segmentName, FaceSplitUtils.TimeParse(segmentSplitTime), FaceSplitUtils.TimeParse(segmentTime), FaceSplitUtils.TimeParse(segmentBestTime)));
+                    segments.Add(new Segment(segmentName, FaceSplitUtils.TimeParse(segmentSplitTime), FaceSplitUtils.TimeParse(segmentTime), FaceSplitUtils.TimeParse(segmentBestTime), null));
                 }
                 split = new Split(runTitle, runGoal, runCount, segments);
                 split.RunsCompleted = runsCompleted;
@@ -494,6 +494,7 @@ namespace FaceSplit
             string segmentName;
             string segmentSplitTime;
             string runDeltaString = "";
+            Bitmap segmentIcon;
             
             TextFormatFlags nameFlags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter |
                 TextFormatFlags.WordEllipsis;
@@ -502,8 +503,10 @@ namespace FaceSplit
             TextFormatFlags runDeltaFlags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter |
                 TextFormatFlags.WordBreak;
 
+            Rectangle segmentIconRectangle;
             Rectangle segmentNameRectangle;
             Rectangle segmentSplitTimeRectangle;
+            
             Color rectangleColor = SettingsLayout.Default.SplitsBackgroundColor;
 
             for (int i = 0; i < segmentsRectangles.Count; ++i)
@@ -512,18 +515,18 @@ namespace FaceSplit
                 segmentName = split.Segments.ElementAt(i).SegmentName;
                 segmentSplitTime = (split.Segments.ElementAt(i).SplitTime == 0) ? "-" : FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).SplitTime);
                 segmentSplitTime = FaceSplitUtils.CutDecimals(segmentSplitTime, 2);
+                segmentIcon = split.Segments.ElementAt(i).Icon;
                 runDeltaString = GetRunDeltaString(i);
-                //if (i == this.split.LiveIndex && (runDeltaString.IndexOf("+") == -1 && runDeltaString.IndexOf("-") == -1))
-                //{
-                //    runDeltaString = "";
-                //}
                 runDeltaString = FaceSplitUtils.CutDecimals(runDeltaString, 2);
                 segmentNameRectangle = segmentsRectangles.ElementAt(i);
                 segmentNameRectangle.Width /= 2;
+                segmentNameRectangle.X = 17;
                 segmentSplitTimeRectangle = segmentsRectangles.ElementAt(i);
                 segmentSplitTimeRectangle.Width /= 2;
                 segmentSplitTimeRectangle.X = segmentNameRectangle.Width;
+                segmentIconRectangle = new Rectangle(0, segmentNameRectangle.Y, 16, 16);
                 graphics.FillRectangle(new SolidBrush(rectangleColor), segmentsRectangles.ElementAt(i));
+                graphics.DrawImage(segmentIcon, segmentIconRectangle);
                 TextRenderer.DrawText(graphics, segmentName, SettingsLayout.Default.SplitNamesFont,
                     segmentNameRectangle, SettingsLayout.Default.SplitNamesColor, nameFlags);
                 TextRenderer.DrawText(graphics, segmentSplitTime, SettingsLayout.Default.SplitTimesFont,

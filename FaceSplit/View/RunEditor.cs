@@ -4,19 +4,27 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using FaceSplit.Model;
+using FaceSplit.Properties;
 
 namespace FaceSplit
 {
     public partial class RunEditor : Form
     {
         private const int INVALID_VALUE = -1;
+        private const int SEGMENT_NAME_ROW = 0;
+        private const int SEGMENT_SPLIT_TIME_ROW = 1;
+        private const int SEGMENT_TIME_ROW = 2;
+        private const int SEGMENT_BEST_TIME_ROW = 3;
+        private const int SEGMENT_ICON_ROW = 4;
 
+        private OpenFileDialog openFileDialog = new OpenFileDialog();
         private Split split;
         private int rowHeight;
 
         public RunEditor(Split split)
         {
             InitializeComponent();
+            openFileDialog = new OpenFileDialog();
             txtAttemptsCount.Text = "0";
             rowHeight = segmentsGridView.RowTemplate.Height;
             AddRow();
@@ -33,6 +41,20 @@ namespace FaceSplit
         public Split Split
         {
             get { return split; }
+        }
+
+
+        private void segmentsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == segmentsGridView.ColumnCount - 1)
+            {
+                openFileDialog.AddExtension = true;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    segmentsGridView.Rows[e.RowIndex].Cells[SEGMENT_ICON_ROW].Value = new Bitmap(openFileDialog.FileName);
+                }
+            }
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -67,8 +89,6 @@ namespace FaceSplit
         private void mnuImportFromLivesplit_Click(object sender, EventArgs e)
         {
             string fileName = "";
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".lss";
             openFileDialog.Filter = "LiveSplit split file (*.lss)|*.lss";
             openFileDialog.AddExtension = true;
@@ -198,11 +218,13 @@ namespace FaceSplit
         {
             foreach (DataGridViewRow rows in segmentsGridView.Rows)
             {
-                string segmentName = (rows.Cells[0].Value == null) ? "-" : rows.Cells[0].Value.ToString();
-                double splitTime = (rows.Cells[1].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[1].Value.ToString());
-                double segmentTime = (rows.Cells[2].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[2].Value.ToString());
-                double bestSegmentTime = (rows.Cells[3].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[3].Value.ToString());
-                split.Segments.Add(new Segment(segmentName, splitTime, segmentTime, bestSegmentTime));
+                string segmentName = (rows.Cells[SEGMENT_NAME_ROW].Value == null) ? "-" : rows.Cells[SEGMENT_NAME_ROW].Value.ToString();
+                double splitTime = (rows.Cells[SEGMENT_SPLIT_TIME_ROW].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[SEGMENT_SPLIT_TIME_ROW].Value.ToString());
+                double segmentTime = (rows.Cells[SEGMENT_TIME_ROW].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[SEGMENT_TIME_ROW].Value.ToString());
+                double bestSegmentTime = (rows.Cells[SEGMENT_BEST_TIME_ROW].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[SEGMENT_BEST_TIME_ROW].Value.ToString());
+                //TODO: Set noicon in Segment.cs instead of here.
+                Bitmap icon = (rows.Cells[SEGMENT_ICON_ROW].Value == null) ? (Bitmap) Resources.noicon : (Bitmap) rows.Cells[SEGMENT_ICON_ROW].Value;
+                split.Segments.Add(new Segment(segmentName, splitTime, segmentTime, bestSegmentTime, icon));
             }
         }
 
@@ -255,7 +277,7 @@ namespace FaceSplit
         {
             foreach (DataGridViewRow rows in segmentsGridView.Rows)
             {
-                string splitTimeString = (rows.Cells[1].Value == null) ? "" : rows.Cells[1].Value.ToString();
+                string splitTimeString = (rows.Cells[SEGMENT_SPLIT_TIME_ROW].Value == null) ? "" : rows.Cells[SEGMENT_SPLIT_TIME_ROW].Value.ToString();
                 if (!string.IsNullOrEmpty(splitTimeString.Trim()))
                 {
                     splitsTime.Add(FaceSplitUtils.TimeParse(splitTimeString));
@@ -311,8 +333,8 @@ namespace FaceSplit
             int index = 0;
             foreach (DataGridViewRow rows in segmentsGridView.Rows)
             {
-                DataGridViewCell cellSegmentTime = rows.Cells[2];
-                DataGridViewCell cellBestSegmentTime = rows.Cells[3];
+                DataGridViewCell cellSegmentTime = rows.Cells[SEGMENT_TIME_ROW];
+                DataGridViewCell cellBestSegmentTime = rows.Cells[SEGMENT_BEST_TIME_ROW];
                 if (segmentsTime.ElementAt(index) != INVALID_VALUE)
                 {
                     cellSegmentTime.Value = FaceSplitUtils.TimeFormat(segmentsTime.ElementAt(index));
@@ -332,7 +354,7 @@ namespace FaceSplit
             int index = 0;
             foreach (DataGridViewRow rows in segmentsGridView.Rows)
             {
-                DataGridViewCell cellSegmentTime = rows.Cells[2];
+                DataGridViewCell cellSegmentTime = rows.Cells[SEGMENT_TIME_ROW];
                 if (segmentsTime.ElementAt(index) != INVALID_VALUE)
                 {
                     cellSegmentTime.Value = FaceSplitUtils.TimeFormat(segmentsTime.ElementAt(index));

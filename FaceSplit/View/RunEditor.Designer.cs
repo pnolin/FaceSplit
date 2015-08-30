@@ -48,6 +48,7 @@
             this.SplitTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SegmentTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BestSegment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnRemove = new System.Windows.Forms.Button();
             this.contextMenuImport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.segmentsGridView)).BeginInit();
@@ -73,7 +74,7 @@
             // 
             this.txtRunGoal.Location = new System.Drawing.Point(307, 30);
             this.txtRunGoal.Name = "txtRunGoal";
-            this.txtRunGoal.Size = new System.Drawing.Size(123, 20);
+            this.txtRunGoal.Size = new System.Drawing.Size(224, 20);
             this.txtRunGoal.TabIndex = 2;
             // 
             // lblRunGoal
@@ -87,16 +88,15 @@
             // 
             // txtAttemptsCount
             // 
-            this.txtAttemptsCount.Location = new System.Drawing.Point(369, 159);
+            this.txtAttemptsCount.Location = new System.Drawing.Point(470, 159);
             this.txtAttemptsCount.Name = "txtAttemptsCount";
             this.txtAttemptsCount.Size = new System.Drawing.Size(61, 20);
             this.txtAttemptsCount.TabIndex = 5;
-            this.txtAttemptsCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAttemptsCount_KeyPress);
             // 
             // lblAttemptsCount
             // 
             this.lblAttemptsCount.AutoSize = true;
-            this.lblAttemptsCount.Location = new System.Drawing.Point(312, 162);
+            this.lblAttemptsCount.Location = new System.Drawing.Point(413, 162);
             this.lblAttemptsCount.Name = "lblAttemptsCount";
             this.lblAttemptsCount.Size = new System.Drawing.Size(51, 13);
             this.lblAttemptsCount.TabIndex = 6;
@@ -105,9 +105,9 @@
             // btnImport
             // 
             this.btnImport.ContextMenuStrip = this.contextMenuImport;
-            this.btnImport.Location = new System.Drawing.Point(174, 108);
+            this.btnImport.Location = new System.Drawing.Point(217, 108);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(100, 25);
+            this.btnImport.Size = new System.Drawing.Size(99, 25);
             this.btnImport.TabIndex = 7;
             this.btnImport.Text = "\"Import... ▼\"";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -129,9 +129,9 @@
             // 
             // btnFill
             // 
-            this.btnFill.Location = new System.Drawing.Point(330, 108);
+            this.btnFill.Location = new System.Drawing.Point(416, 108);
             this.btnFill.Name = "btnFill";
-            this.btnFill.Size = new System.Drawing.Size(100, 25);
+            this.btnFill.Size = new System.Drawing.Size(115, 25);
             this.btnFill.TabIndex = 8;
             this.btnFill.Text = "Fill segments time";
             this.btnFill.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(174, 156);
+            this.btnCancel.Location = new System.Drawing.Point(217, 156);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 25);
             this.btnCancel.TabIndex = 10;
@@ -180,14 +180,16 @@
             this.SegmentName,
             this.SplitTime,
             this.SegmentTime,
-            this.BestSegment});
+            this.BestSegment,
+            this.Icon});
             this.segmentsGridView.Location = new System.Drawing.Point(16, 56);
             this.segmentsGridView.Name = "segmentsGridView";
             this.segmentsGridView.RowHeadersVisible = false;
             this.segmentsGridView.RowTemplate.Height = 28;
             this.segmentsGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.segmentsGridView.Size = new System.Drawing.Size(416, 21);
+            this.segmentsGridView.Size = new System.Drawing.Size(515, 21);
             this.segmentsGridView.TabIndex = 12;
+            this.segmentsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.segmentsGridView_CellContentClick);
             // 
             // SegmentName
             // 
@@ -218,6 +220,11 @@
             this.BestSegment.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.BestSegment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
+            // Icon
+            // 
+            this.Icon.HeaderText = "Icon";
+            this.Icon.Name = "Icon";
+            // 
             // btnRemove
             // 
             this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
@@ -232,7 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 193);
+            this.ClientSize = new System.Drawing.Size(534, 193);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.segmentsGridView);
             this.Controls.Add(this.btnInsert);
@@ -247,7 +254,6 @@
             this.Controls.Add(this.txtRunTitle);
             this.Controls.Add(this.lblRunTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RunEditor";
             this.Text = "RunEditor";
             this.contextMenuImport.ResumeLayout(false);
@@ -273,11 +279,12 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuImport;
         private System.Windows.Forms.ToolStripMenuItem mnuImportFromLivesplit;
         private System.Windows.Forms.DataGridView segmentsGridView;
+        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn SegmentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn SplitTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn SegmentTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn BestSegment;
-        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.DataGridViewImageColumn Icon;
 
     }
 }

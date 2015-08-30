@@ -103,7 +103,7 @@ public class LiveSplitXMLReader
                     segmentBestSegment = FaceSplitUtils.TimeParse(nodeSegmentTime.InnerText.Replace('.', ','));
                 }
             }
-            newSegment = new Segment(segmentName, segmentBestTime, 0.0, segmentBestSegment);
+            newSegment = new Segment(segmentName, segmentBestTime, 0.0, segmentBestSegment, null);
             segments.Add(newSegment);
         }
     }
