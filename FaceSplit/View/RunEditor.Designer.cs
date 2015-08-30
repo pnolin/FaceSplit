@@ -48,6 +48,7 @@
             this.SplitTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SegmentTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BestSegment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.contextMenuImport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.segmentsGridView)).BeginInit();
             this.SuspendLayout();
@@ -159,11 +160,11 @@
             // 
             // btnInsert
             // 
+            this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
             this.btnInsert.Location = new System.Drawing.Point(17, 108);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(100, 25);
+            this.btnInsert.Size = new System.Drawing.Size(47, 25);
             this.btnInsert.TabIndex = 11;
-            this.btnInsert.Text = "Insert segment";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
@@ -217,11 +218,22 @@
             this.BestSegment.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.BestSegment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
+            this.btnRemove.Location = new System.Drawing.Point(70, 108);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(47, 25);
+            this.btnRemove.TabIndex = 13;
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // RunEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 193);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.segmentsGridView);
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnCancel);
@@ -265,6 +277,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SplitTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn SegmentTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn BestSegment;
+        private System.Windows.Forms.Button btnRemove;
 
     }
 }

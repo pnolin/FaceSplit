@@ -45,6 +45,12 @@ namespace FaceSplit
             AddRow();
         }
 
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            RemoveRow(segmentsGridView.CurrentCell.RowIndex);
+        }
+
         private void btnImport_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
@@ -117,8 +123,8 @@ namespace FaceSplit
 
         private void RemoveRow(int index = -1)
         {
-            index = (index == -1) ? segmentsGridView.Rows.Count : index;
-            segmentsGridView.Rows.RemoveAt(index - 1);
+            index = (index == -1) ? segmentsGridView.Rows.Count -1 : index;
+            segmentsGridView.Rows.RemoveAt(index);
             if (segmentsGridView.Rows.Count < 15)
             {
                 segmentsGridView.Height -= rowHeight;            
@@ -137,6 +143,7 @@ namespace FaceSplit
         private void MoveButtonsUnderGridView()
         {
             btnInsert.Top += rowHeight;
+            btnRemove.Top += rowHeight;
             btnImport.Top += rowHeight;
             btnFill.Top += rowHeight;
             btnSave.Top += rowHeight;
@@ -148,6 +155,7 @@ namespace FaceSplit
         private void MoveButtonOnRemoveRow()
         {
             btnInsert.Top -= rowHeight;
+            btnRemove.Top -= rowHeight;
             btnImport.Top -= rowHeight;
             btnFill.Top -= rowHeight;
             btnSave.Top -= rowHeight;
