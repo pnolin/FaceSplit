@@ -8,49 +8,49 @@ namespace FaceSplit.Model
         {
             if (information.InformationName == InformationName.TITLE)
             {
-                information.BackgroundColor = Settings.Default.TitleBackgroundColor;
-                information.PrimaryTextFont = Settings.Default.TitleFont;
-                information.PrimaryTextColor = Settings.Default.TitleColor;
-                information.SecondaryTextFont = Settings.Default.AttemptsFont;
-                information.SecondaryTextColor = Settings.Default.AttemptsColor;
+                information.BackgroundColor = SettingsLayout.Default.TitleBackgroundColor;
+                information.PrimaryTextFont = SettingsLayout.Default.TitleFont;
+                information.PrimaryTextColor = SettingsLayout.Default.TitleColor;
+                information.SecondaryTextFont = SettingsLayout.Default.AttemptsFont;
+                information.SecondaryTextColor = SettingsLayout.Default.AttemptsColor;
             }
             else if (information.InformationName == InformationName.GOAL)
             {
-                information.BackgroundColor = Settings.Default.GoalBackgroundColor;
-                information.PrimaryTextFont = Settings.Default.GoalFont;
-                information.PrimaryTextColor = Settings.Default.GoalColor;
+                information.BackgroundColor = SettingsLayout.Default.GoalBackgroundColor;
+                information.PrimaryTextFont = SettingsLayout.Default.GoalFont;
+                information.PrimaryTextColor = SettingsLayout.Default.GoalColor;
             }
             else if(information.InformationName == InformationName.PREVIOUS_SEGMENT)
             {
-                information.BackgroundColor = Settings.Default.PreviousSegmentBackgroundColor;
-                information.PrimaryTextFont = Settings.Default.PreviousSegmentTextFont;
-                information.PrimaryTextColor = Settings.Default.PreviousSegmentTextColor;
-                information.SecondaryTextFont = Settings.Default.PreviousSegmentDeltaFont;
-                information.SecondaryTextColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+                information.BackgroundColor = SettingsLayout.Default.PreviousSegmentBackgroundColor;
+                information.PrimaryTextFont = SettingsLayout.Default.PreviousSegmentTextFont;
+                information.PrimaryTextColor = SettingsLayout.Default.PreviousSegmentTextColor;
+                information.SecondaryTextFont = SettingsLayout.Default.PreviousSegmentDeltaFont;
+                information.SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaNoDeltaColor;
             }
             else if (information.InformationName == InformationName.POSSIBLE_TIME_SAVE)
             {
-                information.BackgroundColor = Settings.Default.PossibleTimeSaveBackgroundColor;
-                information.PrimaryTextFont = Settings.Default.PossibleTimeSaveTextFont;
-                information.PrimaryTextColor = Settings.Default.PossibleTimeSaveTextColor;
-                information.SecondaryTextFont = Settings.Default.PossibleTimeSaveFont;
-                information.SecondaryTextColor = Settings.Default.PossibleTimeSaveColor;
+                information.BackgroundColor = SettingsLayout.Default.PossibleTimeSaveBackgroundColor;
+                information.PrimaryTextFont = SettingsLayout.Default.PossibleTimeSaveTextFont;
+                information.PrimaryTextColor = SettingsLayout.Default.PossibleTimeSaveTextColor;
+                information.SecondaryTextFont = SettingsLayout.Default.PossibleTimeSaveFont;
+                information.SecondaryTextColor = SettingsLayout.Default.PossibleTimeSaveColor;
             }
             else if (information.InformationName == InformationName.PREDICTED_TIME)
             {
-                information.BackgroundColor = Settings.Default.PredictedTimeBackgroundColor;
-                information.PrimaryTextFont = Settings.Default.PredictedTimeTextFont;
-                information.PrimaryTextColor = Settings.Default.PredictedTimeTextColor;
-                information.SecondaryTextFont = Settings.Default.PredictedTimeFont;
-                information.SecondaryTextColor = Settings.Default.PredictedTimeColor;
+                information.BackgroundColor = SettingsLayout.Default.PredictedTimeBackgroundColor;
+                information.PrimaryTextFont = SettingsLayout.Default.PredictedTimeTextFont;
+                information.PrimaryTextColor = SettingsLayout.Default.PredictedTimeTextColor;
+                information.SecondaryTextFont = SettingsLayout.Default.PredictedTimeFont;
+                information.SecondaryTextColor = SettingsLayout.Default.PredictedTimeColor;
             }
             else if (information.InformationName == InformationName.SUM_OF_BEST)
             {
-                information.BackgroundColor = Settings.Default.SumOfBestBackgroundColor;
-                information.PrimaryTextFont = Settings.Default.SumOfBestTextFont;
-                information.PrimaryTextColor = Settings.Default.SumOfBestTextColor;
-                information.SecondaryTextFont = Settings.Default.SumOfBestFont;
-                information.SecondaryTextColor = Settings.Default.SumOfBestColor;
+                information.BackgroundColor = SettingsLayout.Default.SumOfBestBackgroundColor;
+                information.PrimaryTextFont = SettingsLayout.Default.SumOfBestTextFont;
+                information.PrimaryTextColor = SettingsLayout.Default.SumOfBestTextColor;
+                information.SecondaryTextFont = SettingsLayout.Default.SumOfBestFont;
+                information.SecondaryTextColor = SettingsLayout.Default.SumOfBestColor;
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FaceSplit.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FaceSplit.Properties" GeneratedClassName="SettingsLayout">
   <Profiles />
   <Settings>
     <Setting Name="TimerFont" Type="System.Drawing.Font" Scope="User">
@@ -114,7 +114,7 @@
       <Value Profile="(Default)">Microsoft Sans Serif, 8.25pt, style=Bold</Value>
     </Setting>
     <Setting Name="PossibleTimeSaveColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="PossibleTimeSaveFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 8.25pt, style=Bold</Value>

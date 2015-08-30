@@ -185,7 +185,7 @@ namespace FaceSplit.Model
             {
                 if (bestSegment)
                 {
-                    segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBestSegmentColor;
+                    segments.ElementAt(liveIndex - 1).RunDeltaColor = SettingsLayout.Default.SplitDeltasBestSegmentColor;
                 }
                 else
                 {
@@ -193,11 +193,11 @@ namespace FaceSplit.Model
                     {
                         if (!lostTime)
                         {
-                            segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
+                            segments.ElementAt(liveIndex - 1).RunDeltaColor = SettingsLayout.Default.SplitDeltasAheadSavingColor;
                         }
                         else
                         {
-                            segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
+                            segments.ElementAt(liveIndex - 1).RunDeltaColor = SettingsLayout.Default.SplitDeltasBehindLosingColor;
                         }
                     }
                     else
@@ -206,22 +206,22 @@ namespace FaceSplit.Model
                         {
                             if (GetRunDelta(liveIndex - 1) > 0.0)
                             {
-                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindSavingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = SettingsLayout.Default.SplitDeltasBehindSavingColor;
                             }
                             else
                             {
-                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadSavingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = SettingsLayout.Default.SplitDeltasAheadSavingColor;
                             }
                         }
                         else
                         {
                             if (GetRunDelta(liveIndex - 1) > 0.0)
                             {
-                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasBehindLosingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = SettingsLayout.Default.SplitDeltasBehindLosingColor;
                             }
                             else
                             {
-                                segments.ElementAt(liveIndex - 1).RunDeltaColor = Settings.Default.SplitDeltasAheadLosingColor;
+                                segments.ElementAt(liveIndex - 1).RunDeltaColor = SettingsLayout.Default.SplitDeltasAheadLosingColor;
                             }
                         }
                     }

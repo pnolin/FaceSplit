@@ -100,9 +100,9 @@ namespace FaceSplit
             InitializeComponent();
             ConfigureFilesDialogs();
             layoutSettings = new Model.LayoutSettings();
-            if (!Settings.Default.LayoutSettingsFile.Equals(""))
+            if (!SettingsLayout.Default.LayoutSettingsFile.Equals(""))
             {
-                layoutSettings.File = Settings.Default.LayoutSettingsFile;
+                layoutSettings.File = SettingsLayout.Default.LayoutSettingsFile;
             }
             hotkeyBinder = new HotkeyBinder();
             BindHotkeys();
@@ -110,8 +110,8 @@ namespace FaceSplit
             segmentsRectangles = new List<Rectangle>();
             watchRectangle = new Rectangle(ZERO, ZERO, DEFAULT_WIDTH, DEFAULT_HEIGHT);
             displayMode = DisplayMode.TIMER_ONLY;
-            watchColor = Settings.Default.TimerNotRunningColor;
-            segmentWatchColor = Settings.Default.SegmentTimerNotRunningColor;
+            watchColor = SettingsLayout.Default.TimerNotRunningColor;
+            segmentWatchColor = SettingsLayout.Default.SegmentTimerNotRunningColor;
             informations = new List<Information>();
             splitY_start = 0;
             base.Paint += new PaintEventHandler(DrawFaceSplit);
@@ -230,11 +230,11 @@ namespace FaceSplit
             LayoutSettingsEditor layoutSettings = new LayoutSettingsEditor();
             if (layoutSettings.ShowDialog() == DialogResult.OK)
             {
-                Settings.Default.Save();
+                SettingsLayout.Default.Save();
             }
             else
             {
-                Settings.Default.Reload();
+                SettingsLayout.Default.Reload();
             }
         }
 
@@ -266,7 +266,7 @@ namespace FaceSplit
 
         private void mnuResetLayout_Click(object sender, EventArgs e)
         {
-            Settings.Default.Reset();
+            SettingsLayout.Default.Reset();
         }
 
         private void mnuCloseSplit_Click(object sender, EventArgs e)
@@ -416,10 +416,10 @@ namespace FaceSplit
         private void SaveLayoutToFile()
         {
             layoutSettings.SaveLayoutSettings();
-            Settings.Default.LayoutSettingsFile = layoutSettings.File;
+            SettingsLayout.Default.LayoutSettingsFile = layoutSettings.File;
             serializer = new XmlSerializer(layoutSettings.GetType());
             serializer.Serialize(new StreamWriter(layoutSettings.File, false), layoutSettings);
-            Settings.Default.Save();
+            SettingsLayout.Default.Save();
         }
 
         private void LoadLayoutFromFile(string file)
@@ -428,7 +428,7 @@ namespace FaceSplit
             layoutSettings = (Model.LayoutSettings)serializer.Deserialize(new StreamReader(file));
             layoutSettings.LoadLayoutSettings();
             layoutSettings.File = file;
-            Settings.Default.Save();
+            SettingsLayout.Default.Save();
         }
 
         /// <summary>
@@ -480,9 +480,9 @@ namespace FaceSplit
         {
             string timeString;
             timeString = (displayMode == DisplayMode.SEGMENTS && split.RunStatus == RunStatus.DONE) ? runTimeOnCompletionPause.ToString("hh\\:mm\\:ss\\.ff") : watch.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
-            graphics.FillRectangle(new SolidBrush(Settings.Default.TimerBackgroundColor), watchRectangle);
+            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.TimerBackgroundColor), watchRectangle);
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
-            TextRenderer.DrawText(graphics, timeString, Settings.Default.TimerFont, watchRectangle, watchColor, flags);
+            TextRenderer.DrawText(graphics, timeString, SettingsLayout.Default.TimerFont, watchRectangle, watchColor, flags);
         }
 
         /// <summary>
@@ -504,11 +504,11 @@ namespace FaceSplit
 
             Rectangle segmentNameRectangle;
             Rectangle segmentSplitTimeRectangle;
-            Color rectangleColor = Settings.Default.SplitsBackgroundColor;
+            Color rectangleColor = SettingsLayout.Default.SplitsBackgroundColor;
 
             for (int i = 0; i < segmentsRectangles.Count; ++i)
             {
-                rectangleColor = (i == split.LiveIndex) ? Settings.Default.CurrentSegmentColor : Settings.Default.SplitsBackgroundColor;
+                rectangleColor = (i == split.LiveIndex) ? SettingsLayout.Default.CurrentSegmentColor : SettingsLayout.Default.SplitsBackgroundColor;
                 segmentName = split.Segments.ElementAt(i).SegmentName;
                 segmentSplitTime = (split.Segments.ElementAt(i).SplitTime == 0) ? "-" : FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).SplitTime);
                 segmentSplitTime = FaceSplitUtils.CutDecimals(segmentSplitTime, 2);
@@ -524,13 +524,13 @@ namespace FaceSplit
                 segmentSplitTimeRectangle.Width /= 2;
                 segmentSplitTimeRectangle.X = segmentNameRectangle.Width;
                 graphics.FillRectangle(new SolidBrush(rectangleColor), segmentsRectangles.ElementAt(i));
-                TextRenderer.DrawText(graphics, segmentName, Settings.Default.SplitNamesFont,
-                    segmentNameRectangle, Settings.Default.SplitNamesColor, nameFlags);
-                TextRenderer.DrawText(graphics, segmentSplitTime, Settings.Default.SplitTimesFont,
-                    segmentSplitTimeRectangle, Settings.Default.SplitTimesColor, splitTimeFlags);
+                TextRenderer.DrawText(graphics, segmentName, SettingsLayout.Default.SplitNamesFont,
+                    segmentNameRectangle, SettingsLayout.Default.SplitNamesColor, nameFlags);
+                TextRenderer.DrawText(graphics, segmentSplitTime, SettingsLayout.Default.SplitTimesFont,
+                    segmentSplitTimeRectangle, SettingsLayout.Default.SplitTimesColor, splitTimeFlags);
                 if(!string.IsNullOrEmpty(runDeltaString.Trim()))
                 {
-                    TextRenderer.DrawText(graphics, runDeltaString, Settings.Default.SplitDeltasFont,
+                    TextRenderer.DrawText(graphics, runDeltaString, SettingsLayout.Default.SplitDeltasFont,
                     segmentSplitTimeRectangle, split.GetSegmentColor(i), runDeltaFlags);
                 }
             }
@@ -576,28 +576,28 @@ namespace FaceSplit
                     runDeltaString = runDeltaString.Insert(0, "+");
                     if ((index == 0) || (index > 0 && runDelta > split.GetRunDelta(index - 1)))
                     {
-                        split.SetCurrentSegmentColor(Settings.Default.SplitDeltasBehindLosingColor);
+                        split.SetCurrentSegmentColor(SettingsLayout.Default.SplitDeltasBehindLosingColor);
                     }
                     else
                     {
-                        split.SetCurrentSegmentColor(Settings.Default.SplitDeltasBehindSavingColor);
+                        split.SetCurrentSegmentColor(SettingsLayout.Default.SplitDeltasBehindSavingColor);
                     }
-                    watchColor = Settings.Default.TimerBehindColor;
+                    watchColor = SettingsLayout.Default.TimerBehindColor;
                 }
                 else if ((index > 0 && runDelta > split.GetRunDelta(index - 1)))
                 {
                     runDeltaString = runDeltaString.Insert(0, "-");
-                    split.SetCurrentSegmentColor(Settings.Default.SplitDeltasAheadLosingColor);
+                    split.SetCurrentSegmentColor(SettingsLayout.Default.SplitDeltasAheadLosingColor);
                 }
                 else if (split.CurrentSegmentHasLiveDelta(timeElapsed))
                 {
                     runDeltaString = runDeltaString.Insert(0, "-");
-                    split.SetCurrentSegmentColor(Settings.Default.SplitDeltasAheadSavingColor);
+                    split.SetCurrentSegmentColor(SettingsLayout.Default.SplitDeltasAheadSavingColor);
                 }
                 else
                 {
                     runDeltaString = "";
-                    watchColor = Settings.Default.TimerRunningColor;
+                    watchColor = SettingsLayout.Default.TimerRunningColor;
                 }
             }
             return runDeltaString;
@@ -645,7 +645,7 @@ namespace FaceSplit
         private void FillEmptySegmentTimer(Graphics graphics)
         {
             Rectangle emptySegmentTimerRectangle = new Rectangle(0, watchRectangle.Y + watchRectangle.Height, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), emptySegmentTimerRectangle);
+            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), emptySegmentTimerRectangle);
         }
 
         private void DrawSegmentTimer(Graphics graphics)
@@ -657,9 +657,9 @@ namespace FaceSplit
             Rectangle segmentBestimeRectangle = new Rectangle(0, segmentTimeRectangle.Y + segmentTimeRectangle.Height, DEFAULT_WIDTH / 2, DEFAULT_HEIGHT / 2);
             Rectangle segmentTimerRectangle = new Rectangle(DEFAULT_WIDTH / 2, watchRectangle.Y + watchRectangle.Height, DEFAULT_WIDTH / 2, DEFAULT_HEIGHT);
 
-            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), segmentTimeRectangle);
-            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), segmentBestimeRectangle);
-            graphics.FillRectangle(new SolidBrush(Settings.Default.SegmentTimerBackgroundColor), segmentTimerRectangle);
+            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), segmentTimeRectangle);
+            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), segmentBestimeRectangle);
+            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), segmentTimerRectangle);
 
             string segmentTime = (split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(split.CurrentSegment.BackupSegmentTime) : FaceSplitUtils.TimeFormat(split.Segments.Last().BackupSegmentTime);
             string segmentBestTime = (split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(split.CurrentSegment.BackupBestSegmentTime) : FaceSplitUtils.TimeFormat(split.Segments.Last().BackupBestSegmentTime);
@@ -667,13 +667,13 @@ namespace FaceSplit
             segmentTimerString = (split.RunStatus == RunStatus.DONE) ? segmentTimeOnCompletionPause.ToString()
                 : FaceSplitUtils.TimeFormat((Math.Truncate(segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit);
 
-            TextRenderer.DrawText(graphics, "PB: " + segmentTime, Settings.Default.SegmentTimerPBFont,
-                segmentTimeRectangle, Settings.Default.SegmentTimerPBColor, segmentTimeFlags);
+            TextRenderer.DrawText(graphics, "PB: " + segmentTime, SettingsLayout.Default.SegmentTimerPBFont,
+                segmentTimeRectangle, SettingsLayout.Default.SegmentTimerPBColor, segmentTimeFlags);
 
-            TextRenderer.DrawText(graphics, "BEST: " + segmentBestTime, Settings.Default.SegmentTimerBestFont,
-                segmentBestimeRectangle, Settings.Default.SegmentTimerBestColor, segmentBestTimeFlags);
+            TextRenderer.DrawText(graphics, "BEST: " + segmentBestTime, SettingsLayout.Default.SegmentTimerBestFont,
+                segmentBestimeRectangle, SettingsLayout.Default.SegmentTimerBestColor, segmentBestTimeFlags);
 
-            TextRenderer.DrawText(graphics, segmentTimerString, Settings.Default.SegmentTimerFont,
+            TextRenderer.DrawText(graphics, segmentTimerString, SettingsLayout.Default.SegmentTimerFont,
                 segmentTimerRectangle, segmentWatchColor);
         }
 
@@ -750,7 +750,7 @@ namespace FaceSplit
         {
             if (displayMode == DisplayMode.SEGMENTS)
             {
-                segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
+                segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
                 if (split.RunStatus == RunStatus.DONE)
                 {
                     split.ResumeRun();
@@ -769,7 +769,7 @@ namespace FaceSplit
         {
             if (displayMode == DisplayMode.SEGMENTS && split.RunStatus == RunStatus.ON_GOING && !split.CurrentSplitIsLastSplit())
             {
-                segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
+                segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
                 split.SkipSegment((Math.Truncate(segmentWatch.Elapsed.TotalSeconds * 100) / 100));
                 segmentWatch.Restart();
             }
@@ -803,7 +803,7 @@ namespace FaceSplit
         /// </summary>
         private void DoSplit()
         {
-            segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
+            segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
             if (split.RunStatus == RunStatus.STOPPED)
             {
                 StartTimer();
@@ -824,8 +824,8 @@ namespace FaceSplit
                     split.CompleteRun();
                     runTimeOnCompletionPause = watch.Elapsed;
                     segmentTimeOnCompletionPause = segmentTime;
-                    watchColor = Settings.Default.TimerPausedColor;
-                    segmentWatchColor = Settings.Default.SegmentTimerPausedColor;
+                    watchColor = SettingsLayout.Default.TimerPausedColor;
+                    segmentWatchColor = SettingsLayout.Default.SegmentTimerPausedColor;
                 }
                 segmentWatch.Restart();
             }
@@ -869,13 +869,13 @@ namespace FaceSplit
                 lostTime = (segmentDelta > 0);
                 if (lostTime)
                 {
-                    informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLostColor;
+                    informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaLostColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "+");
-                    segmentWatchColor = Settings.Default.SegmentTimerLosingTimeColor;
+                    segmentWatchColor = SettingsLayout.Default.SegmentTimerLosingTimeColor;
                 }
                 else
                 {
-                    informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavedColor;
+                    informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaSavedColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "-");
                 }
             }
@@ -887,19 +887,19 @@ namespace FaceSplit
                 lostTime = (segmentDelta > 0);
                 if (bestSegment)
                 {
-                    informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaBestSegmentColor;
+                    informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaBestSegmentColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "-");
                 }
                 else
                 {
                     if (lostTime)
                     {
-                        informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaLostColor;
+                        informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaLostColor;
                         segmentDeltaString = segmentDeltaString.Insert(0, "+");
                     }
                     else
                     {
-                        informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaSavedColor;
+                        informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaSavedColor;
                         segmentDeltaString = segmentDeltaString.Insert(0, "-");
                     }
                 }
@@ -908,7 +908,7 @@ namespace FaceSplit
             else
             {
                 informations[(int)InformationIndexs.PREVIOUS_SEGMENT].PrimaryText = "Previous segment: ";
-                informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = Settings.Default.PreviousSegmentDeltaNoDeltaColor;
+                informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaNoDeltaColor;
                 segmentDeltaString = "-";
             }
             segmentDeltaString = FaceSplitUtils.CutDecimals(segmentDeltaString, 2);
@@ -957,8 +957,8 @@ namespace FaceSplit
         private void StartTimer()
         {
             watch.Start();
-            watchColor = Settings.Default.TimerRunningColor;
-            segmentWatchColor = Settings.Default.SegmentTimerRunningColor;
+            watchColor = SettingsLayout.Default.TimerRunningColor;
+            segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
         }
 
         /// <summary>
@@ -967,8 +967,8 @@ namespace FaceSplit
         private void StopTimer()
         {
             watch.Stop();
-            watchColor = Settings.Default.TimerPausedColor;
-            segmentWatchColor = Settings.Default.SegmentTimerPausedColor;
+            watchColor = SettingsLayout.Default.TimerPausedColor;
+            segmentWatchColor = SettingsLayout.Default.SegmentTimerPausedColor;
         }
 
         /// <summary>
@@ -977,8 +977,8 @@ namespace FaceSplit
         private void ResetTimer()
         {
             watch.Reset();
-            watchColor = Settings.Default.TimerNotRunningColor;
-            segmentWatchColor = Settings.Default.SegmentTimerNotRunningColor;
+            watchColor = SettingsLayout.Default.TimerNotRunningColor;
+            segmentWatchColor = SettingsLayout.Default.SegmentTimerNotRunningColor;
         }
 
         private void StartSegmentTimer()

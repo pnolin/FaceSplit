@@ -144,13 +144,13 @@
     <None Include="app.config" />
     <None Include="FaceSplit_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
-    <None Include="Properties\Settings.settings">
+    <None Include="Properties\SettingsLayout.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <LastGenOutput>SettingsLayout.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Include="Properties\SettingsLayout.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
+      <DependentUpon>SettingsLayout.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
