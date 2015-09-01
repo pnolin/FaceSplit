@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using FaceSplit.Model;
-using FaceSplit.Properties;
 
 namespace FaceSplit
 {
@@ -19,12 +18,14 @@ namespace FaceSplit
 
         private OpenFileDialog openFileDialog = new OpenFileDialog();
         private Split split;
+        private List<BitmapFile> icons;
         private int rowHeight;
 
         public RunEditor(Split split)
         {
             InitializeComponent();
             openFileDialog = new OpenFileDialog();
+            icons = new List<BitmapFile>();
             txtAttemptsCount.Text = "0";
             rowHeight = segmentsGridView.RowTemplate.Height;
             AddRow();
@@ -49,8 +50,11 @@ namespace FaceSplit
             if (e.ColumnIndex == segmentsGridView.ColumnCount - 1)
             {
                 openFileDialog.AddExtension = true;
+                openFileDialog.Filter = "Images Files (*.bmp, *.jpg, *.jpeg, *.png, *.gif) | *.bmp; *.jpg; *.jpeg; *.png; *.gif";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    icons.ElementAt(e.RowIndex).Icon = new Bitmap(openFileDialog.FileName);
+                    icons.ElementAt(e.RowIndex).IconPath = openFileDialog.FileName;
                     segmentsGridView.Rows[e.RowIndex].Cells[SEGMENT_ICON_ROW].Value = new Bitmap(openFileDialog.FileName);
                 }
             }
@@ -130,6 +134,8 @@ namespace FaceSplit
             DataGridViewRow newRow = new DataGridViewRow();
             newRow.Height = rowHeight;
             segmentsGridView.Rows.Insert(segmentsGridView.Rows.Count, newRow);
+            segmentsGridView.Rows[segmentsGridView.Rows.Count - 1].Cells[SEGMENT_ICON_ROW].Value = new BitmapFile().Icon;
+            icons.Add(new BitmapFile());
             if (segmentsGridView.Rows.Count <= 15)
             {
                 segmentsGridView.Height += rowHeight;
@@ -145,6 +151,7 @@ namespace FaceSplit
         {
             index = (index == -1) ? segmentsGridView.Rows.Count -1 : index;
             segmentsGridView.Rows.RemoveAt(index);
+            icons.RemoveAt(index);
             if (segmentsGridView.Rows.Count < 15)
             {
                 segmentsGridView.Height -= rowHeight;            
@@ -222,8 +229,7 @@ namespace FaceSplit
                 double splitTime = (rows.Cells[SEGMENT_SPLIT_TIME_ROW].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[SEGMENT_SPLIT_TIME_ROW].Value.ToString());
                 double segmentTime = (rows.Cells[SEGMENT_TIME_ROW].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[SEGMENT_TIME_ROW].Value.ToString());
                 double bestSegmentTime = (rows.Cells[SEGMENT_BEST_TIME_ROW].Value == null) ? 0.0 : FaceSplitUtils.TimeParse(rows.Cells[SEGMENT_BEST_TIME_ROW].Value.ToString());
-                //TODO: Set noicon in Segment.cs instead of here.
-                Bitmap icon = (rows.Cells[SEGMENT_ICON_ROW].Value == null) ? (Bitmap) Resources.noicon : (Bitmap) rows.Cells[SEGMENT_ICON_ROW].Value;
+                BitmapFile icon = icons.ElementAt(rows.Index);
                 split.Segments.Add(new Segment(segmentName, splitTime, segmentTime, bestSegmentTime, icon));
             }
         }
@@ -239,10 +245,11 @@ namespace FaceSplit
                 {
                     AddRow();
                 }
-                segmentsGridView.Rows[i].Cells[0].Value = split.Segments.ElementAt(i).SegmentName;
-                segmentsGridView.Rows[i].Cells[1].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).SplitTime);
-                segmentsGridView.Rows[i].Cells[2].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).SegmentTime);
-                segmentsGridView.Rows[i].Cells[3].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).BestSegmentTime);
+                segmentsGridView.Rows[i].Cells[SEGMENT_NAME_ROW].Value = split.Segments.ElementAt(i).SegmentName;
+                segmentsGridView.Rows[i].Cells[SEGMENT_SPLIT_TIME_ROW].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).SplitTime);
+                segmentsGridView.Rows[i].Cells[SEGMENT_TIME_ROW].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).SegmentTime);
+                segmentsGridView.Rows[i].Cells[SEGMENT_BEST_TIME_ROW].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).BestSegmentTime);
+                segmentsGridView.Rows[i].Cells[SEGMENT_ICON_ROW].Value = split.Segments.ElementAt(i).Icon;
             }
         }
 

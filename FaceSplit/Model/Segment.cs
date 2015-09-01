@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using FaceSplit.Properties;
 
 namespace FaceSplit.Model
 {
@@ -15,9 +16,9 @@ namespace FaceSplit.Model
         private bool wasSkipped;
         private bool previousWasSkipped;
         private Color runDeltaColor;
-        private Bitmap icon;
+        private BitmapFile icon;
 
-        public Segment(string name, double splitTime, double segmentTime, double bestSegmentTime, Bitmap icon)
+        public Segment(string name, double splitTime, double segmentTime, double bestSegmentTime, BitmapFile icon)
         {
             segmentName = name;
             this.splitTime = splitTime;
@@ -56,7 +57,12 @@ namespace FaceSplit.Model
 
         public Bitmap Icon
         {
-            get { return this.icon; }
+            get { return icon.Icon; }
+        }
+
+        public String IconPath
+        {
+            get { return icon.IconPath; }
         }
 
         public double BackupSplitTime

@@ -354,7 +354,7 @@ namespace FaceSplit
                 file.WriteLine(split.RunsCompleted);
                 foreach (Segment segment in split.Segments)
                 {
-                    file.WriteLine(segment.SegmentName + "-" + segment.SplitTime + "-" + segment.SegmentTime + "-" + segment.BestSegmentTime);
+                    file.WriteLine(segment.SegmentName + "-" + segment.SplitTime + "-" + segment.SegmentTime + "-" + segment.BestSegmentTime + "-" + segment.IconPath);
                 }
                 file.Close();
             }
@@ -371,6 +371,7 @@ namespace FaceSplit
             string segmentSplitTime = "";
             string segmentTime = "";
             string segmentBestTime = "";
+            string segmentIconPath = "";
             List<Segment> segments = new List<Segment>();
             try
             {
@@ -380,11 +381,20 @@ namespace FaceSplit
                 runsCompleted = int.Parse(lines.ElementAt(3));
                 for (int i = 4; i < lines.Length; ++i)
                 {
-                    segmentName = lines.ElementAt(i).Split('-').ElementAt(0);
-                    segmentSplitTime = lines.ElementAt(i).Split('-').ElementAt(1);
-                    segmentTime = lines.ElementAt(i).Split('-').ElementAt(2);
-                    segmentBestTime = lines.ElementAt(i).Split('-').ElementAt(3);
-                    segments.Add(new Segment(segmentName, FaceSplitUtils.TimeParse(segmentSplitTime), FaceSplitUtils.TimeParse(segmentTime), FaceSplitUtils.TimeParse(segmentBestTime), null));
+                    try
+                    {
+                        segmentName = lines.ElementAt(i).Split('-').ElementAt(0);
+                        segmentSplitTime = lines.ElementAt(i).Split('-').ElementAt(1);
+                        segmentTime = lines.ElementAt(i).Split('-').ElementAt(2);
+                        segmentBestTime = lines.ElementAt(i).Split('-').ElementAt(3);
+                        segmentIconPath = lines.ElementAt(i).Split('-').ElementAt(4);
+                    }
+                    catch (ArgumentOutOfRangeException e)
+                    {
+                        segmentIconPath = "";
+                    }
+
+                    segments.Add(new Segment(segmentName, FaceSplitUtils.TimeParse(segmentSplitTime), FaceSplitUtils.TimeParse(segmentTime), FaceSplitUtils.TimeParse(segmentBestTime), new BitmapFile(segmentIconPath)));
                 }
                 split = new Split(runTitle, runGoal, runCount, segments);
                 split.RunsCompleted = runsCompleted;

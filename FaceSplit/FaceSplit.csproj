@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\BitmapFile.cs" />
     <Compile Include="Model\DisplayMode.cs" />
     <Compile Include="Model\Information.cs" />
     <Compile Include="Model\InformationFlagsFactory.cs" />
