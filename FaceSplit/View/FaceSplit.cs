@@ -354,7 +354,7 @@ namespace FaceSplit
                 file.WriteLine(split.RunsCompleted);
                 foreach (Segment segment in split.Segments)
                 {
-                    file.WriteLine(segment.SegmentName + "-" + segment.SplitTime + "-" + segment.SegmentTime + "-" + segment.BestSegmentTime + "-" + segment.IconPath);
+                    file.WriteLine(segment.SegmentName.Replace("-","\"?\"" ) + "-" + segment.SplitTime + "-" + segment.SegmentTime + "-" + segment.BestSegmentTime + "-" + segment.IconPath);
                 }
                 file.Close();
             }
@@ -383,7 +383,7 @@ namespace FaceSplit
                 {
                     try
                     {
-                        segmentName = lines.ElementAt(i).Split('-').ElementAt(0);
+                        segmentName = lines.ElementAt(i).Split('-').ElementAt(0).Replace("\"?\"", "-");
                         segmentSplitTime = lines.ElementAt(i).Split('-').ElementAt(1);
                         segmentTime = lines.ElementAt(i).Split('-').ElementAt(2);
                         segmentBestTime = lines.ElementAt(i).Split('-').ElementAt(3);
