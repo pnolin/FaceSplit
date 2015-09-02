@@ -680,6 +680,8 @@ namespace FaceSplit
             segmentTimerString = (split.RunStatus == RunStatus.DONE) ? segmentTimeOnCompletionPause.ToString()
                 : FaceSplitUtils.TimeFormat((Math.Truncate(segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit);
 
+            segmentTimerString = segmentTimerString.Replace(',', '.');
+
             TextRenderer.DrawText(graphics, "PB: " + segmentTime, SettingsLayout.Default.SegmentTimerPBFont,
                 segmentTimeRectangle, SettingsLayout.Default.SegmentTimerPBColor, segmentTimeFlags);
 
