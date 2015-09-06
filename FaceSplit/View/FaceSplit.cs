@@ -383,11 +383,13 @@ namespace FaceSplit
                 {
                     try
                     {
-                        segmentName = lines.ElementAt(i).Split('-').ElementAt(0).Replace("\"?\"", "-");
-                        segmentSplitTime = lines.ElementAt(i).Split('-').ElementAt(1);
-                        segmentTime = lines.ElementAt(i).Split('-').ElementAt(2);
-                        segmentBestTime = lines.ElementAt(i).Split('-').ElementAt(3);
-                        segmentIconPath = lines.ElementAt(i).Split('-').ElementAt(4);
+                        var splitted = lines.ElementAt(i).Split(new[] { '-' }, 5);
+
+                        segmentName = (splitted.Length >= 1) ? splitted[0].Replace("\"?\"", "-") : string.Empty;
+                        segmentSplitTime = (splitted.Length >= 2) ? splitted[1] : string.Empty;
+                        segmentTime = (splitted.Length >= 3) ? splitted[2] : string.Empty;
+                        segmentBestTime = (splitted.Length >= 4) ? splitted[3] : string.Empty;
+                        segmentIconPath = (splitted.Length >= 5) ? splitted[4] : string.Empty;
                     }
                     catch (ArgumentOutOfRangeException e)
                     {
