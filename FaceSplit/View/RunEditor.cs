@@ -250,6 +250,8 @@ namespace FaceSplit
                 segmentsGridView.Rows[i].Cells[SEGMENT_TIME_ROW].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).SegmentTime);
                 segmentsGridView.Rows[i].Cells[SEGMENT_BEST_TIME_ROW].Value = FaceSplitUtils.TimeFormat(split.Segments.ElementAt(i).BestSegmentTime);
                 segmentsGridView.Rows[i].Cells[SEGMENT_ICON_ROW].Value = split.Segments.ElementAt(i).Icon;
+                icons.ElementAt(i).Icon = split.Segments.ElementAt(i).Icon;
+                icons.ElementAt(i).IconPath = split.Segments.ElementAt(i).IconPath;
             }
         }
 

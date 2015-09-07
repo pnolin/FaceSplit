@@ -17,13 +17,13 @@ namespace FaceSplit.Model
         public string IconPath
         {
             get { return iconPath; }
-            set { this.iconPath = value; }
+            set { iconPath = value; }
         }
 
         public BitmapFile(string iconPath = null)
         {
             icon = (iconPath == null || iconPath.Equals("")) ? Resources.noicon : new Bitmap(iconPath);
-            iconPath = (iconPath == null || iconPath.Equals("")) ? "" : iconPath;
+            this.iconPath = (iconPath == null || iconPath.Equals("")) ? "" : iconPath;
         }
 
     }

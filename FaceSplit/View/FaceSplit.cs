@@ -221,7 +221,7 @@ namespace FaceSplit
         {
             if (openRunDialog.ShowDialog() == DialogResult.OK)
             {
-                LoadFile(openRunDialog.FileName);
+                LoadRunFromFile(openRunDialog.FileName);
             }
         }
 
@@ -360,7 +360,7 @@ namespace FaceSplit
             }
         }
 
-        private void LoadFile(string fileName)
+        private void LoadRunFromFile(string fileName)
         {
             string[] lines = File.ReadAllLines(fileName);
             string runTitle = "";
