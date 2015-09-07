@@ -100,10 +100,6 @@ namespace FaceSplit
             InitializeComponent();
             ConfigureFilesDialogs();
             layoutSettings = new Model.LayoutSettings();
-            if (!SettingsLayout.Default.LayoutSettingsFile.Equals(""))
-            {
-                layoutSettings.File = SettingsLayout.Default.LayoutSettingsFile;
-            }
             hotkeyBinder = new HotkeyBinder();
             BindHotkeys();
             globalHotkeysActive = true;
@@ -120,6 +116,14 @@ namespace FaceSplit
             watch = new Stopwatch();
             segmentWatch = new Stopwatch();
             ticksTimer.Enabled = true;
+            if (!SettingsLayout.Default.LayoutSettingsFile.Equals(""))
+            {
+                layoutSettings.File = SettingsLayout.Default.LayoutSettingsFile;
+            }
+            if (!SettingsApp.Default.LastRunFile.Equals(string.Empty))
+            {
+                LoadRunFromFile(SettingsApp.Default.LastRunFile);
+            }
         }
 
         private void BindHotkeys()
@@ -272,6 +276,8 @@ namespace FaceSplit
         private void mnuCloseSplit_Click(object sender, EventArgs e)
         {
             split = null;
+            SettingsApp.Default.LastRunFile = string.Empty;
+            SettingsApp.Default.Save();
             displayMode = DisplayMode.TIMER_ONLY;
             watchRectangle.Y = ZERO;
             Height = DEFAULT_HEIGHT;
@@ -357,6 +363,8 @@ namespace FaceSplit
                     file.WriteLine(segment.SegmentName.Replace("-","\"?\"" ) + "-" + segment.SplitTime + "-" + segment.SegmentTime + "-" + segment.BestSegmentTime + "-" + segment.IconPath);
                 }
                 file.Close();
+                SettingsApp.Default.LastRunFile = split.File;
+                SettingsApp.Default.Save();
             }
         }
 
@@ -405,6 +413,8 @@ namespace FaceSplit
                 FillInformations();
                 CreateSegmentsRectangles();
                 displayMode = DisplayMode.SEGMENTS;
+                SettingsApp.Default.LastRunFile = fileName;
+                SettingsApp.Default.Save();
             }
             catch (FormatException fe)
             {

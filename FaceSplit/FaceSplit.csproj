@@ -100,6 +100,11 @@
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Split.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Properties\SettingsApp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SettingsApp.settings</DependentUpon>
+    </Compile>
     <Compile Include="Utils\FaceSplitUtils.cs" />
     <Compile Include="Utils\InformationName.cs" />
     <Compile Include="Utils\LiveSplitXMLReader.cs" />
@@ -154,6 +159,10 @@
       <DependentUpon>SettingsLayout.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Properties\SettingsApp.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsApp.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
