@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -116,6 +117,13 @@ namespace FaceSplit
             watch = new Stopwatch();
             segmentWatch = new Stopwatch();
             ticksTimer.Enabled = true;
+            InitialLoad();
+        }
+
+        private void InitialLoad()
+        {
+            SettingsApp.Default.LastRunsFile = (SettingsApp.Default.LastRunsFile == null) ? new StringCollection() : SettingsApp.Default.LastRunsFile;
+            mnuLastRuns.DropDownItemClicked += (s, e) => LoadRunFromFile(e.ClickedItem.Text);
             if (!SettingsLayout.Default.LayoutSettingsFile.Equals(""))
             {
                 layoutSettings.File = SettingsLayout.Default.LayoutSettingsFile;
@@ -364,6 +372,7 @@ namespace FaceSplit
                 }
                 file.Close();
                 SettingsApp.Default.LastRunFile = split.File;
+                AddRunToLastRuns(split.File);
                 SettingsApp.Default.Save();
             }
         }
@@ -414,6 +423,7 @@ namespace FaceSplit
                 CreateSegmentsRectangles();
                 displayMode = DisplayMode.SEGMENTS;
                 SettingsApp.Default.LastRunFile = fileName;
+                AddRunToLastRuns(fileName);
                 SettingsApp.Default.Save();
             }
             catch (FormatException fe)
@@ -451,6 +461,35 @@ namespace FaceSplit
             layoutSettings.LoadLayoutSettings();
             layoutSettings.File = file;
             SettingsLayout.Default.Save();
+        }
+
+        private void AddRunToLastRuns(String runFile)
+        {
+            int alreadyExistingRunIndex = SettingsApp.Default.LastRunsFile.IndexOf(runFile);
+            if (alreadyExistingRunIndex != -1)
+            {
+                SettingsApp.Default.LastRunsFile.RemoveAt(alreadyExistingRunIndex);
+                SettingsApp.Default.LastRunsFile.Insert(0, runFile);
+            }
+            if (!SettingsApp.Default.LastRunsFile.Contains(runFile))
+            {
+                SettingsApp.Default.LastRunsFile.Insert(0, runFile);
+            }
+            if (SettingsApp.Default.LastRunsFile.Count > 5)
+            {
+                SettingsApp.Default.LastRunsFile.RemoveAt(5);
+            }
+            UpdateLastRunMenu();
+        }
+
+        private void UpdateLastRunMenu()
+        {
+            mnuLastRuns.DropDownItems.Clear();
+            List<String> lastRuns = SettingsApp.Default.LastRunsFile.Cast<string>().ToList();
+            foreach (String run in lastRuns)
+            {
+                mnuLastRuns.DropDownItems.Add(run);
+            }
         }
 
         /// <summary>

@@ -41,11 +41,12 @@
             this.mnuEditLayout = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSaveLayout = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSaveLayoutAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadLayoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuResetLayout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCloseSplit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadLayoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLastRuns = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             this.mnuSaveRun,
             this.mnuSaveRunAs,
             this.mnuLoadRun,
+            this.mnuLastRuns,
             this.toolStripMenuItem2,
             this.mnuEditLayout,
             this.mnuSaveLayout,
@@ -72,7 +74,7 @@
             this.mnuCloseSplit,
             this.mnuExit});
             this.contextMnuPrincipal.Name = "contextMnuPrincipal";
-            this.contextMnuPrincipal.Size = new System.Drawing.Size(153, 286);
+            this.contextMnuPrincipal.Size = new System.Drawing.Size(153, 308);
             // 
             // mnuEditRun
             // 
@@ -133,6 +135,13 @@
             this.mnuSaveLayoutAs.Text = "Save layout as";
             this.mnuSaveLayoutAs.Click += new System.EventHandler(this.mnuSaveLayoutAs_Click);
             // 
+            // loadLayoutToolStripMenuItem
+            // 
+            this.loadLayoutToolStripMenuItem.Name = "loadLayoutToolStripMenuItem";
+            this.loadLayoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadLayoutToolStripMenuItem.Text = "Load layout";
+            this.loadLayoutToolStripMenuItem.Click += new System.EventHandler(this.loadLayoutToolStripMenuItem_Click);
+            // 
             // mnuResetLayout
             // 
             this.mnuResetLayout.Name = "mnuResetLayout";
@@ -159,12 +168,11 @@
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
-            // loadLayoutToolStripMenuItem
+            // mnuLastRuns
             // 
-            this.loadLayoutToolStripMenuItem.Name = "loadLayoutToolStripMenuItem";
-            this.loadLayoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.loadLayoutToolStripMenuItem.Text = "Load layout";
-            this.loadLayoutToolStripMenuItem.Click += new System.EventHandler(this.loadLayoutToolStripMenuItem_Click);
+            this.mnuLastRuns.Name = "mnuLastRuns";
+            this.mnuLastRuns.Size = new System.Drawing.Size(152, 22);
+            this.mnuLastRuns.Text = "Last runs";
             // 
             // FaceSplit
             // 
@@ -202,6 +210,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuSaveLayout;
         private System.Windows.Forms.ToolStripMenuItem mnuSaveLayoutAs;
         private System.Windows.Forms.ToolStripMenuItem loadLayoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuLastRuns;
     }
 }
 

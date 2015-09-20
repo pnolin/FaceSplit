@@ -34,5 +34,16 @@ namespace FaceSplit.Properties {
                 this["LastRunFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection LastRunsFile {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["LastRunsFile"]));
+            }
+            set {
+                this["LastRunsFile"] = value;
+            }
+        }
     }
 }
