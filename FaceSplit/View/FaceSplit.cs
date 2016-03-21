@@ -123,7 +123,7 @@ namespace FaceSplit
         private void InitialLoad()
         {
             SettingsApp.Default.LastRunsFile = (SettingsApp.Default.LastRunsFile == null) ? new StringCollection() : SettingsApp.Default.LastRunsFile;
-            mnuLastRuns.DropDownItemClicked += (s, e) => LoadRunFromFile(e.ClickedItem.Text);
+            mnuLastRuns.DropDownItemClicked += (s, e) => LoadRecentRunFromMenu(e.ClickedItem.Text);
             if (!SettingsLayout.Default.LayoutSettingsFile.Equals(""))
             {
                 layoutSettings.File = SettingsLayout.Default.LayoutSettingsFile;
@@ -134,11 +134,22 @@ namespace FaceSplit
                 {
                     LoadRunFromFile(SettingsApp.Default.LastRunFile);
                 }
-                catch(DirectoryNotFoundException e)
+                catch(DirectoryNotFoundException)
                 {
                     MessageBox.Show(SettingsApp.Default.LastRunFile + " Was not found", "File not found", 
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UpdateLastRunMenu();
                 }
+                catch(FileNotFoundException)
+                {
+                    MessageBox.Show(SettingsApp.Default.LastRunFile + " Was not found", "File not found",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UpdateLastRunMenu();
+                }
+            }
+            else
+            {
+                UpdateLastRunMenu();
             }
         }
 
@@ -385,6 +396,24 @@ namespace FaceSplit
             }
         }
 
+        private void LoadRecentRunFromMenu(string fileName)
+        {
+            try
+            {
+                LoadRunFromFile(fileName);
+            }
+            catch(DirectoryNotFoundException)
+            {
+                MessageBox.Show(fileName + " Was not found", "File not found",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(FileNotFoundException)
+            {
+                MessageBox.Show(fileName + " Was not found", "File not found",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void LoadRunFromFile(string fileName)
         {
             string[] lines = null;
@@ -392,7 +421,11 @@ namespace FaceSplit
             {
                 lines = File.ReadAllLines(fileName);
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
+            {
+                throw;
+            }
+            catch(FileNotFoundException)
             {
                 throw;
             }
