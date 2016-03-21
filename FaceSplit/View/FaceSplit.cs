@@ -130,7 +130,15 @@ namespace FaceSplit
             }
             if (!SettingsApp.Default.LastRunFile.Equals(string.Empty))
             {
-                LoadRunFromFile(SettingsApp.Default.LastRunFile);
+                try
+                {
+                    LoadRunFromFile(SettingsApp.Default.LastRunFile);
+                }
+                catch(DirectoryNotFoundException e)
+                {
+                    MessageBox.Show(SettingsApp.Default.LastRunFile + " Was not found", "File not found", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -379,7 +387,15 @@ namespace FaceSplit
 
         private void LoadRunFromFile(string fileName)
         {
-            string[] lines = File.ReadAllLines(fileName);
+            string[] lines = null;
+            try
+            {
+                lines = File.ReadAllLines(fileName);
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                throw;
+            }
             string runTitle = "";
             string runGoal = "";
             int runCount = 0;
