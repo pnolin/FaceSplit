@@ -26,6 +26,8 @@ namespace FaceSplit
 
         public const int SEGMENT_HEIGHT = 15;
 
+        public const string CLEAR_LAST_RUNS = "Clear";
+
         public int splitY_start;
         /// <summary>
         /// When you unsplit, the segment timer has to be set to the actual time since you did that split.
@@ -398,19 +400,27 @@ namespace FaceSplit
 
         private void LoadRecentRunFromMenu(string fileName)
         {
-            try
+            if (!fileName.Equals(CLEAR_LAST_RUNS))
             {
-                LoadRunFromFile(fileName);
+                try
+                {
+                    LoadRunFromFile(fileName);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    MessageBox.Show(fileName + " Was not found", "File not found",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show(fileName + " Was not found", "File not found",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch(DirectoryNotFoundException)
+            else
             {
-                MessageBox.Show(fileName + " Was not found", "File not found",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch(FileNotFoundException)
-            {
-                MessageBox.Show(fileName + " Was not found", "File not found",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mnuLastRuns.DropDownItems.Clear();
+                SettingsApp.Default.LastRunsFile.Clear();
             }
         }
 
@@ -538,6 +548,11 @@ namespace FaceSplit
             foreach (String run in lastRuns)
             {
                 mnuLastRuns.DropDownItems.Add(run);
+            }
+            if(mnuLastRuns.DropDownItems.Count > 0)
+            {
+                mnuLastRuns.DropDownItems.Add(new ToolStripSeparator());
+                mnuLastRuns.DropDownItems.Add(CLEAR_LAST_RUNS);
             }
         }
 
