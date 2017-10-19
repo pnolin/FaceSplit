@@ -1,0 +1,3 @@
+[submodule "Libs/Shortcut"]
+	path = Libs/Shortcut
+	url = https://github.com/AlexArchive/Shortcut.git
