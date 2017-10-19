@@ -18,6 +18,11 @@ namespace FaceSplit.Model
         private Color runDeltaColor;
         private BitmapFile icon;
 
+        public Segment()
+        {
+
+        }
+
         public Segment(string name, double splitTime, double segmentTime, double bestSegmentTime, BitmapFile icon)
         {
             segmentName = name;

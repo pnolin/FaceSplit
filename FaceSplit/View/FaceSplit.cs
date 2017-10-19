@@ -11,6 +11,10 @@ using FaceSplit.Model;
 using System.IO;
 using Shortcut;
 using FaceSplit.Properties;
+using Microsoft.WindowsAPICodePack.Taskbar;
+using FaceSplit.Dtos;
+using Newtonsoft.Json;
+using FaceSplit.services;
 
 namespace FaceSplit
 {
@@ -148,6 +152,12 @@ namespace FaceSplit
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     UpdateLastRunMenu();
                 }
+                catch (JsonReaderException)
+                {
+                    MessageBox.Show(SettingsApp.Default.LastRunFile + " Was not recognized as a FaceSplit split file.", "Wrong format",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UpdateLastRunMenu();
+                }
             }
             else
             {
@@ -183,12 +193,12 @@ namespace FaceSplit
             if (globalHotkeysActive)
             {
                 BindHotkeys();
-                Icon = Properties.Resources.hotkeysOn;
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
             }
             else
             {
                 UnbindHotkeys();
-                Icon = Properties.Resources.hotkeysOff;
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
             }
         }
 
@@ -381,21 +391,11 @@ namespace FaceSplit
 
         private void SaveRunToFile()
         {
-            using (StreamWriter file = new StreamWriter(split.File, false))
-            {
-                file.WriteLine(split.RunTitle);
-                file.WriteLine(split.RunGoal);
-                file.WriteLine(split.AttemptsCount);
-                file.WriteLine(split.RunsCompleted);
-                foreach (Segment segment in split.Segments)
-                {
-                    file.WriteLine(segment.SegmentName.Replace("-","\"?\"" ) + "-" + segment.SplitTime + "-" + segment.SegmentTime + "-" + segment.BestSegmentTime + "-" + segment.IconPath);
-                }
-                file.Close();
-                SettingsApp.Default.LastRunFile = split.File;
-                AddRunToLastRuns(split.File);
-                SettingsApp.Default.Save();
-            }
+            RunDto runDto = new RunDto();
+            runDto = runDto.fromModel(split);
+
+            RunSaver runSaver = new RunSaver();
+            runSaver.SaveRun(runDto, split.File);
         }
 
         private void LoadRecentRunFromMenu(string fileName)
@@ -416,6 +416,11 @@ namespace FaceSplit
                     MessageBox.Show(fileName + " Was not found", "File not found",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (JsonReaderException)
+                {
+                    MessageBox.Show(fileName + " Was not recognized as a FaceSplit split file.", "Wrong format",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -426,73 +431,20 @@ namespace FaceSplit
 
         private void LoadRunFromFile(string fileName)
         {
-            string[] lines = null;
-            try
-            {
-                lines = File.ReadAllLines(fileName);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                throw;
-            }
-            catch(FileNotFoundException)
-            {
-                throw;
-            }
-            string runTitle = "";
-            string runGoal = "";
-            int runCount = 0;
-            int runsCompleted = 0;
-            string segmentName = "";
-            string segmentSplitTime = "";
-            string segmentTime = "";
-            string segmentBestTime = "";
-            string segmentIconPath = "";
-            List<Segment> segments = new List<Segment>();
-            try
-            {
-                runTitle = lines.ElementAt(0);
-                runGoal = lines.ElementAt(1);
-                runCount = int.Parse(lines.ElementAt(2));
-                runsCompleted = int.Parse(lines.ElementAt(3));
-                for (int i = 4; i < lines.Length; ++i)
-                {
-                    try
-                    {
-                        var splitted = lines.ElementAt(i).Split(new[] { '-' }, 5);
+            RunLoader runLoader = new RunLoader();
+            runLoader.LoadRun(fileName);
 
-                        segmentName = (splitted.Length >= 1) ? splitted[0].Replace("\"?\"", "-") : string.Empty;
-                        segmentSplitTime = (splitted.Length >= 2) ? splitted[1] : string.Empty;
-                        segmentTime = (splitted.Length >= 3) ? splitted[2] : string.Empty;
-                        segmentBestTime = (splitted.Length >= 4) ? splitted[3] : string.Empty;
-                        segmentIconPath = (splitted.Length >= 5) ? splitted[4] : string.Empty;
-                    }
-                    catch (ArgumentOutOfRangeException e)
-                    {
-                        segmentIconPath = "";
-                    }
+            RunDto runDto = runLoader.LoadRun(fileName);
 
-                    segments.Add(new Segment(segmentName, FaceSplitUtils.TimeParse(segmentSplitTime), FaceSplitUtils.TimeParse(segmentTime), FaceSplitUtils.TimeParse(segmentBestTime), new BitmapFile(segmentIconPath)));
-                }
-                split = new Split(runTitle, runGoal, runCount, segments);
-                split.RunsCompleted = runsCompleted;
-                split.File = fileName;
-                informations.Clear();
-                FillInformations();
-                CreateSegmentsRectangles();
-                displayMode = DisplayMode.SEGMENTS;
-                SettingsApp.Default.LastRunFile = fileName;
-                AddRunToLastRuns(fileName);
-                SettingsApp.Default.Save();
-            }
-            catch (FormatException fe)
-            {
-                MessageBox.Show("This file was not recognize as a FaceSplit split file.");
-            }
-            catch (IndexOutOfRangeException iore)
-            {
-                MessageBox.Show("This file was not recognize as a FaceSplit split file.");
-            }
+            split = runDto.toModel();
+            split.File = fileName;
+            informations.Clear();
+            FillInformations();
+            CreateSegmentsRectangles();
+            displayMode = DisplayMode.SEGMENTS;
+            SettingsApp.Default.LastRunFile = fileName;
+            AddRunToLastRuns(fileName);
+            SettingsApp.Default.Save();
         }
 
         private void SaveLayoutToFileAs()
@@ -792,7 +744,7 @@ namespace FaceSplit
             string segmentTime = (split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(split.CurrentSegment.BackupSegmentTime) : FaceSplitUtils.TimeFormat(split.Segments.Last().BackupSegmentTime);
             string segmentBestTime = (split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(split.CurrentSegment.BackupBestSegmentTime) : FaceSplitUtils.TimeFormat(split.Segments.Last().BackupBestSegmentTime);
             string segmentTimerString;
-            segmentTimerString = (split.RunStatus == RunStatus.DONE) ? segmentTimeOnCompletionPause.ToString()
+            segmentTimerString = (split.RunStatus == RunStatus.DONE) ? FaceSplitUtils.TimeFormat(segmentTimeOnCompletionPause)
                 : FaceSplitUtils.TimeFormat((Math.Truncate(segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit);
 
             segmentTimerString = segmentTimerString.Replace(',', '.');
@@ -819,6 +771,11 @@ namespace FaceSplit
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void FaceSplit_Activated(object sender, EventArgs e)
+        {
+            TaskbarManager.Instance.SetProgressValue(1, 1);
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)

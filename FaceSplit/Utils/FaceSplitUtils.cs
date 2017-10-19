@@ -47,7 +47,7 @@ namespace FaceSplit
         /// <returns></returns>
         public static string CutDecimals(string time, int cutLenght)
         {
-            if (!string.IsNullOrEmpty(time.Trim()) && time.IndexOf(':') != -1)
+            if (!string.IsNullOrEmpty(time.Trim()) && time.IndexOf(':') != -1 && time.IndexOf(',') != -1)
             {
                 time = time.Remove(time.IndexOf(","), cutLenght + 1);    
             }

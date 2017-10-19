@@ -74,6 +74,22 @@
     <ApplicationIcon>Resources\hotkeysOn.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -86,6 +102,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\RunDto.cs" />
+    <Compile Include="Dtos\SegmentDto.cs" />
     <Compile Include="Model\BitmapFile.cs" />
     <Compile Include="Model\DisplayMode.cs" />
     <Compile Include="Model\Information.cs" />
@@ -96,6 +114,8 @@
     <Compile Include="Model\RunStatus.cs" />
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Split.cs" />
+    <Compile Include="services\RunLoader.cs" />
+    <Compile Include="services\RunSaver.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Properties\SettingsApp.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -146,6 +166,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="FaceSplit_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\SettingsLayout.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -202,7 +223,7 @@
     <None Include="Resources\noicon.png" />
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\Libs\Shortcut\Shortcut\Shortcut.csproj">
+    <ProjectReference Include="..\Libs\Shortcut\Shortcut\Shortcut.csproj">
       <Project>{5deadf0b-dc7b-430f-982e-647f7b05455d}</Project>
       <Name>Shortcut</Name>
     </ProjectReference>
