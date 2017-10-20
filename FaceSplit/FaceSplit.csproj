@@ -114,8 +114,8 @@
     <Compile Include="Model\RunStatus.cs" />
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Split.cs" />
-    <Compile Include="services\RunLoader.cs" />
-    <Compile Include="services\RunSaver.cs" />
+    <Compile Include="Services\RunLoader.cs" />
+    <Compile Include="Services\RunSaver.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Properties\SettingsApp.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +125,8 @@
     <Compile Include="Utils\FaceSplitUtils.cs" />
     <Compile Include="Utils\InformationName.cs" />
     <Compile Include="Utils\LiveSplitXMLReader.cs" />
+    <Compile Include="Drawables\DrawingConstants.cs" />
+    <Compile Include="Drawables\Timer.cs" />
     <Compile Include="View\FaceSplit.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -14,7 +14,8 @@ using FaceSplit.Properties;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using FaceSplit.Dtos;
 using Newtonsoft.Json;
-using FaceSplit.services;
+using FaceSplit.Services;
+using FaceSplit.Drawables;
 
 namespace FaceSplit
 {
@@ -38,6 +39,7 @@ namespace FaceSplit
         /// </summary>
         public double timeElapsedSinceSplit;
 
+        Drawables.Timer timer;
 
         Split split;
         DisplayMode displayMode;
@@ -124,6 +126,7 @@ namespace FaceSplit
             segmentWatch = new Stopwatch();
             ticksTimer.Enabled = true;
             InitialLoad();
+            InitializeDrawables();
         }
 
         private void InitialLoad()
@@ -163,6 +166,11 @@ namespace FaceSplit
             {
                 UpdateLastRunMenu();
             }
+        }
+
+        private void InitializeDrawables()
+        {
+            timer = new Drawables.Timer();
         }
 
         private void BindHotkeys()
@@ -329,7 +337,9 @@ namespace FaceSplit
 
         private void DrawFaceSplit(object sender, PaintEventArgs e)
         {
-            DrawWatch(e.Graphics);
+            
+            timer.Update((displayMode == DisplayMode.SEGMENTS && split.RunStatus == RunStatus.DONE) ? runTimeOnCompletionPause : watch.Elapsed);
+            timer.Draw(e.Graphics);
             if (displayMode == DisplayMode.SEGMENTS)
             {                
                 DrawInformations(e.Graphics);
@@ -547,19 +557,6 @@ namespace FaceSplit
                 }
             }
             return aboveNumber;
-        }
-
-        /// <summary>
-        /// Used to draw the clock.
-        /// </summary>
-        /// <param name="graphics">The graphics.</param>
-        private void DrawWatch(Graphics graphics)
-        {
-            string timeString;
-            timeString = (displayMode == DisplayMode.SEGMENTS && split.RunStatus == RunStatus.DONE) ? runTimeOnCompletionPause.ToString("hh\\:mm\\:ss\\.ff") : watch.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
-            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.TimerBackgroundColor), watchRectangle);
-            TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
-            TextRenderer.DrawText(graphics, timeString, SettingsLayout.Default.TimerFont, watchRectangle, watchColor, flags);
         }
 
         /// <summary>

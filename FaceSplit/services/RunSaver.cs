@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.IO;
 
-namespace FaceSplit.services
+namespace FaceSplit.Services
 {
     public class RunSaver
     {
