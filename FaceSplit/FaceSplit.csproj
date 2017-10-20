@@ -127,6 +127,7 @@
     <Compile Include="Utils\LiveSplitXMLReader.cs" />
     <Compile Include="Drawables\DrawingConstants.cs" />
     <Compile Include="Drawables\Timer.cs" />
+    <Compile Include="ViewModels\Timer.cs" />
     <Compile Include="View\FaceSplit.cs">
       <SubType>Form</SubType>
     </Compile>
