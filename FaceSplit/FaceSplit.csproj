@@ -102,6 +102,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drawables\SegmentTimer.cs" />
     <Compile Include="Dtos\RunDto.cs" />
     <Compile Include="Dtos\SegmentDto.cs" />
     <Compile Include="Model\BitmapFile.cs" />
@@ -127,6 +128,10 @@
     <Compile Include="Utils\LiveSplitXMLReader.cs" />
     <Compile Include="Drawables\DrawingConstants.cs" />
     <Compile Include="Drawables\Timer.cs" />
+    <Compile Include="ViewModels\SegmentTimer.cs" />
+    <Compile Include="ViewModels\SegmentTimerBestTime.cs" />
+    <Compile Include="ViewModels\SegmentTimerPersonalBest.cs" />
+    <Compile Include="ViewModels\SegmentTimerState.cs" />
     <Compile Include="ViewModels\Timer.cs" />
     <Compile Include="View\FaceSplit.cs">
       <SubType>Form</SubType>

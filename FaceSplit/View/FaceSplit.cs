@@ -16,6 +16,7 @@ using FaceSplit.Dtos;
 using Newtonsoft.Json;
 using FaceSplit.Services;
 using FaceSplit.Drawables;
+using FaceSplit.ViewModels;
 
 namespace FaceSplit
 {
@@ -32,6 +33,7 @@ namespace FaceSplit
         public double timeElapsedSinceSplit;
 
         ViewModels.Timer timer;
+        ViewModels.SegmentTimer segmentTimer;
 
         Split split;
         DisplayMode displayMode;
@@ -62,8 +64,6 @@ namespace FaceSplit
         /// </summary>
         TimeSpan runTimeOnCompletionPause;
         double segmentTimeOnCompletionPause;
-
-        Color segmentWatchColor;
 
         /// <summary>
         /// Rectangle for each segments.
@@ -100,7 +100,6 @@ namespace FaceSplit
             globalHotkeysActive = true;
             segmentsRectangles = new List<Rectangle>();
             displayMode = DisplayMode.TIMER_ONLY;
-            segmentWatchColor = SettingsLayout.Default.SegmentTimerNotRunningColor;
             informations = new List<Information>();
             splitY_start = 0;
             base.Paint += new PaintEventHandler(DrawFaceSplit);
@@ -161,6 +160,10 @@ namespace FaceSplit
                 DrawingConstants.DEFAULT_WIDTH,
                 DrawingConstants.DEFAULT_HEIGHT);
             timer.TimeColor = SettingsLayout.Default.TimerNotRunningColor;
+
+            segmentTimer = new ViewModels.SegmentTimer();
+            segmentTimer.SegmentWatchRectangle = new Rectangle(DrawingConstants.ZERO, timer.Y + timer.Height, DrawingConstants.DEFAULT_WIDTH, DrawingConstants.DEFAULT_HEIGHT);
+            segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerNotRunningColor;
         }
 
         private void BindHotkeys()
@@ -344,6 +347,7 @@ namespace FaceSplit
                 {
                     DrawSegmentTimer(e.Graphics);
                 }
+                segmentTimer.Draw(e.Graphics);
             }
             UpdateInformationsStyle();
         }
@@ -714,39 +718,35 @@ namespace FaceSplit
 
         private void FillEmptySegmentTimer(Graphics graphics)
         {
-            Rectangle emptySegmentTimerRectangle = new Rectangle(0, timer.Y + timer.Height, DrawingConstants.DEFAULT_WIDTH, DrawingConstants.DEFAULT_HEIGHT);
-            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), emptySegmentTimerRectangle);
+            if(segmentTimer.State != SegmentTimerState.EMPTY)
+            {
+                segmentTimer.State = SegmentTimerState.EMPTY;
+                segmentTimer.SegmentWatchRectangle = new Rectangle(DrawingConstants.ZERO, timer.Y + timer.Height, DrawingConstants.DEFAULT_WIDTH, DrawingConstants.DEFAULT_HEIGHT);
+            }
+            else
+            {
+                segmentTimer.Y = timer.Y + timer.Height;
+            }
         }
 
         private void DrawSegmentTimer(Graphics graphics)
         {
-            TextFormatFlags segmentTimeFlags = TextFormatFlags.Left | TextFormatFlags.Bottom | TextFormatFlags.WordEllipsis;
-            TextFormatFlags segmentBestTimeFlags = TextFormatFlags.Left | TextFormatFlags.Top | TextFormatFlags.WordEllipsis;
+            if(segmentTimer.State != SegmentTimerState.FULL)
+            {
+                segmentTimer.State = SegmentTimerState.FULL;
+                segmentTimer.SegmentWatchRectangle = new Rectangle(DrawingConstants.DEFAULT_WIDTH / 2, timer.Y + timer.Height, DrawingConstants.DEFAULT_WIDTH / 2, DrawingConstants.DEFAULT_HEIGHT);
+                segmentTimer.SegmentPersonalBestRectangle = new Rectangle(DrawingConstants.ZERO, timer.Y + timer.Height, DrawingConstants.DEFAULT_WIDTH / 2, DrawingConstants.DEFAULT_HEIGHT / 2);
+                segmentTimer.SegmentBestTimeRectangle = new Rectangle(0, segmentTimer.SegmentPersonalBestRectangle.Y + segmentTimer.SegmentPersonalBestRectangle.Height, DrawingConstants.DEFAULT_WIDTH / 2, DrawingConstants.DEFAULT_HEIGHT / 2);
+            }
 
-            Rectangle segmentTimeRectangle = new Rectangle(0, timer.Y + timer.Height, DrawingConstants.DEFAULT_WIDTH / 2, DrawingConstants.DEFAULT_HEIGHT / 2);
-            Rectangle segmentBestimeRectangle = new Rectangle(0, segmentTimeRectangle.Y + segmentTimeRectangle.Height, DrawingConstants.DEFAULT_WIDTH / 2, DrawingConstants.DEFAULT_HEIGHT / 2);
-            Rectangle segmentTimerRectangle = new Rectangle(DrawingConstants.DEFAULT_WIDTH / 2, timer.Y + timer.Height, DrawingConstants.DEFAULT_WIDTH / 2, DrawingConstants.DEFAULT_HEIGHT);
+            segmentTimer.SegmentPersonalBest = (split.RunStatus == RunStatus.ON_GOING)
+                ? split.CurrentSegment.BackupSegmentTime : split.Segments.Last().BackupSegmentTime;
+            segmentTimer.SegmentBestTime = (split.RunStatus == RunStatus.ON_GOING)
+                ? split.CurrentSegment.BackupBestSegmentTime : split.Segments.Last().BackupBestSegmentTime;
+            segmentTimer.SegmentTime = (split.RunStatus == RunStatus.DONE) ? segmentTimeOnCompletionPause
+                : Math.Truncate(segmentWatch.Elapsed.TotalSeconds * 100) / 100 + timeElapsedSinceSplit;
 
-            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), segmentTimeRectangle);
-            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), segmentBestimeRectangle);
-            graphics.FillRectangle(new SolidBrush(SettingsLayout.Default.SegmentTimerBackgroundColor), segmentTimerRectangle);
-
-            string segmentTime = (split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(split.CurrentSegment.BackupSegmentTime) : FaceSplitUtils.TimeFormat(split.Segments.Last().BackupSegmentTime);
-            string segmentBestTime = (split.RunStatus == RunStatus.ON_GOING) ? FaceSplitUtils.TimeFormat(split.CurrentSegment.BackupBestSegmentTime) : FaceSplitUtils.TimeFormat(split.Segments.Last().BackupBestSegmentTime);
-            string segmentTimerString;
-            segmentTimerString = (split.RunStatus == RunStatus.DONE) ? FaceSplitUtils.TimeFormat(segmentTimeOnCompletionPause)
-                : FaceSplitUtils.TimeFormat((Math.Truncate(segmentWatch.Elapsed.TotalSeconds * 100) / 100) + timeElapsedSinceSplit);
-
-            segmentTimerString = segmentTimerString.Replace(',', '.');
-
-            TextRenderer.DrawText(graphics, "PB: " + segmentTime, SettingsLayout.Default.SegmentTimerPBFont,
-                segmentTimeRectangle, SettingsLayout.Default.SegmentTimerPBColor, segmentTimeFlags);
-
-            TextRenderer.DrawText(graphics, "BEST: " + segmentBestTime, SettingsLayout.Default.SegmentTimerBestFont,
-                segmentBestimeRectangle, SettingsLayout.Default.SegmentTimerBestColor, segmentBestTimeFlags);
-
-            TextRenderer.DrawText(graphics, segmentTimerString, SettingsLayout.Default.SegmentTimerFont,
-                segmentTimerRectangle, segmentWatchColor);
+            //segmentTimerString = segmentTimerString.Replace(',', '.');
         }
 
         /// <summary>
@@ -827,7 +827,7 @@ namespace FaceSplit
         {
             if (displayMode == DisplayMode.SEGMENTS)
             {
-                segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
+                segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerRunningColor;
                 if (split.RunStatus == RunStatus.DONE)
                 {
                     split.ResumeRun();
@@ -846,7 +846,7 @@ namespace FaceSplit
         {
             if (displayMode == DisplayMode.SEGMENTS && split.RunStatus == RunStatus.ON_GOING && !split.CurrentSplitIsLastSplit())
             {
-                segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
+                segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerRunningColor;
                 split.SkipSegment((Math.Truncate(segmentWatch.Elapsed.TotalSeconds * 100) / 100));
                 segmentWatch.Restart();
             }
@@ -880,7 +880,7 @@ namespace FaceSplit
         /// </summary>
         private void DoSplit()
         {
-            segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
+            segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerRunningColor;
             if (split.RunStatus == RunStatus.STOPPED)
             {
                 StartTimer();
@@ -902,7 +902,7 @@ namespace FaceSplit
                     runTimeOnCompletionPause = watch.Elapsed;
                     segmentTimeOnCompletionPause = segmentTime;
                     timer.TimeColor = SettingsLayout.Default.TimerPausedColor;
-                    segmentWatchColor = SettingsLayout.Default.SegmentTimerPausedColor;
+                    segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerPausedColor;
                 }
                 segmentWatch.Restart();
             }
@@ -948,7 +948,7 @@ namespace FaceSplit
                 {
                     informations[(int)InformationIndexs.PREVIOUS_SEGMENT].SecondaryTextColor = SettingsLayout.Default.PreviousSegmentDeltaLostColor;
                     segmentDeltaString = segmentDeltaString.Insert(0, "+");
-                    segmentWatchColor = SettingsLayout.Default.SegmentTimerLosingTimeColor;
+                    segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerLosingTimeColor;
                 }
                 else
                 {
@@ -1035,7 +1035,7 @@ namespace FaceSplit
         {
             watch.Start();
             timer.TimeColor = SettingsLayout.Default.TimerRunningColor;
-            segmentWatchColor = SettingsLayout.Default.SegmentTimerRunningColor;
+            segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerRunningColor;
         }
 
         /// <summary>
@@ -1045,7 +1045,7 @@ namespace FaceSplit
         {
             watch.Stop();
             timer.TimeColor = SettingsLayout.Default.TimerPausedColor;
-            segmentWatchColor = SettingsLayout.Default.SegmentTimerPausedColor;
+            segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerPausedColor;
         }
 
         /// <summary>
@@ -1055,7 +1055,7 @@ namespace FaceSplit
         {
             watch.Reset();
             timer.TimeColor = SettingsLayout.Default.TimerNotRunningColor;
-            segmentWatchColor = SettingsLayout.Default.SegmentTimerNotRunningColor;
+            segmentTimer.TimerColor = SettingsLayout.Default.SegmentTimerNotRunningColor;
         }
 
         private void StartSegmentTimer()
